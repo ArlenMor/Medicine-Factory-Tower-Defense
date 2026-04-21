@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f1da65f78a3c54198d73e2ad30ec54, type: 3}
+  m_Name: TaskIconConfig
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.TaskIconConfig
+  _entries:
+  - Type: 1
+    Icon: {fileID: 21300000, guid: d075f303b34e0524cafe9ef123b9905f, type: 3}
+  - Type: 2
+    Icon: {fileID: 21300000, guid: 08e4a99abf547ac4393beec66c75c195, type: 3}
+  - Type: 3
+    Icon: {fileID: 21300000, guid: 54ebfe1cb739cc645a468f02f546c27a, type: 3}
+  - Type: 4
+    Icon: {fileID: 21300000, guid: fd5d4139086772945befd5c82634d02e, type: 3}
+  - Type: 5
+    Icon: {fileID: 21300000, guid: 6f965fa5fba9cfa4490ef0234bbb09d4, type: 3}
+  - Type: 11
+    Icon: {fileID: 21300000, guid: 79be91ec4e5e0e84fbc1ba256b993b0a, type: 3}
+  - Type: 6
+    Icon: {fileID: 21300000, guid: a500748078bfd7d4899bb8af4c4186e1, type: 3}
+  - Type: 10
+    Icon: {fileID: 21300000, guid: d29b4b4ed020f3b479b59ae58f4a85a9, type: 3}
+  - Type: 13
+    Icon: {fileID: 21300000, guid: b0f9072f50585c14894f8bb3447c0e40, type: 3}
+  - Type: 12
+    Icon: {fileID: 21300000, guid: 58fc046946d95b241b53f3e0eba0782f, type: 3}
+  _finalIcon: {fileID: 21300000, guid: d76f58c53c475334b9d424e845af5b60, type: 3}

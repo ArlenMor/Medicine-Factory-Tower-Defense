@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f6e9d56ae343c9ab0d6f1152376256, type: 3}
+  m_Name: UpgradesConfig
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.UpgradesConfig
+  Upgrades:
+  - Type: 1
+    Multipliers:
+    - 1
+    - 1.22
+    - 1.47
+    Costs: 00000000230000003c000000
+  - Type: 2
+    Multipliers:
+    - 1
+    - 2
+    - 3
+    Costs: 000000002d0000004b000000
+  - Type: 3
+    Multipliers:
+    - 1
+    - 1.25
+    - 1.54
+    Costs: 00000000230000003c000000

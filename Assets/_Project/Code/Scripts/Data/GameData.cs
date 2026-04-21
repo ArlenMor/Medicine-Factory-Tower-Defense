@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using _Project.Code.Scripts.Configs;
+using _Project.Code.Scripts.Garden;
+using UnityEngine;
+
+namespace _Project.Code.Scripts.Data
+{
+    public class GameData
+    {
+        private readonly GameConfig _config;
+
+        public GameConfig GameConfig => _config;
+        
+        public static GameData Instance;
+        public Dictionary<ResourceType, int> Resources { get; set; } = new ();
+        public event Action OnResourcesChanged; 
+        
+        public int ProductionProductivityMultiplier = 1;
+        
+        public Camera Camera;
+        public readonly Dictionary<UpgradeType, UpgradeData> UpgradesData = new();
+        public GameStats Stats { get; } = new();
+
+        public GameData(GameConfig config, Camera camera)
+        {
+            _config = config;
+            Camera = camera;
+        }
+        
+        public void Initialize()
+        {
+            Instance = this;
+            
+            GenerateResourceData();
+            
+            GenerateMultipliers();
+        }
+
+        private void GenerateMultipliers()
+        {
+            var config = _config.UpgradesConfig;
+            foreach (var upgradeDef in config.Upgrades)
+            {
+                UpgradesData.Add(upgradeDef.Type, new UpgradeData()
+                {
+                    Type = upgradeDef.Type,
+                    Multiplier = upgradeDef.Multipliers[0],
+                    Step = 0
+                });
+            }
+        }
+
+        public void AddResource(ResourceType resourceType, int amount)
+        {
+            Resources[resourceType] += amount;
+            if (resourceType == ResourceType.Credit && amount > 0)
+                Stats.CreditsEarned += amount;
+            OnResourcesChanged?.Invoke();
+        }
+
+        private void GenerateResourceData()
+        {
+            Resources.Add(ResourceType.Crystal, GetResourceStartAmount(ResourceType.Crystal));
+            Resources.Add(ResourceType.Polymer, GetResourceStartAmount(ResourceType.Polymer));
+            Resources.Add(ResourceType.NanoGel, GetResourceStartAmount(ResourceType.NanoGel));
+            Resources.Add(ResourceType.Credit, _config.GardenConfig.CreditStartAmount);
+        }
+
+        private int GetResourceStartAmount(ResourceType resourceType) => 
+            _config.GardenConfig.GetGrowableResourceData(resourceType).StartAmount;
+    }
+}

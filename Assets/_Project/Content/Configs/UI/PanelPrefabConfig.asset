@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ffb623d69b0cb4b949f56116256e2c, type: 3}
+  m_Name: PanelPrefabConfig
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UIService.PanelPrefabConfig
+  _panels:
+  - Type: 1
+    Prefab: {fileID: 7158610728101386570, guid: 439478f48ceda1a4da4f22a45fddf703, type: 3}
+  - Type: 2
+    Prefab: {fileID: 7381904654496260909, guid: f2b809137bc6ff2419e61c595b96bf4a, type: 3}
+  - Type: 3
+    Prefab: {fileID: 7112041409078564680, guid: 92e12738cc84ddc4187b81e9410d19df, type: 3}

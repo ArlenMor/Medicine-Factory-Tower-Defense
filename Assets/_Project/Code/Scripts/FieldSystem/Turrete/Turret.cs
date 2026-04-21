@@ -1,0 +1,64 @@
+using System;
+using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.UI;
+using UnityEngine;
+
+namespace _Project.Code.Scripts.BattleField
+{
+    public class Turret : MonoBehaviour, IFieldPlaceable, IManualUpdate
+    {
+        public event Action<IFieldPlaceable> OnPlaceableDestroyed;
+
+        [SerializeField] private TurretConfig _config;
+        [SerializeField] private TurretShooter _shooter;
+        [SerializeField] private TurretRadiusDisplay _radiusDisplay;
+        [SerializeField] private HealthBar _healthBar;
+
+        private float _currentHp;
+        private bool _placed;
+
+        public bool IsDead => _currentHp <= 0f;
+
+        private void Awake()
+        {
+            _currentHp = _config.MaxHp;
+            _shooter.Initialize(_config.AttackRadius, _config.FireRate, _config.Damage, _config.BulletSpeed);
+            _radiusDisplay.Initialize(_config.AttackRadius, _config.RadiusFadeDuration, _config.RadiusMaxAlpha);
+            if (_healthBar != null) _healthBar.Initialize(_config.MaxHp);
+        }
+
+        public void ManualUpdate(float deltaTime)
+        {
+            if (IsDead || !_placed) return;
+
+            _shooter.Tick(deltaTime);
+        }
+
+        public void Place()
+        {
+            _placed = true;
+            _radiusDisplay.Lock(false);
+            _radiusDisplay.Show();
+        }
+
+        public void LockRadius(bool locked)
+        {
+            _radiusDisplay.Lock(locked);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            if (IsDead) return;
+
+            _currentHp -= damage;
+            if (_healthBar != null) _healthBar.SetHealth(_currentHp);
+            DamagePopup.Spawn(transform.position, damage, transform, GameData.Instance.GameConfig.DamagePopupConfig);
+            if (_currentHp <= 0f)
+            {
+                _currentHp = 0f;
+                OnPlaceableDestroyed?.Invoke(this);
+                gameObject.SetActive(false);
+            }
+        }
+    }
+}
