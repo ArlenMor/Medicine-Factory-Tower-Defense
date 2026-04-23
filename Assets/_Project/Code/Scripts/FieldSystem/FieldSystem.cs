@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _Project.Code.Scripts.BattleField
 {
-    public class FieldSystem : MonoBehaviour
+    public class FieldSystem : MonoBehaviour, IFieldSystem
     {
         [SerializeField] private FieldConfig _config;
         [SerializeField] private FieldHighlight _highlight;

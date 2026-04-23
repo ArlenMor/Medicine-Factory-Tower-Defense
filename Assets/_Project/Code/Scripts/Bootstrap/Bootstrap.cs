@@ -8,14 +8,13 @@ using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Garden;
 using _Project.Code.Scripts.TaskSystem;
 using _Project.Code.Scripts.Timer;
-using _Project.Code.Scripts.CameraController;
 using _Project.Code.Scripts.CraftSystem;
 using _Project.Code.Scripts.UI;
 using _Project.Code.Scripts.Cheats;
 using _Project.Code.Scripts.Audio;
-using _Project.Code.Scripts.GameOver;
 using UnityEngine;
 using _Project.Code.Scripts.BattleField;
+using _Project.Code.Scripts.ServiceLocator;
 
 namespace _Project.Code.Scripts.Bootstrap
 {
@@ -31,11 +30,10 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private TaskConfig _taskConfig;
         [SerializeField] private GardenBed _gardenBed;
         [SerializeField] private GardenAttentionAnimator _gardenAttentionAnimator;
+        [SerializeField] private DefenseDragController _defenseDragController;
         [SerializeField] private WaveSpawner _waveSpawner;
         [SerializeField] private PlayerClickDamage _playerClickDamage;
-        [SerializeField] private CameraEdgeScroll _cameraEdgeScroll;
         [SerializeField] private FieldSystem _fieldSystem;
-        [SerializeField] private DefenseDragController _defenseDragController;
         [SerializeField] private DefenseShopView _defenseShopView;
         [SerializeField] private BrainView _brain;
         [SerializeField] private List<StoredResourceView> _storedResources;
@@ -50,8 +48,11 @@ namespace _Project.Code.Scripts.Bootstrap
         private void Awake() {
             _loadingScreen.gameObject.SetActive(true);
             
+            S.Reset();
+
             InitConfig();
             _timerService = new TimerService();
+            S.Register<ITimerService>(_timerService);
 
             
             var manualUpdates = new List<IManualUpdate> {   _inputResolver, 
@@ -61,19 +62,23 @@ namespace _Project.Code.Scripts.Bootstrap
 
             //Input
             _inputResolver.ManualAwake();
-            //_cameraEdgeScroll.Initialize(_inputResolver);
+            S.Register<IInputResolver>(_inputResolver);
             //UI
             _uiController.Initialize(_inputResolver);
+            S.Register<IPanelShower>(_uiController);
             foreach (var storedResource in _storedResources) storedResource.Initialize();
             _upgradesTopButton.Initialize(_uiController);
             //Task and Craft
             _taskService = new TaskService(_gameConfig.TaskConfig.Tasks);
+            S.Register<ITaskService>(_taskService);
             _taskSystemView.ManualAwake(_taskService, _gameConfig.TaskIconConfig);
             _craftStantionView.ManualAwake(_taskService, _timerService, _gameConfig.ResourceIconConfig, _gameConfig.TaskIconConfig, _gardenAttentionAnimator, _gardenBed);
             //Garden
             _gardenBed.Initialize(_uiController, _gameConfig, _inputResolver, _timerService, _gardenAttentionAnimator);
             //Field
             _fieldSystem.Initialize(_gameConfig.FieldConfig);
+            S.Register<IFieldSystem>(_fieldSystem);
+
             //Defense Shop
             _defenseShopView.Initialize(_gameConfig.DefenseShopConfig);
 
@@ -82,9 +87,12 @@ namespace _Project.Code.Scripts.Bootstrap
             _waveSpawner.ManualAwake(_gameConfig.EnemyConfig, _gameConfig.WaveConfig);
             _playerClickDamage.ManualAwake(_inputResolver);
             //Game
-            GameContext context = new GameContext(_brain, _taskService, _timerService, _defenseDragController);
+            S.Register<IPlayerDamageEventProvider>(_brain);
 
-            _gameController.ManualAwake(context);
+            S.Register<IDefenseDragController>(_defenseDragController);
+
+            _gameController.ManualAwake(manualUpdates);
+            S.Register<IGamePauseHandler>(_gameController);
             if (_cheatCompleteTask != null) _cheatCompleteTask.Initialize(_taskService);
             //Audio
             _audioManager.PlayMainTheme();
@@ -100,23 +108,6 @@ namespace _Project.Code.Scripts.Bootstrap
             _gameData = new GameData(_gameConfig, _mainCamera);
 
             _gameData.Initialize();
-        }
-    }
-
-    public class GameContext
-    {
-        public List<IManualUpdate> ManualUpdates { get; } = new();
-        public IPlayerDamageEventProvider PlayerDamageEventProvider { get; }
-        public ITaskService TaskService { get; }
-        public ITimerService TimerService { get; }
-        public DefenseDragController DefenseDragController { get; }
-
-        public GameContext(IPlayerDamageEventProvider playerDamageEventProvider, ITaskService taskService, ITimerService timerService, DefenseDragController defenseDragController)
-        {
-            PlayerDamageEventProvider = playerDamageEventProvider;
-            TaskService = taskService;
-            TimerService = timerService;
-            DefenseDragController = defenseDragController;
         }
     }
 }

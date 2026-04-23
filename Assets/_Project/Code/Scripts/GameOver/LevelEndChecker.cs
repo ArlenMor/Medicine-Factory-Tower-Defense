@@ -1,6 +1,7 @@
 using System;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.EnemySystem;
+using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.TaskSystem;
 
 namespace _Project.Code.Scripts.GameOver
@@ -11,12 +12,14 @@ namespace _Project.Code.Scripts.GameOver
         private readonly ITaskService _taskService;
         private bool _gameOver;
 
-        public event Action OnPlayerLose;
+        public event Action<bool> OnPlayerLose;
 
-        public LevelEndChecker(IPlayerDamageEventProvider playerDamageEventProvider, ITaskService taskService)
+        public LevelEndChecker()
         {
-            _playerDamageEventProvider = playerDamageEventProvider;
-            _taskService = taskService;
+            _gameOver = false;
+
+            _playerDamageEventProvider = S.Get<IPlayerDamageEventProvider>();
+            _taskService = S.Get<ITaskService>();
 
             _playerDamageEventProvider.OnDied += HandleDefeat;
             _taskService.OnTaskCompleted += HandleTaskCompleted;
@@ -46,12 +49,15 @@ namespace _Project.Code.Scripts.GameOver
         {
             _gameOver = true;
 
+            _playerDamageEventProvider.OnDied -= HandleDefeat;
+            _taskService.OnTaskCompleted -= HandleTaskCompleted;
+
             if (isVictory)
                 AudioManager.Instance.PlayVictory();
             else
                 AudioManager.Instance.PlayDefeat();
 
-            OnPlayerLose?.Invoke();
+            OnPlayerLose?.Invoke(isVictory);
         }
     }
 }

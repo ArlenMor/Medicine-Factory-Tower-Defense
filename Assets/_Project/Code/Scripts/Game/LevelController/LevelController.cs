@@ -1,13 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.Data;
-using _Project.Code.Scripts.EnemySystem;
 using _Project.Code.Scripts.GameOver;
-using _Project.Code.Scripts.TaskSystem;
+using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.UIPanels.Settings;
 using _Project.Code.Scripts.UIService;
-using UnityEngine;
 
 namespace _Project.Code.Scripts.Game.LvlController
 {
@@ -15,7 +11,7 @@ namespace _Project.Code.Scripts.Game.LvlController
         
         private readonly List<IManualUpdate> _pendingAdd = new();
         private readonly List<IManualUpdate> _pendingRemove = new();
-        private DefenseDragController _defenseDragController;
+        private IDefenseDragController _defenseDragController;
         private LevelEndChecker _levelEndChecker;
         private const float ShowDelay = 1.5f;
 
@@ -23,16 +19,17 @@ namespace _Project.Code.Scripts.Game.LvlController
         private readonly IGamePauseHandler _gamePauseHandler;
         private readonly IPanelShower _panelShower;
 
-        public LevelController(List<IManualUpdate> manualUpdates, IPlayerDamageEventProvider playerDamageEventProvider, ITaskService taskService, IGamePauseHandler gamePauseHandler, IPanelShower panelShower)
+        public LevelController(List<IManualUpdate> manualUpdates, IGamePauseHandler gamePauseHandler)
         {
             _manualUpdates = manualUpdates;
-            _levelEndChecker = new LevelEndChecker(playerDamageEventProvider, taskService);
-            _levelEndChecker.OnPlayerLose += () => EndGameRoutine(false);
+            _levelEndChecker = new LevelEndChecker();
             _gamePauseHandler = gamePauseHandler;
-            _panelShower = panelShower;
+            _defenseDragController = S.Get<IDefenseDragController>();
+            _panelShower = S.Get<IPanelShower>();
 
-            _defenseDragController.Initialize(_inputResolver, _fieldSystem, GameData.Instance.GameConfig.DefenseShopConfig, _gameController);
+            _defenseDragController.Initialize(GameData.Instance.GameConfig.DefenseShopConfig, this);
 
+            _levelEndChecker.OnPlayerLose += (isVictory) => EndGameRoutine(isVictory);
         }
 
         #region IManualUpdate
@@ -71,9 +68,10 @@ namespace _Project.Code.Scripts.Game.LvlController
         
         #endregion
 
-        private IEnumerator EndGameRoutine(bool isVictory)
+        private void EndGameRoutine(bool isVictory)
         {
-            yield return new WaitForSeconds(ShowDelay);
+            //TODO: add coroutimeService 
+            //yield return new WaitForSeconds(ShowDelay);
 
             _gamePauseHandler.SetPaused(true);
             _panelShower.ShowView(PanelType.GameOver, new GameOverPanelSettings { IsVictory = isVictory });

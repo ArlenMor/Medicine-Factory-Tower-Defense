@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.Bootstrap;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game.LvlController;
@@ -6,11 +8,13 @@ using UnityEngine;
 namespace _Project.Code.Scripts.Game
 {
     public class GameController : MonoBehaviour, IGamePauseHandler {
+
+
         private bool _paused;
         private LevelController _levelController;
 
-        public void ManualAwake(GameContext context) {
-            _levelController = new LevelController(context.ManualUpdates, context.PlayerDamageEventProvider, context.TaskService, this, context.);
+        public void ManualAwake(List<IManualUpdate> manualUpdates) {
+            _levelController = new LevelController(manualUpdates, this);
         }
 
         public void SetPaused(bool paused)
@@ -26,11 +30,5 @@ namespace _Project.Code.Scripts.Game
 
             _levelController.ManualUpdate(Time.deltaTime);
         }
-    }
-
-    public interface IManualUpdateRegistrar
-    {
-        void Register(IManualUpdate manualUpdate);
-        void Unregister(IManualUpdate manualUpdate);
     }
 }

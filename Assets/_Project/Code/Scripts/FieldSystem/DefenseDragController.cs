@@ -1,16 +1,18 @@
 using _Project.Code.Scripts.Audio;
+using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.InputResolverService;
+using _Project.Code.Scripts.ServiceLocator;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.BattleField
 {
-    public class DefenseDragController : MonoBehaviour
+    public class DefenseDragController : MonoBehaviour, IDefenseDragController
     {
         [SerializeField] private Camera _camera;
 
-        private FieldSystem _fieldSystem;
+        private IFieldSystem _fieldSystem;
         private DefenseShopConfig _shopConfig;
         private IInputResolver _inputResolver;
         private IManualUpdateRegistrar _manualUpdateRegistrar;
@@ -23,10 +25,10 @@ namespace _Project.Code.Scripts.BattleField
         private int _snapY;
         private bool _isSnapped;
 
-        public void Initialize(IInputResolver inputResolver, FieldSystem fieldSystem, DefenseShopConfig shopConfig, IManualUpdateRegistrar gameController)
+        public void Initialize(DefenseShopConfig shopConfig, IManualUpdateRegistrar gameController)
         {
-            _inputResolver = inputResolver;
-            _fieldSystem = fieldSystem;
+            _inputResolver = S.Get<IInputResolver>();
+            _fieldSystem = S.Get<IFieldSystem>();
             _shopConfig = shopConfig;
             _manualUpdateRegistrar = gameController;
 
@@ -155,4 +157,9 @@ namespace _Project.Code.Scripts.BattleField
             return world;
         }
     }
+}
+
+public interface IDefenseDragController
+{
+    void Initialize(DefenseShopConfig shopConfig, IManualUpdateRegistrar gameController);
 }
