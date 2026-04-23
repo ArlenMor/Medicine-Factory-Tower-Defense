@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Code.Scripts.EnemySystem
 {
-    public class Brain : MonoBehaviour
+    public class BrainView : MonoBehaviour, IPlayerDamageEventProvider
     {
         public event Action<float> OnDamageReceived;
         public event Action OnDied;
@@ -33,7 +33,7 @@ namespace _Project.Code.Scripts.EnemySystem
 
         public void TakeDamage(float damage)
         {
-            Debug.Log($"{nameof(Brain)} took {damage} damage");
+            Debug.Log($"{nameof(BrainView)} took {damage} damage");
             _currentHp -= damage;
             if (_currentHp <= 0f) _currentHp = 0f;
             if (_healthBar != null) _healthBar.SetHealth(_currentHp);
@@ -52,5 +52,11 @@ namespace _Project.Code.Scripts.EnemySystem
             _activeHitEffect.Play();
             Destroy(_activeHitEffect.gameObject, _activeHitEffect.main.duration + _activeHitEffect.main.startLifetime.constantMax);
         }
+    }
+
+    public interface IPlayerDamageEventProvider
+    {
+        public event Action<float> OnDamageReceived;
+        public event Action OnDied;
     }
 }

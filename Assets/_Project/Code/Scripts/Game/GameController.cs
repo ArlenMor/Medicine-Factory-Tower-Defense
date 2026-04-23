@@ -1,34 +1,16 @@
-using System.Collections.Generic;
+using _Project.Code.Scripts.Bootstrap;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.Game.LvlController;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.Game
 {
-    public class GameController : MonoBehaviour, IManualUpdateRegistrar {
-        
-        private List<IManualUpdate> _manualUpdates = new();
-        private readonly List<IManualUpdate> _pendingAdd = new();
-        private readonly List<IManualUpdate> _pendingRemove = new();
+    public class GameController : MonoBehaviour, IGamePauseHandler {
         private bool _paused;
+        private LevelController _levelController;
 
-        public void ManualAwake(List<IManualUpdate> manualUpdates) {
-            _manualUpdates = manualUpdates;
-
-            ManualStart();
-        }
-
-        private void ManualStart()
-        {
-        }
-
-        public void Register(IManualUpdate manualUpdate)
-        {
-            _pendingAdd.Add(manualUpdate);
-        }
-
-        public void Unregister(IManualUpdate manualUpdate)
-        {
-            _pendingRemove.Add(manualUpdate);
+        public void ManualAwake(GameContext context) {
+            _levelController = new LevelController(context.ManualUpdates, context.PlayerDamageEventProvider, context.TaskService, this, context.);
         }
 
         public void SetPaused(bool paused)
@@ -42,23 +24,7 @@ namespace _Project.Code.Scripts.Game
 
             GameData.Instance.Stats.TimePlayed += Time.deltaTime;
 
-            if (_pendingAdd.Count > 0)
-            {
-                _manualUpdates.AddRange(_pendingAdd);
-                _pendingAdd.Clear();
-            }
-
-            if (_pendingRemove.Count > 0)
-            {
-                foreach (var item in _pendingRemove)
-                    _manualUpdates.Remove(item);
-                _pendingRemove.Clear();
-            }
-
-            foreach (var manualUpdate in _manualUpdates)
-            {
-                manualUpdate.ManualUpdate(Time.deltaTime);
-            }
+            _levelController.ManualUpdate(Time.deltaTime);
         }
     }
 

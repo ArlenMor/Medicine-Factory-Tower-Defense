@@ -9,7 +9,7 @@ namespace _Project.Code.Scripts.EnemySystem
     {
         [SerializeField] private Transform _spawnPointA;
         [SerializeField] private Transform _spawnPointB;
-        [SerializeField] private Brain _centerTarget;
+        [SerializeField] private BrainView _centerTarget;
         private EnemyConfig _enemyConfig;
         private WaveConfig _waveConfig;
 

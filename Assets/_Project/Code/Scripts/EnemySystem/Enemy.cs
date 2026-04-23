@@ -26,13 +26,13 @@ namespace _Project.Code.Scripts.EnemySystem
 
         private Vector3 _attackPosition;
         private Vector3 _lungeTarget;
-        private Brain _centerTarget;
+        private BrainView _centerTarget;
         private IFieldPlaceable _targetPlaceable;
         private bool _reachedCenter;
 
         public bool IsDead => _currentHp <= 0f;
 
-        public void Initialize(EnemyStats stats, Brain centerTarget)
+        public void Initialize(EnemyStats stats, BrainView centerTarget)
         {
             _currentHp = stats.HP;
             _speed = stats.Speed;
@@ -48,7 +48,7 @@ namespace _Project.Code.Scripts.EnemySystem
             SetRotationTowards(_attackPosition);
         }
 
-        private Vector3 ComputeAttackPosition(Brain centerTarget, out Vector3 lungeTarget)
+        private Vector3 ComputeAttackPosition(BrainView centerTarget, out Vector3 lungeTarget)
         {
             var collider = centerTarget.GetComponent<Collider>();
             if (collider != null)

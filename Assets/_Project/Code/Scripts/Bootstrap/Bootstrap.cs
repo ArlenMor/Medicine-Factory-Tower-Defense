@@ -23,7 +23,7 @@ namespace _Project.Code.Scripts.Bootstrap
     {
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private InputResolver _inputResolver;
-        [SerializeField] private UIController _uiManager;
+        [SerializeField] private UIController _uiController;
         [SerializeField] private GameController _gameController;
         [SerializeField] private TaskSystemView _taskSystemView;
         [SerializeField] private CraftStantionView _craftStantionView;
@@ -37,7 +37,7 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private FieldSystem _fieldSystem;
         [SerializeField] private DefenseDragController _defenseDragController;
         [SerializeField] private DefenseShopView _defenseShopView;
-        [SerializeField] private Brain _brain;
+        [SerializeField] private BrainView _brain;
         [SerializeField] private List<StoredResourceView> _storedResources;
         [SerializeField] private UpgradesTopButton _upgradesTopButton;
         [SerializeField] private CheatCompleteTask _cheatCompleteTask;
@@ -52,6 +52,7 @@ namespace _Project.Code.Scripts.Bootstrap
             
             InitConfig();
             _timerService = new TimerService();
+
             
             var manualUpdates = new List<IManualUpdate> {   _inputResolver, 
                                                             _timerService as IManualUpdate,
@@ -62,26 +63,28 @@ namespace _Project.Code.Scripts.Bootstrap
             _inputResolver.ManualAwake();
             //_cameraEdgeScroll.Initialize(_inputResolver);
             //UI
-            _uiManager.Initialize(_inputResolver);
+            _uiController.Initialize(_inputResolver);
             foreach (var storedResource in _storedResources) storedResource.Initialize();
-            _upgradesTopButton.Initialize(_uiManager);
+            _upgradesTopButton.Initialize(_uiController);
             //Task and Craft
             _taskService = new TaskService(_gameConfig.TaskConfig.Tasks);
             _taskSystemView.ManualAwake(_taskService, _gameConfig.TaskIconConfig);
             _craftStantionView.ManualAwake(_taskService, _timerService, _gameConfig.ResourceIconConfig, _gameConfig.TaskIconConfig, _gardenAttentionAnimator, _gardenBed);
             //Garden
-            _gardenBed.Initialize(_uiManager, _gameConfig, _inputResolver, _timerService, _gardenAttentionAnimator);
+            _gardenBed.Initialize(_uiController, _gameConfig, _inputResolver, _timerService, _gardenAttentionAnimator);
             //Field
             _fieldSystem.Initialize(_gameConfig.FieldConfig);
             //Defense Shop
             _defenseShopView.Initialize(_gameConfig.DefenseShopConfig);
-            _defenseDragController.Initialize(_inputResolver, _fieldSystem, _gameConfig.DefenseShopConfig, _gameController);
+
+
             //Enemies
             _waveSpawner.ManualAwake(_gameConfig.EnemyConfig, _gameConfig.WaveConfig);
             _playerClickDamage.ManualAwake(_inputResolver);
             //Game
-            var gameOverService = new GameOverService(_brain, _taskService, _uiManager, _gameController);
-            _gameController.ManualAwake(manualUpdates);
+            GameContext context = new GameContext(_brain, _taskService, _timerService, _defenseDragController);
+
+            _gameController.ManualAwake(context);
             if (_cheatCompleteTask != null) _cheatCompleteTask.Initialize(_taskService);
             //Audio
             _audioManager.PlayMainTheme();
@@ -97,6 +100,23 @@ namespace _Project.Code.Scripts.Bootstrap
             _gameData = new GameData(_gameConfig, _mainCamera);
 
             _gameData.Initialize();
+        }
+    }
+
+    public class GameContext
+    {
+        public List<IManualUpdate> ManualUpdates { get; } = new();
+        public IPlayerDamageEventProvider PlayerDamageEventProvider { get; }
+        public ITaskService TaskService { get; }
+        public ITimerService TimerService { get; }
+        public DefenseDragController DefenseDragController { get; }
+
+        public GameContext(IPlayerDamageEventProvider playerDamageEventProvider, ITaskService taskService, ITimerService timerService, DefenseDragController defenseDragController)
+        {
+            PlayerDamageEventProvider = playerDamageEventProvider;
+            TaskService = taskService;
+            TimerService = timerService;
+            DefenseDragController = defenseDragController;
         }
     }
 }
