@@ -4499,7 +4499,6 @@ MonoBehaviour:
   _taskSystemView: {fileID: 1470315914}
   _craftStantionView: {fileID: 846326912}
   _gameConfig: {fileID: 11400000, guid: a200154b4fa9ce941b193b5923158e60, type: 2}
-  _taskConfig: {fileID: 11400000, guid: 3c90f997bcacc644fb57030cb9e26e74, type: 2}
   _gardenBed: {fileID: 1221292734}
   _gardenAttentionAnimator: {fileID: 619839801}
   _defenseDragController: {fileID: 1501895935}
@@ -14601,6 +14600,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1230951219339126520, guid: 2639e7c1ef7bb2145809071669d54baf, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564920512762009515, guid: 2639e7c1ef7bb2145809071669d54baf, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1571871747927184528, guid: 2639e7c1ef7bb2145809071669d54baf, type: 3}

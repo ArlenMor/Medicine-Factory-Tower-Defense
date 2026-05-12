@@ -18,11 +18,13 @@ namespace _Project.Code.Scripts.TaskSystem
         private TaskIconConfig _iconConfig;
 
         private ITaskService _taskService;
+        private Color _defaultIconColor;
 
         public void ManualAwake(ITaskService taskService, TaskIconConfig iconConfig)
         {
             _taskService = taskService;
             _iconConfig = iconConfig;
+            _defaultIconColor = _iconImage.color;
             _taskService.OnTaskStarted += UpdateView;
             _taskService.OnTaskCompleted += OnTaskCompleted;
             _taskService.OnAllTasksCompleted += MakeFinalView;
@@ -58,6 +60,7 @@ namespace _Project.Code.Scripts.TaskSystem
 
         private void UpdateView(TaskData task)
         {
+            _iconImage.color = _defaultIconColor;
             _titleText.enabled = true;
             _titleText.text = "Order: " + task.ResultType.ToDisplayString();
 

@@ -82,6 +82,16 @@ namespace _Project.Code.Scripts.Garden
             _isOccupied = true;
         }
 
+        public void Clear()
+        {
+            if (_plantInstance != null)
+            {
+                Destroy(_plantInstance.gameObject);
+                _plantInstance = null;
+            }
+            _isOccupied = false;
+        }
+
         private void HandleMassage(bool isShown)
         {
             _message.gameObject.SetActive(isShown);

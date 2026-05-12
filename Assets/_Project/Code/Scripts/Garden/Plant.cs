@@ -59,5 +59,11 @@ namespace _Project.Code.Scripts.Garden
             var multiplier = GameData.Instance.UpgradesData[UpgradeType.GrowSpeed].Multiplier;
             return _config.GardenConfig.GetGrowableResourceData(Type.GetResourceType()).GrowthTime / multiplier;
         }
+
+        private void OnDestroy()
+        {
+            if (_timerService != null)
+                _timerService.Cancel(_timer);
+        }
     }
 }

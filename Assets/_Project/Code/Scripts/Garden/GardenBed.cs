@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.Timer;
 using _Project.Code.Scripts.UI;
@@ -34,10 +36,18 @@ namespace _Project.Code.Scripts.Garden
             {
                 slot.Initialize(_panelShower, _gameConfig, _timerService, _canvasParent);
             }
+        }
 
-            _slots[0].ManualPlantChoose(PlantType.Crystal, true);
-            _slots[1].ManualPlantChoose(PlantType.Polymer, true);
-            _slots[2].ManualPlantChoose(PlantType.NanoGel, true);
+        public void StartLevel(List<SlotPlantSetup> initialPlants)
+        {
+            foreach (var slot in _slots)
+                slot.Clear();
+
+            foreach (var setup in initialPlants)
+            {
+                if (setup.SlotIndex >= 0 && setup.SlotIndex < _slots.Length)
+                    _slots[setup.SlotIndex].ManualPlantChoose(setup.PlantType, setup.IsAlreadyGrown);
+            }
         }
 
         private void OnPointerDown(InputEventData inputData)

@@ -75,6 +75,7 @@ namespace _Project.Code.Scripts.Bootstrap
             _craftStantionView.ManualAwake(_taskService, _timerService, _gameConfig.ResourceIconConfig, _gameConfig.TaskIconConfig, _gardenAttentionAnimator, _gardenBed);
             //Garden
             _gardenBed.Initialize(_uiController, _gameConfig, _inputResolver, _timerService, _gardenAttentionAnimator);
+            S.Register<GardenBed>(_gardenBed);
             //Field
             _fieldSystem.Initialize(_gameConfig.FieldConfig);
             S.Register<IFieldSystem>(_fieldSystem);

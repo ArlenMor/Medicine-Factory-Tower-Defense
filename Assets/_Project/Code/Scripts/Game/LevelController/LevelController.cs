@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.EnemySystem;
+using _Project.Code.Scripts.Garden;
 using _Project.Code.Scripts.GameOver;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.TaskSystem;
@@ -25,6 +26,7 @@ namespace _Project.Code.Scripts.Game.LvlController
         private LevelEndChecker _levelEndChecker;
         private WaveSpawner _waveSpawner;
         private ITaskService _taskService;
+        private GardenBed _gardenBed;
         private const float ShowDelay = 1.5f;
 
         private List<IManualUpdate> _manualUpdates;
@@ -42,6 +44,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             _panelShower = S.Get<IPanelShower>();
             _waveSpawner = S.Get<WaveSpawner>();
             _taskService = S.Get<ITaskService>();
+            _gardenBed = S.Get<GardenBed>();
 
             _defenseDragController.Initialize(GameData.Instance.GameConfig.DefenseShopConfig, this);
 
@@ -91,6 +94,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             var levelConfig = GameData.Instance.GameConfig.GetLevel(levelIndex);
             _waveSpawner.StartLevel(levelConfig.WaveConfig);
             _taskService.Reset(levelConfig.TaskConfig.Tasks);
+            _gardenBed.StartLevel(levelConfig.InitialPlants);
             _levelEndChecker.Reset();
             State = LevelState.Playing;
         }
