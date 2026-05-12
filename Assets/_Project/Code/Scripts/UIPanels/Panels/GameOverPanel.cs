@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.UIPanels.Settings;
 using _Project.Code.Scripts.UIService;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace _Project.Code.Scripts.UIPanels.Panels
@@ -15,8 +15,11 @@ namespace _Project.Code.Scripts.UIPanels.Panels
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private TMP_Text _titleText;
         [SerializeField] private TMP_Text _statsText;
-        [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _finalButton;
+        [SerializeField] private TMP_Text _finalButtonText;
         [SerializeField] private float _fadeDuration = 0.5f;
+
+        private GameOverPanelSettings _gameOverSettings;
 
         public override void Initialize(PanelSettings settings)
         {
@@ -28,6 +31,8 @@ namespace _Project.Code.Scripts.UIPanels.Panels
                 return;
             }
 
+            _gameOverSettings = gameOverSettings;
+            _finalButtonText.text = gameOverSettings.IsVictory ? "Next Level" : "Retry";
             _titleText.text = gameOverSettings.IsVictory ? "Victory!" : "Defeat!";
 
             var stats = GameData.Instance.Stats;
@@ -41,10 +46,15 @@ namespace _Project.Code.Scripts.UIPanels.Panels
                               $"Turrets built: {stats.TurretsBuilt}\n" +
                               $"Barricades built: {stats.BarricadesBuilt}";
 
-            _restartButton.onClick.AddListener(OnRestartClicked);
+            _finalButton.onClick.AddListener(HidePanel);
 
             _canvasGroup.alpha = 0f;
             StartCoroutine(FadeIn());
+        }
+
+        private void HidePanel()
+        {
+            S.Get<IPanelShower>().HideView(PanelType.GameOver);
         }
 
         private IEnumerator FadeIn()
@@ -59,14 +69,9 @@ namespace _Project.Code.Scripts.UIPanels.Panels
             _canvasGroup.alpha = 1f;
         }
 
-        private void OnRestartClicked()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
         private void OnDestroy()
         {
-            _restartButton.onClick.RemoveListener(OnRestartClicked);
+            _finalButton.onClick.RemoveListener(HidePanel);
         }
     }
 }

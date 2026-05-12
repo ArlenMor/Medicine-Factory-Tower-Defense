@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _Project.Code.Scripts.Configs
 {   
-    [CreateAssetMenu(fileName = "TaskConfig", menuName = "TaskConfig")]
+    [CreateAssetMenu(fileName = "TaskConfig", menuName = "GameConfig/TaskConfig")]
     public class TaskConfig : ScriptableObject
     {
         public List<TaskData> Tasks;

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d76772a4b724ba9bc37e3803544fd94, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.GameConfig
-  GoalTaskIndex: 0
   GardenConfig: {fileID: 11400000, guid: 16d673240a880a4428a022b97e61db2f, type: 2}
-  TaskConfig: {fileID: 11400000, guid: 3c90f997bcacc644fb57030cb9e26e74, type: 2}
   ResourceIconConfig: {fileID: 11400000, guid: 80b73a85603f19b4bbaf8cdc241165bf, type: 2}
   TaskIconConfig: {fileID: 11400000, guid: 189e5eb4cdb202747933663cf54f2f5c, type: 2}
   EnemyConfig: {fileID: 11400000, guid: 76a5e7ab0d6dbd14da7d41f489c1facc, type: 2}
-  WaveConfig: {fileID: 11400000, guid: 4620a95ebacaa1d4fab73cfe6cb689fa, type: 2}
   UpgradesConfig: {fileID: 11400000, guid: 77c4f1797298bbc45b99891401a4f138, type: 2}
   FieldConfig: {fileID: 11400000, guid: a52242f0e000dc641abf26ca1bbc15db, type: 2}
   DefenseShopConfig: {fileID: 11400000, guid: 7b88cf58be917bc4eb08ed0445293ec3, type: 2}
   DamagePopupConfig: {fileID: 11400000, guid: b50996c1795015a49b4edd38e2495b7c, type: 2}
+  Levels:
+  - {fileID: 11400000, guid: 303d11bd7f5f6844e8ecb47ba00236f2, type: 2}
+  - {fileID: 11400000, guid: a38fc9faaf0e34745b19820d75a98294, type: 2}

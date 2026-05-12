@@ -18,14 +18,23 @@ namespace _Project.Code.Scripts.TaskSystem
 
         public int GoalTaskIndex => _tasks.Count;
 
-        private readonly List<TaskData> _tasks;
+        private List<TaskData> _tasks;
         private int _currentIndex;
         private TaskData? _currentTask;
         private int _completedTasksCount;
 
-        public TaskService(List<TaskData> tasks)
+        public TaskService()
+        {
+            _tasks = new List<TaskData>();
+            StartNext();
+        }
+
+        public void Reset(List<TaskData> tasks)
         {
             _tasks = tasks;
+            _currentIndex = 0;
+            _currentTask = null;
+            _completedTasksCount = 0;
             StartNext();
         }
 

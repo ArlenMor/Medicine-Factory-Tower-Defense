@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.Data.TaskData;
 using _Project.Code.Scripts.EnemySystem;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.InputResolverService;
@@ -27,7 +28,6 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private TaskSystemView _taskSystemView;
         [SerializeField] private CraftStantionView _craftStantionView;
         [SerializeField] private GameConfig _gameConfig;
-        [SerializeField] private TaskConfig _taskConfig;
         [SerializeField] private GardenBed _gardenBed;
         [SerializeField] private GardenAttentionAnimator _gardenAttentionAnimator;
         [SerializeField] private DefenseDragController _defenseDragController;
@@ -69,7 +69,7 @@ namespace _Project.Code.Scripts.Bootstrap
             foreach (var storedResource in _storedResources) storedResource.Initialize();
             _upgradesTopButton.Initialize(_uiController);
             //Task and Craft
-            _taskService = new TaskService(_gameConfig.TaskConfig.Tasks);
+            _taskService = new TaskService();
             S.Register<ITaskService>(_taskService);
             _taskSystemView.ManualAwake(_taskService, _gameConfig.TaskIconConfig);
             _craftStantionView.ManualAwake(_taskService, _timerService, _gameConfig.ResourceIconConfig, _gameConfig.TaskIconConfig, _gardenAttentionAnimator, _gardenBed);
@@ -82,9 +82,9 @@ namespace _Project.Code.Scripts.Bootstrap
             //Defense Shop
             _defenseShopView.Initialize(_gameConfig.DefenseShopConfig);
 
-
             //Enemies
-            _waveSpawner.ManualAwake(_gameConfig.EnemyConfig, _gameConfig.WaveConfig);
+            _waveSpawner.ManualAwake(_gameConfig.EnemyConfig);
+            S.Register<WaveSpawner>(_waveSpawner);
             _playerClickDamage.ManualAwake(_inputResolver);
             //Game
             S.Register<IPlayerDamageEventProvider>(_brain);

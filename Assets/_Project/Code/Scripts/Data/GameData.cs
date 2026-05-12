@@ -8,11 +8,11 @@ namespace _Project.Code.Scripts.Data
 {
     public class GameData
     {
+        public static GameData Instance;
+        
         private readonly GameConfig _config;
-
         public GameConfig GameConfig => _config;
         
-        public static GameData Instance;
         public Dictionary<ResourceType, int> Resources { get; set; } = new ();
         public event Action OnResourcesChanged; 
         

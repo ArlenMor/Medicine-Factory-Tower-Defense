@@ -12,7 +12,7 @@ namespace _Project.Code.Scripts.GameOver
         private readonly ITaskService _taskService;
         private bool _gameOver;
 
-        public event Action<bool> OnPlayerLose;
+        public event Action<bool> OnLevelEnd;
 
         public LevelEndChecker()
         {
@@ -22,13 +22,18 @@ namespace _Project.Code.Scripts.GameOver
             _taskService = S.Get<ITaskService>();
 
             _playerDamageEventProvider.OnDied += HandleDefeat;
-            _taskService.OnTaskCompleted += HandleTaskCompleted;
+            _taskService.OnAllTasksCompleted += HandleAllTasksCompleted;
+        }
+
+        public void Reset()
+        {
+            _gameOver = false;
         }
 
         private void OnDestroy()
         {
             _playerDamageEventProvider.OnDied -= HandleDefeat;
-            _taskService.OnTaskCompleted -= HandleTaskCompleted;
+            _taskService.OnAllTasksCompleted -= HandleAllTasksCompleted;
         }
 
         private void HandleDefeat()
@@ -38,26 +43,23 @@ namespace _Project.Code.Scripts.GameOver
             EndGame(false);
         }
 
-        private void HandleTaskCompleted(Data.TaskData.TaskData _)
+        private void HandleAllTasksCompleted()
         {
             if (_gameOver) return;
-            if (_taskService.CompletedTasksCount >= _taskService.GoalTaskIndex)
-                EndGame(true);
+
+            EndGame(true);
         }
 
         private void EndGame(bool isVictory)
         {
             _gameOver = true;
 
-            _playerDamageEventProvider.OnDied -= HandleDefeat;
-            _taskService.OnTaskCompleted -= HandleTaskCompleted;
-
             if (isVictory)
                 AudioManager.Instance.PlayVictory();
             else
                 AudioManager.Instance.PlayDefeat();
 
-            OnPlayerLose?.Invoke(isVictory);
+            OnLevelEnd?.Invoke(isVictory);
         }
     }
 }

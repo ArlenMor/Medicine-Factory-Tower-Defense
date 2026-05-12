@@ -22,10 +22,18 @@ namespace _Project.Code.Scripts.EnemySystem
         private float _intraSpawnTimer;
         private float _currentIntraSpawnInterval;
 
-        public void ManualAwake(EnemyConfig enemyConfig, WaveConfig waveConfig)
+        public void ManualAwake(EnemyConfig enemyConfig)
         {
             _enemyConfig = enemyConfig;
+        }
+
+        public void StartLevel(WaveConfig waveConfig)
+        {
             _waveConfig = waveConfig;
+            _gameTime = 0f;
+            _currentWaveIndex = 0;
+            _isSpawningWave = false;
+            _spawnQueue.Clear();
         }
 
         public void ManualUpdate(float deltaTime)
@@ -39,6 +47,7 @@ namespace _Project.Code.Scripts.EnemySystem
 
         private void TryStartNextWave()
         {
+            if (_waveConfig == null) return;
             if (_currentWaveIndex >= _waveConfig.Waves.Count) return;
             if (_isSpawningWave) return;
 

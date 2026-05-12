@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Project.Code.Scripts.Data.TaskData;
 
 namespace _Project.Code.Scripts.TaskSystem
@@ -15,5 +16,6 @@ namespace _Project.Code.Scripts.TaskSystem
         int GoalTaskIndex { get; }
 
         void CompleteCurrentTask();
+        void Reset(List<TaskData> tasks);
     }
 }

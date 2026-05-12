@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using _Project.Code.Scripts.BattleField;
-using _Project.Code.Scripts.Bootstrap;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game.LvlController;
 using UnityEngine;
@@ -8,10 +6,9 @@ using UnityEngine;
 namespace _Project.Code.Scripts.Game
 {
     public class GameController : MonoBehaviour, IGamePauseHandler {
-
-
         private bool _paused;
         private LevelController _levelController;
+        private int _currentLevel = 1;
 
         public void ManualAwake(List<IManualUpdate> manualUpdates) {
             _levelController = new LevelController(manualUpdates, this);
@@ -24,11 +21,24 @@ namespace _Project.Code.Scripts.Game
 
         public void Update()
         {
-            if (_paused) return;
-
             GameData.Instance.Stats.TimePlayed += Time.deltaTime;
 
-            _levelController.ManualUpdate(Time.deltaTime);
+            if(_levelController.State == LevelState.NonPlaying)
+            {
+                _levelController.StartLevel(_currentLevel);
+            }
+            else if (_levelController.State == LevelState.Playing)
+            {
+                if (_paused) return;
+                _levelController.ManualUpdate(Time.deltaTime);
+            }else if (_levelController.State == LevelState.Win)
+            {
+                _currentLevel++;
+            }
+            else if (_levelController.State == LevelState.Loss)
+            {
+                
+            }
         }
     }
 }
