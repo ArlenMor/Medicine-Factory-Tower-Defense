@@ -22,21 +22,33 @@ namespace _Project.Code.Scripts.EnemySystem
         private bool _isLunging;
         private Vector3 _lungeDir;
         private Vector3 _restPosition;
+        private Vector3 _initialScale;
 
         public bool IsLunging => _isLunging;
+
+        private void Awake()
+        {
+            _initialScale = transform.localScale;
+        }
 
         public void TickWalk(float deltaTime)
         {
             _wobblePhase += deltaTime * _wobbleSpeed;
             float sin = Mathf.Sin(_wobblePhase);
-            transform.localScale = new Vector3(1f + sin * _wobbleAmount, 1f - sin * _wobbleAmount, 1f);
+            transform.localScale = new Vector3(
+                _initialScale.x * (1f + sin * _wobbleAmount),
+                _initialScale.y * (1f - sin * _wobbleAmount),
+                _initialScale.z);
         }
 
         public void TickIdle(float deltaTime)
         {
             _idlePhase += deltaTime * _idleSpeed;
             float pulse = Mathf.Sin(_idlePhase) * _idleAmount;
-            transform.localScale = new Vector3(1f + pulse, 1f - pulse * 0.5f, 1f);
+            transform.localScale = new Vector3(
+                _initialScale.x * (1f + pulse),
+                _initialScale.y * (1f - pulse * 0.5f),
+                _initialScale.z);
         }
 
         public void StartLunge(Vector3 targetPos)
@@ -65,7 +77,7 @@ namespace _Project.Code.Scripts.EnemySystem
 
         public void ResetScale()
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = _initialScale;
         }
     }
 }
