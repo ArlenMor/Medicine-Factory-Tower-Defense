@@ -5,7 +5,7 @@ namespace _Project.Code.Scripts.Data.TaskData
     [Serializable]
     public struct TaskData
     {
-        public TaskResultType ResultType;
+        public MedicationsType ResultType;
         public int CreditReward;
         public float ProduceTime;
         public ProductionCost CostInfo;

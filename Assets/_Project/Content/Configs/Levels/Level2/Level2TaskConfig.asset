@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Level2TaskConfig
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.TaskConfig
   Tasks:
-  - ResultType: 2
+  - ResultType: 4
     CreditReward: 20
     ProduceTime: 1
     CostInfo:
       CrystalCost: 2
-      PolymerCost: 1
+      PolymerCost: 0
       NanoGelCost: 1

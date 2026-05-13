@@ -2,18 +2,20 @@ namespace _Project.Code.Scripts.Data.TaskData
 {
     public static class TaskResultTypeExtensions
     {
-        public static string ToDisplayString(this TaskResultType type) => type switch
+        public static string ToDisplayString(this MedicationsType type) => type switch
         {
-            TaskResultType.ClassicOfficeChair => "Office Chair",
-            TaskResultType.FactoryChair => "Factory Chair",
-            TaskResultType.SimpleErgoChair => "Simple Ergo Chair",
-            TaskResultType.BoxChair => "Box Chair",
-            TaskResultType.ControlChair => "Control Chair",
-            TaskResultType.ReinforcedSeat => "Reinforced Seat",
-            TaskResultType.MetalFrameChair => "Metal Frame Chair",
-            TaskResultType.CommandSeat => "Command Seat",
-            TaskResultType.PaddedTechChair => "Padded Tech Chair",
-            TaskResultType.IndustrialConsoleChair => "Industrial Console Chair",
+            MedicationsType.GelPotion => "Gel Potion",
+            MedicationsType.GelСapsules => "Gel Capsules",
+            MedicationsType.GelSyringe => "Gel Syringe",
+            MedicationsType.CryustalGelSyringe => "Crystal Gel Syringe",
+            MedicationsType.CrystalSyringe => "Crystal Syringe",
+            MedicationsType.CrystalСapsulesBox => "Crystal Capsules Box",
+            MedicationsType.CrystalСapsulesRaw => "Crystal Capsules Raw",
+            MedicationsType.CrystalPlastine => "Crystal Plastine",
+            MedicationsType.PolymerСapsules => "Polymer Capsules",
+            MedicationsType.PolymerBandage => "Polymer Bandage",
+            MedicationsType.PolymerСapsulesBox => "Polymer Capsules Box",
+            MedicationsType.FirstAidKit => "First Aid Kit",
             _                    => "—"
         };
     }

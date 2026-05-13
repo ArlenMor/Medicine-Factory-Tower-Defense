@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1TaskConfig
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.TaskConfig
   Tasks:
-  - ResultType: 1
+  - ResultType: 12
     CreditReward: 10
     ProduceTime: 1
     CostInfo:

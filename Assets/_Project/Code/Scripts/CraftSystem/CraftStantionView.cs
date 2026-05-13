@@ -112,7 +112,7 @@ namespace _Project.Code.Scripts.CraftSystem
             UpdateTimerText(totalTime);
         }
 
-        private void RefreshIcon(TaskResultType resultType)
+        private void RefreshIcon(MedicationsType resultType)
         {
             var icon = _taskIconConfig.GetIcon(resultType);
             _taskIcon.sprite = icon;

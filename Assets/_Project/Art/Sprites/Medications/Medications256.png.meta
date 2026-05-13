@@ -1,97 +1,40 @@
 fileFormatVersion: 2
-guid: d94654364252a2b43821c5ec54123229
+guid: 29ae5f29a2f983940aa592551df63071
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8020143640844766479
-    second: spritesheet_0
+      213: -7767336005127024814
+    second: Medications256_0
   - first:
-      213: -6251682230944352461
-    second: spritesheet_1
+      213: 918836155072608372
+    second: Medications256_1
   - first:
-      213: -1259408508766424310
-    second: spritesheet_2
+      213: 5268693215069219681
+    second: Medications256_2
   - first:
-      213: -5962389079421231736
-    second: spritesheet_3
+      213: 6831017827343855514
+    second: Medications256_3
   - first:
-      213: 2788568348960109317
-    second: spritesheet_4
+      213: 1145394248786717358
+    second: Medications256_4
   - first:
-      213: 226702753830753226
-    second: spritesheet_5
+      213: -6185315702918804834
+    second: Medications256_5
   - first:
-      213: -7921052967969465774
-    second: spritesheet_6
+      213: -4374855583583755754
+    second: Medications256_6
   - first:
-      213: -1370661682523340017
-    second: spritesheet_7
+      213: 283595056672427736
+    second: Medications256_7
   - first:
-      213: -8276262488406422588
-    second: spritesheet_8
+      213: 8998379043667505404
+    second: Medications256_8
   - first:
-      213: -5906973516983679737
-    second: spritesheet_9
+      213: -7208885533108579567
+    second: Medications256_9
   - first:
-      213: 5777552420452043588
-    second: spritesheet_10
-  - first:
-      213: 1269540525142108225
-    second: spritesheet_11
-  - first:
-      213: -2630129836624287915
-    second: spritesheet_12
-  - first:
-      213: -7676219313036738927
-    second: spritesheet_13
-  - first:
-      213: 6985626698306143173
-    second: spritesheet_14
-  - first:
-      213: 4773514653529381359
-    second: spritesheet_15
-  - first:
-      213: 6413020478584453356
-    second: spritesheet_16
-  - first:
-      213: -6420534950463556919
-    second: spritesheet_17
-  - first:
-      213: 8367830406354533065
-    second: spritesheet_18
-  - first:
-      213: -4721245407534591264
-    second: spritesheet_19
-  - first:
-      213: -2642393358525368334
-    second: spritesheet_20
-  - first:
-      213: 182515998739034355
-    second: spritesheet_21
-  - first:
-      213: 5390129371266227295
-    second: spritesheet_22
-  - first:
-      213: 1111231892956182058
-    second: spritesheet_23
-  - first:
-      213: 3042023047814558122
-    second: spritesheet_24
-  - first:
-      213: -1297572194080285004
-    second: spritesheet_25
-  - first:
-      213: -5351138903708955224
-    second: spritesheet_26
-  - first:
-      213: -5895191231709818157
-    second: spritesheet_27
-  - first:
-      213: 4116411608050698257
-    second: spritesheet_28
-  - first:
-      213: 2696214034221626940
-    second: spritesheet_29
+      213: -5688871547599881028
+    second: Medications256_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,7 +81,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 80
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -159,7 +102,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -184,7 +127,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -197,7 +140,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -226,13 +169,189 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_0
+      name: GelPotion
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f4d437e01e43490800000000000000
+      internalID: -7767336005127024814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Gel\u0421apsules"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47873e56d9c50cc00800000000000000
+      internalID: 918836155072608372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GelSyringe
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16b26ba70982e1940800000000000000
+      internalID: 5268693215069219681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CryustalGelSyringe
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9fe03d8586acce50800000000000000
+      internalID: 6831017827343855514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrystalSyringe
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa25be200245ef00800000000000000
+      internalID: 1145394248786717358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Crystal\u0421apsulesBox"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 257
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9a01efa328592aa0800000000000000
+      internalID: -6185315702918804834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Crystal\u0421apsulesRaw"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6122bd496046943c0800000000000000
+      internalID: -4374855583583755754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrystalPlastine
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8de440593388fe300800000000000000
+      internalID: 283595056672427736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Polymer\u0421apsules"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,20 +360,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0d092816264d4f60800000000000000
-      internalID: 8020143640844766479
+      spriteID: cf0fe14901aa0ec70800000000000000
+      internalID: 8998379043667505404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_1
+      name: PolymerBandage
       rect:
         serializedVersion: 2
-        x: 80
+        x: 256
         y: 0
-        width: 80
-        height: 80
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +382,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 337b0ff32209d39a0800000000000000
-      internalID: -6251682230944352461
+      spriteID: 1135c9c4dc4e4fb90800000000000000
+      internalID: -7208885533108579567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_2
+      name: "Polymer\u0421apsulesBox"
       rect:
         serializedVersion: 2
-        x: 160
+        x: 512
         y: 0
-        width: 80
-        height: 80
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,250 +404,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a037fd742aea58ee0800000000000000
-      internalID: -1259408508766424310
+      spriteID: cbc7b78e7711d01b0800000000000000
+      internalID: -5688871547599881028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_3
+      name: First-AidKit
       rect:
         serializedVersion: 2
-        x: 240
+        x: 768
         y: 0
-        width: 80
-        height: 80
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 88ddd6ce8b6514da0800000000000000
-      internalID: -5962389079421231736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5033aaf832cf2b620800000000000000
-      internalID: 2788568348960109317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac35fa714f8652300800000000000000
-      internalID: 226702753830753226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_6
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 25a502d0b44c21290800000000000000
-      internalID: -7921052967969465774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f0305f9367e6afce0800000000000000
-      internalID: -1370661682523340017
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4cb05a6cd1fc42d80800000000000000
-      internalID: -8276262488406422588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7054c8ef1e6360ea0800000000000000
-      internalID: -5906973516983679737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44b0e3cc05dfd2050800000000000000
-      internalID: 5777552420452043588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 880
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 148ee0d91605e9110800000000000000
-      internalID: 1269540525142108225
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5576ade39d6ef7bd0800000000000000
-      internalID: -2630129836624287915
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_13
-      rect:
-        serializedVersion: 2
-        x: 1040
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 19eb3748437987590800000000000000
-      internalID: -7676219313036738927
+      spriteID: 86d2f0b60bb920843bc7ca14c729f9c6
+      internalID: 1385733587
       vertices: []
       indices: 
       edges: []
@@ -537,7 +436,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 80d6ee967905e2c4f8425d4a4ec3f373
+    spriteID: bff83b9610ae47e40b2a39254bbd6fbd
     internalID: 0
     vertices: []
     indices: 
@@ -547,22 +446,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":80.0,"y":80.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      spritesheet_0: 8020143640844766479
-      spritesheet_1: -6251682230944352461
-      spritesheet_10: 5777552420452043588
-      spritesheet_11: 1269540525142108225
-      spritesheet_12: -2630129836624287915
-      spritesheet_13: -7676219313036738927
-      spritesheet_2: -1259408508766424310
-      spritesheet_3: -5962389079421231736
-      spritesheet_4: 2788568348960109317
-      spritesheet_5: 226702753830753226
-      spritesheet_6: -7921052967969465774
-      spritesheet_7: -1370661682523340017
-      spritesheet_8: -8276262488406422588
-      spritesheet_9: -5906973516983679737
+      CrystalPlastine: 283595056672427736
+      CrystalSyringe: 1145394248786717358
+      "Crystal\u0421apsulesBox": -6185315702918804834
+      "Crystal\u0421apsulesRaw": -4374855583583755754
+      CryustalGelSyringe: 6831017827343855514
+      First-AidKit: 1385733587
+      GelPotion: -7767336005127024814
+      GelSyringe: 5268693215069219681
+      "Gel\u0421apsules": 918836155072608372
+      PolymerBandage: -7208885533108579567
+      "Polymer\u0421apsules": 8998379043667505404
+      "Polymer\u0421apsulesBox": -5688871547599881028
+      "\u041F\u0443\u0434syringe": 5268693215069219681
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3810,7 +3810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112096519651701621, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -718.8
+      value: -556.1
       objectReference: {fileID: 0}
     - target: {fileID: 3112096519651701621, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4663,7 +4663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Order: Chair'
+  m_text: 'Order: Medicine'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
   m_sharedMaterial: {fileID: -227520147869339562, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
@@ -4690,12 +4690,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.2
+  m_fontSize: 0.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 0
-  m_fontSizeMax: 72
+  m_fontSizeMin: 0.125
+  m_fontSizeMax: 0.25
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -8707,7 +8707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112096519651701621, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -556.1
+      value: -718.8
       objectReference: {fileID: 0}
     - target: {fileID: 3112096519651701621, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
       propertyPath: m_AnchoredPosition.y

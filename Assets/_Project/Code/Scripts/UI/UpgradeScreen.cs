@@ -40,13 +40,13 @@ namespace _Project.Code.Scripts.UI
                 upgradeButtonView.Initialize(Upgrade);
             }
             
-            _backGroundFade.onClick.AddListener(OnClose);
-            _closeButton.onClick.AddListener(OnClose);
+            _backGroundFade.onClick.AddListener(HidePanel);
+            _closeButton.onClick.AddListener(HidePanel);
             
             RefreshButtons();
         }
 
-        private void OnClose()
+        private void HidePanel()
         {
             _shower.HideView(PanelType.UpgradesPopup);
         }
