@@ -18,7 +18,7 @@ namespace _Project.Code.Scripts.Configs
     public class LevelConfig : ScriptableObject
     {
         public WaveConfig WaveConfig;
-        public TaskConfig TaskConfig;
         public List<SlotPlantSetup> InitialPlants;
+        public int StartCredits;
     }
 }

@@ -1,5 +1,10 @@
+using System;
 using System.Collections.Generic;
+using _Project.Code.Scripts;
+using _Project.Code.Scripts.Audio;
+using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.Data.TaskData;
 using _Project.Code.Scripts.EnemySystem;
 using _Project.Code.Scripts.Garden;
 using _Project.Code.Scripts.GameOver;
@@ -34,6 +39,8 @@ namespace _Project.Code.Scripts.Game.LvlController
         private readonly IPanelShower _panelShower;
 
         public LevelState State { get; private set; } = LevelState.NonPlaying;
+
+        public event Action OnVictory;
 
         public LevelController(List<IManualUpdate> manualUpdates, IGamePauseHandler gamePauseHandler)
         {
@@ -91,12 +98,42 @@ namespace _Project.Code.Scripts.Game.LvlController
 
         public void StartLevel(int levelIndex)
         {
-            var levelConfig = GameData.Instance.GameConfig.GetLevel(levelIndex);
+            var gameConfig = GameData.Instance.GameConfig;
+            var levelConfig = gameConfig.GetLevel(levelIndex);
+            GameData.Instance.ResetResources(levelConfig.StartCredits);
             _waveSpawner.StartLevel(levelConfig.WaveConfig);
-            _taskService.Reset(levelConfig.TaskConfig.Tasks);
+            _taskService.Reset(BuildTaskList(levelIndex, gameConfig));
             _gardenBed.StartLevel(levelConfig.InitialPlants);
             _levelEndChecker.Reset();
+            AudioManager.Instance.PlayMainTheme();
             State = LevelState.Playing;
+        }
+
+        private static List<TaskData> BuildTaskList(int levelIndex, GameConfig gameConfig)
+        {
+            var entries = gameConfig.LevelOrdersConfig?.Entries;
+            var allTasks = gameConfig.TaskConfig?.Tasks;
+
+            if (entries == null || allTasks == null)
+                return new List<TaskData>();
+
+            var levelEntries = new List<LevelOrderEntry>();
+            foreach (var entry in entries)
+            {
+                if (entry.LevelId == levelIndex)
+                    levelEntries.Add(entry);
+            }
+
+            levelEntries.Sort((a, b) => a.OrderIndex.CompareTo(b.OrderIndex));
+
+            var result = new List<TaskData>(levelEntries.Count);
+            foreach (var entry in levelEntries)
+            {
+                var task = allTasks.Find(t => (int)t.ResultType == entry.OrderId);
+                result.Add(task);
+            }
+
+            return result;
         }
 
 
@@ -108,6 +145,9 @@ namespace _Project.Code.Scripts.Game.LvlController
             //yield return new WaitForSeconds(ShowDelay);
 
             State = isVictory ? LevelState.Win : LevelState.Loss;
+            if (isVictory)
+                OnVictory?.Invoke();
+
             _panelShower.ShowView(PanelType.GameOver, new GameOverPanelSettings { IsVictory = isVictory }).OnClose += () =>
             {
                 State = LevelState.NonPlaying;

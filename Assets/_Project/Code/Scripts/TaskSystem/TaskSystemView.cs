@@ -68,6 +68,8 @@ namespace _Project.Code.Scripts.TaskSystem
             _iconImage.sprite = icon;
             _iconImage.enabled = icon != null;
 
+            _valuteIcon.gameObject.SetActive(true);
+
             _rewardText.enabled = true;
             _rewardText.text = task.CreditReward.ToString();
 

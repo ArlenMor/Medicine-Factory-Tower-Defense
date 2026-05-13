@@ -12,6 +12,7 @@ namespace _Project.Code.Scripts.Game
 
         public void ManualAwake(List<IManualUpdate> manualUpdates) {
             _levelController = new LevelController(manualUpdates, this);
+            _levelController.OnVictory += () => _currentLevel++;
         }
 
         public void SetPaused(bool paused)
@@ -33,7 +34,7 @@ namespace _Project.Code.Scripts.Game
                 _levelController.ManualUpdate(Time.deltaTime);
             }else if (_levelController.State == LevelState.Win)
             {
-                _currentLevel++;
+                // _currentLevel is incremented once via OnVictory event
             }
             else if (_levelController.State == LevelState.Loss)
             {

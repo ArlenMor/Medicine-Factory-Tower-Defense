@@ -14,72 +14,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.TaskConfig
   Tasks:
   - ResultType: 1
-    CreditReward: 25
+    CreditReward: 2
     ProduceTime: 3
     CostInfo:
       CrystalCost: 1
-      PolymerCost: 1
-      NanoGelCost: 1
+      PolymerCost: 0
+      NanoGelCost: 0
   - ResultType: 2
-    CreditReward: 25
-    ProduceTime: 4
+    CreditReward: 2
+    ProduceTime: 3
     CostInfo:
-      CrystalCost: 2
+      CrystalCost: 0
       PolymerCost: 1
       NanoGelCost: 0
   - ResultType: 3
-    CreditReward: 30
+    CreditReward: 3
+    ProduceTime: 4
+    CostInfo:
+      CrystalCost: 1
+      PolymerCost: 1
+      NanoGelCost: 0
+  - ResultType: 4
+    CreditReward: 3
+    ProduceTime: 5
+    CostInfo:
+      CrystalCost: 1
+      PolymerCost: 0
+      NanoGelCost: 1
+  - ResultType: 5
+    CreditReward: 4
     ProduceTime: 5
     CostInfo:
       CrystalCost: 2
       PolymerCost: 1
-      NanoGelCost: 1
-  - ResultType: 4
-    CreditReward: 35
+      NanoGelCost: 0
+  - ResultType: 6
+    CreditReward: 4
     ProduceTime: 6
     CostInfo:
-      CrystalCost: 3
-      PolymerCost: 2
-      NanoGelCost: 0
-  - ResultType: 5
-    CreditReward: 40
-    ProduceTime: 6.5
+      CrystalCost: 1
+      PolymerCost: 1
+      NanoGelCost: 1
+  - ResultType: 7
+    CreditReward: 5
+    ProduceTime: 6
     CostInfo:
-      CrystalCost: 2
+      CrystalCost: 0
       PolymerCost: 2
       NanoGelCost: 1
-  - ResultType: 6
-    CreditReward: 45
+  - ResultType: 8
+    CreditReward: 6
     ProduceTime: 7
     CostInfo:
-      CrystalCost: 3
+      CrystalCost: 2
+      PolymerCost: 0
+      NanoGelCost: 2
+  - ResultType: 9
+    CreditReward: 6
+    ProduceTime: 7
+    CostInfo:
+      CrystalCost: 2
       PolymerCost: 2
       NanoGelCost: 1
   - ResultType: 10
-    CreditReward: 50
+    CreditReward: 7
+    ProduceTime: 8
+    CostInfo:
+      CrystalCost: 1
+      PolymerCost: 2
+      NanoGelCost: 2
+  - ResultType: 11
+    CreditReward: 8
     ProduceTime: 8
     CostInfo:
       CrystalCost: 3
-      PolymerCost: 3
+      PolymerCost: 2
       NanoGelCost: 1
-  - ResultType: 11
-    CreditReward: 55
-    ProduceTime: 8.5
+  - ResultType: 12
+    CreditReward: 8
+    ProduceTime: 9
     CostInfo:
       CrystalCost: 2
       PolymerCost: 2
       NanoGelCost: 2
-  - ResultType: 12
-    CreditReward: 60
-    ProduceTime: 9
-    CostInfo:
-      CrystalCost: 3
-      PolymerCost: 2
-      NanoGelCost: 2
-  - ResultType: 13
-    CreditReward: 75
-    ProduceTime: 10
-    CostInfo:
-      CrystalCost: 3
-      PolymerCost: 2
-      NanoGelCost: 3

@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5451db91e20918e418a06d66077f3cb9, type: 3}
+  m_Name: LevelOrdersConfig
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.LevelOrdersConfig
+  Entries:
+  - LevelId: 1
+    OrderIndex: 1
+    OrderId: 1
+  - LevelId: 1
+    OrderIndex: 2
+    OrderId: 3
+  - LevelId: 2
+    OrderIndex: 1
+    OrderId: 1
+  - LevelId: 2
+    OrderIndex: 2
+    OrderId: 2
+  - LevelId: 2
+    OrderIndex: 3
+    OrderId: 3
+  - LevelId: 3
+    OrderIndex: 1
+    OrderId: 3
+  - LevelId: 3
+    OrderIndex: 2
+    OrderId: 4
+  - LevelId: 3
+    OrderIndex: 3
+    OrderId: 5
+  - LevelId: 4
+    OrderIndex: 1
+    OrderId: 2
+  - LevelId: 4
+    OrderIndex: 2
+    OrderId: 3
+  - LevelId: 4
+    OrderIndex: 3
+    OrderId: 4
+  - LevelId: 4
+    OrderIndex: 4
+    OrderId: 5
+  - LevelId: 5
+    OrderIndex: 1
+    OrderId: 3
+  - LevelId: 5
+    OrderIndex: 2
+    OrderId: 4
+  - LevelId: 5
+    OrderIndex: 3
+    OrderId: 5
+  - LevelId: 5
+    OrderIndex: 4
+    OrderId: 6
+  - LevelId: 5
+    OrderIndex: 5
+    OrderId: 7
+  - LevelId: 6
+    OrderIndex: 1
+    OrderId: 4
+  - LevelId: 6
+    OrderIndex: 2
+    OrderId: 5
+  - LevelId: 6
+    OrderIndex: 3
+    OrderId: 6
+  - LevelId: 6
+    OrderIndex: 4
+    OrderId: 7
+  - LevelId: 6
+    OrderIndex: 5
+    OrderId: 8
+  - LevelId: 7
+    OrderIndex: 1
+    OrderId: 5
+  - LevelId: 7
+    OrderIndex: 2
+    OrderId: 6
+  - LevelId: 7
+    OrderIndex: 3
+    OrderId: 7
+  - LevelId: 7
+    OrderIndex: 4
+    OrderId: 8
+  - LevelId: 7
+    OrderIndex: 5
+    OrderId: 9
+  - LevelId: 7
+    OrderIndex: 6
+    OrderId: 10
+  - LevelId: 8
+    OrderIndex: 1
+    OrderId: 6
+  - LevelId: 8
+    OrderIndex: 2
+    OrderId: 7
+  - LevelId: 8
+    OrderIndex: 3
+    OrderId: 8
+  - LevelId: 8
+    OrderIndex: 4
+    OrderId: 9
+  - LevelId: 8
+    OrderIndex: 5
+    OrderId: 10
+  - LevelId: 8
+    OrderIndex: 6
+    OrderId: 11
+  - LevelId: 9
+    OrderIndex: 1
+    OrderId: 7
+  - LevelId: 9
+    OrderIndex: 2
+    OrderId: 8
+  - LevelId: 9
+    OrderIndex: 3
+    OrderId: 9
+  - LevelId: 9
+    OrderIndex: 4
+    OrderId: 10
+  - LevelId: 9
+    OrderIndex: 5
+    OrderId: 11
+  - LevelId: 9
+    OrderIndex: 6
+    OrderId: 12
+  - LevelId: 10
+    OrderIndex: 1
+    OrderId: 8
+  - LevelId: 10
+    OrderIndex: 2
+    OrderId: 9
+  - LevelId: 10
+    OrderIndex: 3
+    OrderId: 10
+  - LevelId: 10
+    OrderIndex: 4
+    OrderId: 11
+  - LevelId: 10
+    OrderIndex: 5
+    OrderId: 12
+  - LevelId: 10
+    OrderIndex: 6
+    OrderId: 11
+  - LevelId: 10
+    OrderIndex: 7
+    OrderId: 12

@@ -59,12 +59,27 @@ namespace _Project.Code.Scripts.Data
             OnResourcesChanged?.Invoke();
         }
 
+        public void SetResource(ResourceType resourceType, int amount)
+        {
+            Resources[resourceType] = amount;
+            OnResourcesChanged?.Invoke();
+        }
+
+        public void ResetResources(int startCredits)
+        {
+            Resources[ResourceType.Crystal] = GetResourceStartAmount(ResourceType.Crystal);
+            Resources[ResourceType.Polymer] = GetResourceStartAmount(ResourceType.Polymer);
+            Resources[ResourceType.NanoGel] = GetResourceStartAmount(ResourceType.NanoGel);
+            Resources[ResourceType.Credit] = startCredits;
+            OnResourcesChanged?.Invoke();
+        }
+
         private void GenerateResourceData()
         {
             Resources.Add(ResourceType.Crystal, GetResourceStartAmount(ResourceType.Crystal));
             Resources.Add(ResourceType.Polymer, GetResourceStartAmount(ResourceType.Polymer));
             Resources.Add(ResourceType.NanoGel, GetResourceStartAmount(ResourceType.NanoGel));
-            Resources.Add(ResourceType.Credit, _config.GardenConfig.CreditStartAmount);
+            Resources.Add(ResourceType.Credit, 0);
         }
 
         private int GetResourceStartAmount(ResourceType resourceType) => 

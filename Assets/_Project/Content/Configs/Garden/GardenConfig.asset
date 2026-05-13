@@ -16,13 +16,13 @@ MonoBehaviour:
   GrowableResources:
   - ResourceType: 1
     StartAmount: 0
-    GrowthTime: 14
+    GrowthTime: 6
     DefaultProductivity: 1
   - ResourceType: 2
     StartAmount: 0
-    GrowthTime: 22
+    GrowthTime: 8
     DefaultProductivity: 1
   - ResourceType: 3
     StartAmount: 0
-    GrowthTime: 32
+    GrowthTime: 10
     DefaultProductivity: 1

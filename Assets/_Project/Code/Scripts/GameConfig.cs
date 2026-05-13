@@ -13,11 +13,13 @@ namespace _Project.Code.Scripts
         public GardenConfig GardenConfig;
         public ResourceIconConfig ResourceIconConfig;
         public TaskIconConfig TaskIconConfig;
+        public TaskConfig TaskConfig;
         public EnemyConfig EnemyConfig;
         public UpgradesConfig UpgradesConfig;
         public FieldConfig FieldConfig;
         public DefenseShopConfig DefenseShopConfig;
         public DamagePopupConfig DamagePopupConfig;
+        public LevelOrdersConfig LevelOrdersConfig;
 
         public List<LevelConfig> Levels;
         public LevelConfig GetLevel(int levelIndex)

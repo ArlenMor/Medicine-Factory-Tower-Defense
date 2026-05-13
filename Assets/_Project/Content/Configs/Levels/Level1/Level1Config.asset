@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Level1Config
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.LevelConfig
   WaveConfig: {fileID: 11400000, guid: 2fbbca4324112f346a1a57f3212a03b0, type: 2}
-  TaskConfig: {fileID: 11400000, guid: 17269f22bfa4edc43a46aa83e288a5d1, type: 2}
   InitialPlants:
   - SlotIndex: 0
     PlantType: 1
@@ -24,3 +23,4 @@ MonoBehaviour:
   - SlotIndex: 2
     PlantType: 3
     IsAlreadyGrown: 1
+  StartCredits: 0
