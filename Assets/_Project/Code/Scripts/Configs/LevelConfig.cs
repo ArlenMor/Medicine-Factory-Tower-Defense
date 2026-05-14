@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Project.Code.Scripts.EnemySystem;
 using _Project.Code.Scripts.Garden;
+using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.Configs
@@ -20,5 +21,7 @@ namespace _Project.Code.Scripts.Configs
         public WaveConfig WaveConfig;
         public List<SlotPlantSetup> InitialPlants;
         public int StartCredits;
+
+        public TutorialSequenceData TutorialSequence;
     }
 }

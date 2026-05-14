@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Project.Code.Scripts.Configs;
-using _Project.Code.Scripts.Garden;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.Data
@@ -55,7 +56,11 @@ namespace _Project.Code.Scripts.Data
         {
             Resources[resourceType] += amount;
             if (resourceType == ResourceType.Credit && amount > 0)
+            {
                 Stats.CreditsEarned += amount;
+                if (S.TryGet<ITutorialService>(out var tutorial))
+                    tutorial.NotifyEvent(TutorialEventType.CreditsEarned);
+            }
             OnResourcesChanged?.Invoke();
         }
 

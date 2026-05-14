@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.EnemySystem
@@ -134,6 +136,8 @@ namespace _Project.Code.Scripts.EnemySystem
             enemy.OnDied -= HandleEnemyDied;
             _activeEnemies.Remove(enemy);
             GameData.Instance.Stats.EnemiesKilled++;
+            if (S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.NotifyEvent(TutorialEventType.EnemyKilled);
         }
     }
 }

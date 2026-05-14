@@ -32,13 +32,6 @@ namespace _Project.Code.Scripts.Game
             {
                 if (_paused) return;
                 _levelController.ManualUpdate(Time.deltaTime);
-            }else if (_levelController.State == LevelState.Win)
-            {
-                // _currentLevel is incremented once via OnVictory event
-            }
-            else if (_levelController.State == LevelState.Loss)
-            {
-                
             }
         }
     }

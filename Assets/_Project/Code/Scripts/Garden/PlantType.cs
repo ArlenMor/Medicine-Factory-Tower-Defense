@@ -6,8 +6,8 @@ namespace _Project.Code.Scripts.Garden
     {
         NuN = 0,
         Crystal = 1,
-        NanoGel = 2,
-        Polymer = 3,
+        Polymer = 2,
+        NanoGel = 3,
     }
     
     public static class PlantTypeExtension
@@ -17,8 +17,8 @@ namespace _Project.Code.Scripts.Garden
             return plantType switch
             {
                 PlantType.Crystal => ResourceType.Crystal,
-                PlantType.NanoGel => ResourceType.NanoGel,
                 PlantType.Polymer => ResourceType.Polymer,
+                PlantType.NanoGel => ResourceType.NanoGel,
                 PlantType.NuN => throw new System.NotImplementedException(),
                 _ => throw new System.NotImplementedException(),
             };

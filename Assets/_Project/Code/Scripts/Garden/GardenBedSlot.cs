@@ -2,7 +2,9 @@ using System.Linq;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Timer;
+using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UI;
 using _Project.Code.Scripts.UIService;
 using UnityEngine;
@@ -57,6 +59,8 @@ namespace _Project.Code.Scripts.Garden
                         GameData.Instance.Stats.ResourcesCollected++;
                         _resourcesAnimatorWidget.PlayAnimation(resourceType, amount);
                         AudioManager.Instance.PlayResourceGather();
+                        if (S.TryGet<ITutorialService>(out var tutorial))
+                            tutorial.NotifyEvent(TutorialEventType.ResourceHarvested);
                         Destroy(_plantInstance.gameObject);
                         HandleMassage(false);
                         _isOccupied = false;
@@ -112,6 +116,8 @@ namespace _Project.Code.Scripts.Garden
             GameData.Instance.Stats.PlantsPlanted++;
             AudioManager.Instance.PlayPlantPlanting();
             _panelShower.HideView(PanelType.PlantPanelInfo);
+            if (S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.NotifyEvent(TutorialEventType.PlantPlanted);
         }
         
         private int GetDefaultProductivity(ResourceType resourceType) => 

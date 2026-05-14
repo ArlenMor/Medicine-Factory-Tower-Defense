@@ -4,6 +4,7 @@ using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.BattleField
@@ -50,6 +51,8 @@ namespace _Project.Code.Scripts.BattleField
             if (data.Button != MouseButton.Left) return;
             if (!data.IsCanvasHit) return;
             if (data.HitObject == null) return;
+
+            if (S.TryGet<ITutorialService>(out var tutorialCheck) && tutorialCheck.IsBuildingDisabled) return;
 
             var button = data.HitObject.GetComponentInParent<DefenseBuyButtonView>();
             if (button == null) return;
@@ -127,6 +130,8 @@ namespace _Project.Code.Scripts.BattleField
                 }
                 GameData.Instance.AddResource(ResourceType.Credit, -_dragItemData.CreditCost);
                 AudioManager.Instance.PlayBuilding();
+                if (S.TryGet<ITutorialService>(out var tutorial))
+                    tutorial.NotifyEvent(TutorialEventType.BuildingPlaced);
             }
             else
             {

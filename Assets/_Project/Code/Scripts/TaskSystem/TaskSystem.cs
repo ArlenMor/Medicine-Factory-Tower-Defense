@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data.TaskData;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.TaskSystem
@@ -50,6 +52,9 @@ namespace _Project.Code.Scripts.TaskSystem
             _currentTask = null;
             _completedTasksCount++;
             OnTaskCompleted?.Invoke(completed);
+
+            if (S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.NotifyEvent(TutorialEventType.TaskCompleted);
 
             StartNext();
         }

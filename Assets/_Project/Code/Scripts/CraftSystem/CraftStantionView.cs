@@ -1,11 +1,12 @@
-using System;
 using System.Collections.Generic;
 using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Data.TaskData;
 using _Project.Code.Scripts.Garden;
+using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.TaskSystem;
 using _Project.Code.Scripts.Timer;
+using _Project.Code.Scripts.Tutorial;
 using DG.Tweening;
 using TMPro;
 using _Project.Code.Scripts.Audio;
@@ -162,6 +163,9 @@ namespace _Project.Code.Scripts.CraftSystem
         {
             if (!_taskService.HasActiveTask || _isCrafting)
                 return;
+
+            if (S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.NotifyEvent(TutorialEventType.CraftButtonClicked);
 
             var task = _taskService.CurrentTask.Value;
 

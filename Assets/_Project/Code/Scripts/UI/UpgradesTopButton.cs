@@ -1,3 +1,5 @@
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UIPanels.Settings;
 using _Project.Code.Scripts.UIService;
 using UnityEngine;
@@ -21,6 +23,9 @@ namespace _Project.Code.Scripts.UI
 
         private void OnClick()
         {
+            if (S.TryGet<ITutorialService>(out var tutorial) && tutorial.IsUpgradesDisabled)
+                return;
+
             var settings = new UpgradeScreenSettings
             {
                 Shower = _shower,

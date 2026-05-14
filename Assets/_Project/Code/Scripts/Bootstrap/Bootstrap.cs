@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
-using _Project.Code.Scripts.Data.TaskData;
 using _Project.Code.Scripts.EnemySystem;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.UIService;
-using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Garden;
 using _Project.Code.Scripts.TaskSystem;
 using _Project.Code.Scripts.Timer;
@@ -13,6 +11,7 @@ using _Project.Code.Scripts.CraftSystem;
 using _Project.Code.Scripts.UI;
 using _Project.Code.Scripts.Cheats;
 using _Project.Code.Scripts.Audio;
+using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.ServiceLocator;
@@ -41,6 +40,7 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private CheatCompleteTask _cheatCompleteTask;
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private LoadingScreen _loadingScreen;
+        [SerializeField] private TutorialOverlayView _tutorialOverlayView;
         private GameData _gameData;
         private ITimerService _timerService;
         private ITaskService _taskService;
@@ -95,6 +95,11 @@ namespace _Project.Code.Scripts.Bootstrap
             _gameController.ManualAwake(manualUpdates);
             S.Register<IGamePauseHandler>(_gameController);
             if (_cheatCompleteTask != null) _cheatCompleteTask.Initialize(_taskService);
+            //Tutorial
+            var tutorialService = new TutorialService();
+            S.Register<ITutorialService>(tutorialService);
+            if (_tutorialOverlayView != null)
+                _tutorialOverlayView.Initialize(tutorialService);
             //Audio
             _audioManager.PlayMainTheme();
             //Loading

@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using _Project.Code.Scripts;
 using _Project.Code.Scripts.Audio;
-using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Data.TaskData;
 using _Project.Code.Scripts.EnemySystem;
@@ -10,6 +8,7 @@ using _Project.Code.Scripts.Garden;
 using _Project.Code.Scripts.GameOver;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.TaskSystem;
+using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UIPanels.Settings;
 using _Project.Code.Scripts.UIService;
 
@@ -107,6 +106,9 @@ namespace _Project.Code.Scripts.Game.LvlController
             _levelEndChecker.Reset();
             AudioManager.Instance.PlayMainTheme();
             State = LevelState.Playing;
+
+            if (levelConfig.TutorialSequence != null && S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.StartSequence(levelConfig.TutorialSequence);
         }
 
         private static List<TaskData> BuildTaskList(int levelIndex, GameConfig gameConfig)

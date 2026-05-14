@@ -50,9 +50,10 @@ MonoBehaviour:
   - {fileID: -7109131372446848578, guid: 5913a68dc7772d940bd0e8dce8727cb6, type: 3}
   - {fileID: -5385945281122403391, guid: 5913a68dc7772d940bd0e8dce8727cb6, type: 3}
   _image: {fileID: 1837840806623121944}
-  Type: 2
+  Type: 3
 --- !u!212 &1837840806623121944
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -98,6 +99,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -5385945281122403391, guid: 5913a68dc7772d940bd0e8dce8727cb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -107,5 +109,4 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
