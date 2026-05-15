@@ -41,6 +41,7 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private LoadingScreen _loadingScreen;
         [SerializeField] private TutorialOverlayView _tutorialOverlayView;
+        [SerializeField] private TutorialVisibilityController _tutorialVisibilityController;
         [SerializeField] private List<TutorialTarget> _tutorialTargets;
         private GameData _gameData;
         private ITimerService _timerService;
@@ -105,6 +106,8 @@ namespace _Project.Code.Scripts.Bootstrap
             S.Register<ITutorialService>(tutorialService);
             if (_tutorialOverlayView != null)
                 _tutorialOverlayView.Initialize(tutorialService);
+            if (_tutorialVisibilityController != null)
+                _tutorialVisibilityController.Initialize(tutorialService);
             //Audio
             _audioManager.PlayMainTheme();
             //Loading

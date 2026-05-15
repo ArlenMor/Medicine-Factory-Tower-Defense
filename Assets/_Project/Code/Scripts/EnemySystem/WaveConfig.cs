@@ -21,6 +21,12 @@ namespace _Project.Code.Scripts.EnemySystem
     {
         public List<WaveData> Waves;
 
+        [Header("Loop")]
+        [Tooltip("Зацикливать последнюю волну после уничтожения всех врагов.")]
+        public bool LoopLastWave;
+        [Tooltip("Задержка перед повторным запуском последней волны (секунды).")]
+        public float LoopDelay = 10f;
+
         /// <summary>
         /// Заполняет дефолтные волны для короткой сессии 3-7 минут.
         /// Старт игры более динамичный: первая волна приходит рано.

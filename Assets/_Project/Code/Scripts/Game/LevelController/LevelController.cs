@@ -103,6 +103,8 @@ namespace _Project.Code.Scripts.Game.LvlController
             var levelConfig = gameConfig.GetLevel(levelIndex);
             GameData.Instance.ResetResources(levelConfig.StartCredits);
             _fieldSystem.Reset();
+            _manualUpdates.RemoveAll(u => u is UnityEngine.MonoBehaviour mb && mb == null);
+            _pendingAdd.RemoveAll(u => u is UnityEngine.MonoBehaviour mb && mb == null);
             _waveSpawner.StartLevel(levelConfig.WaveConfig);
             _taskService.Reset(BuildTaskList(levelIndex, gameConfig));
             _gardenBed.StartLevel(levelConfig.InitialPlants);

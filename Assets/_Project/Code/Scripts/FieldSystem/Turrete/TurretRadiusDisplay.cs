@@ -7,6 +7,8 @@ namespace _Project.Code.Scripts.BattleField
     public class TurretRadiusDisplay : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _radiusRenderer;
+        [Tooltip("Коллайдер тела башни для определения наведения мыши.")]
+        [SerializeField] private Collider2D _hoverCollider;
 
         private float _attackRadius;
         private float _fadeDuration;
@@ -63,11 +65,12 @@ namespace _Project.Code.Scripts.BattleField
             if (Mouse.current == null) return;
 
             Camera cam = _camera ? _camera : Camera.main;
-            Vector3 mouseWorld = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            mouseWorld.z = transform.position.z;
+            Vector2 mouseWorld = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
             bool wasOver = _isMouseOver;
-            _isMouseOver = (mouseWorld - transform.position).sqrMagnitude <= _attackRadius * _attackRadius;
+            _isMouseOver = _hoverCollider != null
+                ? _hoverCollider.OverlapPoint(mouseWorld)
+                : (mouseWorld - (Vector2)transform.position).sqrMagnitude <= _attackRadius * _attackRadius;
 
             if (_isMouseOver && !wasOver)
                 SetAlpha(_maxAlpha);

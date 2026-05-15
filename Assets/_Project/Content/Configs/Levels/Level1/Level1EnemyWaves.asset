@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Level1EnemyWaves
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.WaveConfig
   Waves: []
+  LoopLastWave: 0
+  LoopDelay: 10

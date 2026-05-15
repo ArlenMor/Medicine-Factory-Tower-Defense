@@ -26,6 +26,8 @@ namespace _Project.Code.Scripts.EnemySystem
         private float _intraSpawnTimer;
         private float _currentIntraSpawnInterval;
         private bool _forceStartWave;
+        private bool _isLoopCountdown;
+        private float _loopTimer;
 
         public void ManualAwake(EnemyConfig enemyConfig)
         {
@@ -57,6 +59,8 @@ namespace _Project.Code.Scripts.EnemySystem
             _currentWaveIndex = 0;
             _isSpawningWave = false;
             _forceStartWave = false;
+            _isLoopCountdown = false;
+            _loopTimer = 0f;
             _spawnQueue.Clear();
         }
 
@@ -85,14 +89,29 @@ namespace _Project.Code.Scripts.EnemySystem
         {
             _gameTime += deltaTime;
 
+            TickLoopCountdown(deltaTime);
             TryStartNextWave();
             ProcessSpawnQueue(deltaTime);
             UpdateEnemies(deltaTime);
         }
 
+        private void TickLoopCountdown(float deltaTime)
+        {
+            if (!_isLoopCountdown) return;
+
+            _loopTimer -= deltaTime;
+            if (_loopTimer <= 0f)
+            {
+                _isLoopCountdown = false;
+                _currentWaveIndex = _waveConfig.Waves.Count - 1;
+                _forceStartWave = true;
+            }
+        }
+
         private void TryStartNextWave()
         {
             if (_waveConfig == null) return;
+            if (_isLoopCountdown) return;
             if (_currentWaveIndex >= _waveConfig.Waves.Count) return;
             if (_isSpawningWave) return;
 
@@ -190,6 +209,14 @@ namespace _Project.Code.Scripts.EnemySystem
                 tutorial.NotifyEvent(TutorialEventType.EnemyKilled);
                 if (_activeEnemies.Count == 0 && _spawnQueue.Count == 0)
                     tutorial.NotifyEvent(TutorialEventType.WaveCleared);
+            }
+
+            if (_activeEnemies.Count == 0 && _spawnQueue.Count == 0 &&
+                _currentWaveIndex >= _waveConfig.Waves.Count &&
+                _waveConfig.LoopLastWave && !_isLoopCountdown)
+            {
+                _isLoopCountdown = true;
+                _loopTimer = _waveConfig.LoopDelay;
             }
         }
     }
