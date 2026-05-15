@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Code.Scripts.UI
 {
@@ -47,6 +44,12 @@ namespace _Project.Code.Scripts.UI
             _tween?.Kill();
             Destroy(_currentImage.gameObject);
             _currentImage = null;
+        }
+
+        public void Reset()
+        {
+            if (_currentImage != null)
+                DestroyImage();
         }
 
         private void OnDestroy()

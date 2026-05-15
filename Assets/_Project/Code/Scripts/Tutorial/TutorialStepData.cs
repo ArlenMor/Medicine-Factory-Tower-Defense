@@ -38,6 +38,13 @@ namespace _Project.Code.Scripts.Tutorial
         [Tooltip("Сколько раз должен сработать WaitCondition, чтобы шаг стал виден")]
         public int WaitCount = 1;
 
+        [Header("Wave")]
+        [Tooltip("Принудительно запустить следующую волну врагов при старте этого шага.")]
+        public bool SpawnWaveOnStart;
+
+        [Tooltip("Принудительно запустить следующую волну врагов после завершения этого шага.")]
+        public bool SpawnWaveOnComplete;
+
         [Header("Text Position")]
         [Tooltip("Позиция панели с текстом подсказки")]
         public TextPanelPosition TextPosition = TextPanelPosition.BottomCenter;

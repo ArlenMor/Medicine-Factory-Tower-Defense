@@ -6,6 +6,7 @@ namespace _Project.Code.Scripts.Tutorial
     public class TutorialService : ITutorialService
     {
         public event Action<TutorialStepData> OnStepStarted;
+        public event Action<TutorialStepData> OnStepCompleted;
         public event Action OnStepHidden;
         public event Action OnSequenceCompleted;
 
@@ -103,8 +104,11 @@ namespace _Project.Code.Scripts.Tutorial
 
         private void MoveNext()
         {
+            var completedStep = CurrentStep();
             _currentStepIndex++;
             _eventCounter = 0;
+
+            OnStepCompleted?.Invoke(completedStep);
 
             if (_currentStepIndex >= _currentSequence.Steps.Count)
             {
@@ -134,6 +138,10 @@ namespace _Project.Code.Scripts.Tutorial
             StepTrigger.EnemyKilled        => ev == TutorialEventType.EnemyKilled,
             StepTrigger.PlantPlanted       => ev == TutorialEventType.PlantPlanted,
             StepTrigger.CreditsEarned      => ev == TutorialEventType.CreditsEarned,
+            StepTrigger.WaveStarted        => ev == TutorialEventType.WaveStarted,
+            StepTrigger.WaveCleared        => ev == TutorialEventType.WaveCleared,
+            StepTrigger.UpgradePurchased   => ev == TutorialEventType.UpgradePurchased,
+            StepTrigger.UpgradesPanelOpened => ev == TutorialEventType.UpgradesPanelOpened,
             _                              => false,
         };
     }

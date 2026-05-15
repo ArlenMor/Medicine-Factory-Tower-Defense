@@ -31,6 +31,7 @@ namespace _Project.Code.Scripts.Game.LvlController
         private WaveSpawner _waveSpawner;
         private ITaskService _taskService;
         private GardenBed _gardenBed;
+        private IFieldSystem _fieldSystem;
         private const float ShowDelay = 1.5f;
 
         private List<IManualUpdate> _manualUpdates;
@@ -51,6 +52,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             _waveSpawner = S.Get<WaveSpawner>();
             _taskService = S.Get<ITaskService>();
             _gardenBed = S.Get<GardenBed>();
+            _fieldSystem = S.Get<IFieldSystem>();
 
             _defenseDragController.Initialize(GameData.Instance.GameConfig.DefenseShopConfig, this);
 
@@ -100,6 +102,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             var gameConfig = GameData.Instance.GameConfig;
             var levelConfig = gameConfig.GetLevel(levelIndex);
             GameData.Instance.ResetResources(levelConfig.StartCredits);
+            _fieldSystem.Reset();
             _waveSpawner.StartLevel(levelConfig.WaveConfig);
             _taskService.Reset(BuildTaskList(levelIndex, gameConfig));
             _gardenBed.StartLevel(levelConfig.InitialPlants);

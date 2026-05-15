@@ -23,7 +23,8 @@ namespace _Project.Code.Scripts.UI
 
         private void OnClick()
         {
-            if (S.TryGet<ITutorialService>(out var tutorial) && tutorial.IsUpgradesDisabled)
+            S.TryGet<ITutorialService>(out var tutorial);
+            if (tutorial != null && tutorial.IsUpgradesDisabled)
                 return;
 
             var settings = new UpgradeScreenSettings
@@ -31,6 +32,7 @@ namespace _Project.Code.Scripts.UI
                 Shower = _shower,
             };
             _shower.ShowView(PanelType.UpgradesPopup, settings, _popupParent);
+            tutorial?.NotifyEvent(TutorialEventType.UpgradesPanelOpened);
         }
     }
 }

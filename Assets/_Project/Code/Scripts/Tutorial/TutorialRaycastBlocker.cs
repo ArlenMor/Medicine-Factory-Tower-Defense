@@ -29,7 +29,7 @@ namespace _Project.Code.Scripts.Tutorial
         //                        false = оверлей игнорирует точку (клик проходит насквозь)
         public bool IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
         {
-            if (!_isBlocking) return true;
+            if (!_isBlocking) return false;
 
             float nx = screenPoint.x / Screen.width;
             float ny = screenPoint.y / Screen.height;

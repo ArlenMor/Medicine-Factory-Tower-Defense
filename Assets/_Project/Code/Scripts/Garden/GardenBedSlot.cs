@@ -93,6 +93,7 @@ namespace _Project.Code.Scripts.Garden
                 Destroy(_plantInstance.gameObject);
                 _plantInstance = null;
             }
+            _message.gameObject.SetActive(false);
             _isOccupied = false;
         }
 

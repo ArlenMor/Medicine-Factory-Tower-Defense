@@ -3,6 +3,8 @@ using System.Globalization;
 using System.Linq;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UIPanels.Settings;
 using _Project.Code.Scripts.UIService;
 using UnityEngine;
@@ -72,6 +74,8 @@ namespace _Project.Code.Scripts.UI
                 _gameData.AddResource(ResourceType.Credit, -upgradeDef.Costs[upgradeData.Step]);
                 upgradeData.Multiplier = upgradeDef.Multipliers[upgradeData.Step];
                 GameData.Instance.Stats.UpgradesPurchased++;
+                if (S.TryGet<ITutorialService>(out var tutorial))
+                    tutorial.NotifyEvent(TutorialEventType.UpgradePurchased);
                 AudioManager.Instance.PlayUpgrade();
                 if (upgradeData.Step >= upgradeDef.Multipliers.Length - 1)
                 {

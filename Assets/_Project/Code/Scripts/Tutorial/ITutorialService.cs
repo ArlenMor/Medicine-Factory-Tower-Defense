@@ -6,6 +6,8 @@ namespace _Project.Code.Scripts.Tutorial
     {
         event Action<TutorialStepData> OnStepStarted;
 
+        event Action<TutorialStepData> OnStepCompleted;
+
         event Action OnStepHidden;
 
         event Action OnSequenceCompleted;

@@ -130,8 +130,8 @@ RectTransform:
   - {fileID: 5921856003760192841}
   - {fileID: 9127126355507975789}
   - {fileID: 6828483995730736728}
-  - {fileID: 7569427582067349701}
   - {fileID: 2479885508995438978}
+  - {fileID: 7569427582067349701}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -296,7 +296,7 @@ PrefabInstance:
     - target: {fileID: 450826724623299884, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1929436925435760945, guid: 9f1294ffa0b868f45b706636bd472f98, type: 3}
+      objectReference: {fileID: 8569038007849428689, guid: 9f1294ffa0b868f45b706636bd472f98, type: 3}
     - target: {fileID: 592085697891928368, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 3075385398498679384, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5488302387316739802, guid: 2cde1cca4d229c34ca846923d6d9849c, type: 3}
+      objectReference: {fileID: 486106114939064918, guid: 03347e0fcba46c84b8066c5fd6c010f9, type: 3}
     - target: {fileID: 4319656062981380429, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -408,7 +408,7 @@ PrefabInstance:
     - target: {fileID: 7096427686190192685, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7441689821940758947, guid: 2b095ce1bfe30a04c993fde6e78938f5, type: 3}
+      objectReference: {fileID: -6055634228451755357, guid: 2b095ce1bfe30a04c993fde6e78938f5, type: 3}
     - target: {fileID: 9059249164955233294, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Name
       value: PlantChooseButton (1)
@@ -449,7 +449,7 @@ PrefabInstance:
     - target: {fileID: 450826724623299884, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8569038007849428689, guid: 9f1294ffa0b868f45b706636bd472f98, type: 3}
+      objectReference: {fileID: 1929436925435760945, guid: 9f1294ffa0b868f45b706636bd472f98, type: 3}
     - target: {fileID: 3021823673785025151, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: plantType
       value: 3
@@ -457,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 3075385398498679384, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 486106114939064918, guid: 03347e0fcba46c84b8066c5fd6c010f9, type: 3}
+      objectReference: {fileID: -5488302387316739802, guid: 2cde1cca4d229c34ca846923d6d9849c, type: 3}
     - target: {fileID: 4319656062981380429, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -557,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 7096427686190192685, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6055634228451755357, guid: 2b095ce1bfe30a04c993fde6e78938f5, type: 3}
+      objectReference: {fileID: 7441689821940758947, guid: 2b095ce1bfe30a04c993fde6e78938f5, type: 3}
     - target: {fileID: 9059249164955233294, guid: 4422b7ec65970de4488505d83224c40c, type: 3}
       propertyPath: m_Name
       value: PlantChooseButton (2)

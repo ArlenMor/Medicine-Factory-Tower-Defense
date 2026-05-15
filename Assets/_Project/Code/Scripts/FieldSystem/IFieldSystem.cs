@@ -9,6 +9,7 @@ public interface IFieldSystem
 
     void ShowHighlight();
     void HideHighlight();
+    void Reset();
     bool CanPlaceMulti(int originX, int originY, int width, int height);
     bool TryPlaceMulti(int originX, int originY, int width, int height, IFieldPlaceable placeable, Vector2 pivotOffset);
     

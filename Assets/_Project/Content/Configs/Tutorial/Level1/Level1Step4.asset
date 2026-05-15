@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialStepData
   StepName: Craft Station
   InstructionText: This is the Craft Station. Use your resources here to craft medicine
-    and complete orders.
+    and complete orders
   Highlights:
   - Type: 0
+    TargetId: 1_4
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
@@ -26,5 +27,6 @@ MonoBehaviour:
   TriggerCount: 1
   WaitCondition: 0
   WaitCount: 1
+  SpawnWaveOnStart: 0
   TextPosition: 4
   CustomTextAnchor: {x: 0.5, y: 0.6}

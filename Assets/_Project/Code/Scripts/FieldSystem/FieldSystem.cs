@@ -42,6 +42,26 @@ namespace _Project.Code.Scripts.BattleField
         public void ShowHighlight() => _highlight?.SetActive(true);
         public void HideHighlight() => _highlight?.SetActive(false);
 
+        public void Reset()
+        {
+            var destroyed = new System.Collections.Generic.HashSet<IFieldPlaceable>();
+            for (int x = 0; x < _config.Width; x++)
+            {
+                for (int y = 0; y < _config.Height; y++)
+                {
+                    var cell = _cells[x, y];
+                    var placeable = cell.Placeable;
+                    cell.Clear();
+                    if (placeable != null && destroyed.Add(placeable))
+                    {
+                        if (placeable is MonoBehaviour mb)
+                            Destroy(mb.gameObject);
+                    }
+                }
+            }
+            HideHighlight();
+        }
+
         public bool IsInBounds(int x, int y)
         {
             return x >= 0 && x < _config.Width && y >= 0 && y < _config.Height;

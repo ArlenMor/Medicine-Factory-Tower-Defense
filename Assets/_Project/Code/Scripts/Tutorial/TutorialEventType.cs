@@ -9,5 +9,9 @@ namespace _Project.Code.Scripts.Tutorial
         EnemyKilled,
         PlantPlanted,
         CreditsEarned,
+        WaveStarted,
+        WaveCleared,
+        UpgradePurchased,
+        UpgradesPanelOpened,
     }
 }

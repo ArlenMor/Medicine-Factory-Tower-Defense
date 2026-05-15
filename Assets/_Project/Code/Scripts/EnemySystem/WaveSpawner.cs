@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Tutorial;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.EnemySystem
@@ -23,6 +25,7 @@ namespace _Project.Code.Scripts.EnemySystem
         private readonly Queue<EnemyType> _spawnQueue = new();
         private float _intraSpawnTimer;
         private float _currentIntraSpawnInterval;
+        private bool _forceStartWave;
 
         public void ManualAwake(EnemyConfig enemyConfig)
         {
@@ -31,11 +34,51 @@ namespace _Project.Code.Scripts.EnemySystem
 
         public void StartLevel(WaveConfig waveConfig)
         {
+            foreach (var enemy in _activeEnemies)
+            {
+                if (enemy != null)
+                {
+                    enemy.OnDied -= HandleEnemyDied;
+                    Destroy(enemy.gameObject);
+                }
+            }
+            _activeEnemies.Clear();
+
+            if (S.TryGet<ITutorialService>(out var tutorial))
+            {
+                tutorial.OnStepStarted -= OnTutorialStepStarted;
+                tutorial.OnStepCompleted -= OnTutorialStepCompleted;
+                tutorial.OnStepStarted += OnTutorialStepStarted;
+                tutorial.OnStepCompleted += OnTutorialStepCompleted;
+            }
+
             _waveConfig = waveConfig;
             _gameTime = 0f;
             _currentWaveIndex = 0;
             _isSpawningWave = false;
+            _forceStartWave = false;
             _spawnQueue.Clear();
+        }
+
+        private void OnDestroy()
+        {
+            if (S.TryGet<ITutorialService>(out var tutorial))
+            {
+                tutorial.OnStepStarted -= OnTutorialStepStarted;
+                tutorial.OnStepCompleted -= OnTutorialStepCompleted;
+            }
+        }
+
+        private void OnTutorialStepStarted(TutorialStepData step)
+        {
+            if (step.SpawnWaveOnStart)
+                _forceStartWave = true;
+        }
+
+        private void OnTutorialStepCompleted(TutorialStepData step)
+        {
+            if (step.SpawnWaveOnComplete)
+                _forceStartWave = true;
         }
 
         public void ManualUpdate(float deltaTime)
@@ -54,8 +97,11 @@ namespace _Project.Code.Scripts.EnemySystem
             if (_isSpawningWave) return;
 
             var wave = _waveConfig.Waves[_currentWaveIndex];
-            if (_gameTime >= wave.StartTime)
+            if (_gameTime >= wave.StartTime || _forceStartWave)
+            {
+                _forceStartWave = false;
                 StartWave(wave);
+            }
         }
 
         private void StartWave(WaveData wave)
@@ -83,6 +129,9 @@ namespace _Project.Code.Scripts.EnemySystem
             _currentIntraSpawnInterval = wave.IntraSpawnInterval;
             _intraSpawnTimer = 0f;
             _isSpawningWave = true;
+
+            if (S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.NotifyEvent(TutorialEventType.WaveStarted);
         }
 
         private void ProcessSpawnQueue(float deltaTime)
@@ -137,7 +186,11 @@ namespace _Project.Code.Scripts.EnemySystem
             _activeEnemies.Remove(enemy);
             GameData.Instance.Stats.EnemiesKilled++;
             if (S.TryGet<ITutorialService>(out var tutorial))
+            {
                 tutorial.NotifyEvent(TutorialEventType.EnemyKilled);
+                if (_activeEnemies.Count == 0 && _spawnQueue.Count == 0)
+                    tutorial.NotifyEvent(TutorialEventType.WaveCleared);
+            }
         }
     }
 }

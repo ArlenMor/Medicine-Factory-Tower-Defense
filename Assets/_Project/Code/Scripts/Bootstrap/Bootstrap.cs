@@ -41,6 +41,7 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private LoadingScreen _loadingScreen;
         [SerializeField] private TutorialOverlayView _tutorialOverlayView;
+        [SerializeField] private List<TutorialTarget> _tutorialTargets;
         private GameData _gameData;
         private ITimerService _timerService;
         private ITaskService _taskService;
@@ -96,6 +97,10 @@ namespace _Project.Code.Scripts.Bootstrap
             S.Register<IGamePauseHandler>(_gameController);
             if (_cheatCompleteTask != null) _cheatCompleteTask.Initialize(_taskService);
             //Tutorial
+            var targetRegistry = new TutorialTargetRegistry();
+            foreach (var target in _tutorialTargets)
+                targetRegistry.Register(target.Id, target.transform);
+            S.Register<ITutorialTargetRegistry>(targetRegistry);
             var tutorialService = new TutorialService();
             S.Register<ITutorialService>(tutorialService);
             if (_tutorialOverlayView != null)

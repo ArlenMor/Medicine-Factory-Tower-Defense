@@ -1,5 +1,6 @@
 using DG.Tweening;
 using TMPro;
+using _Project.Code.Scripts.ServiceLocator;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +38,7 @@ namespace _Project.Code.Scripts.Tutorial
         private static readonly int[] HoleIds = new int[4];
 
         private ITutorialService _tutorialService;
+        private ITutorialTargetRegistry _targetRegistry;
         private TutorialStepData _currentStep;
         private Tween _fadeTween;
         private Tween _textTween;
@@ -54,6 +56,7 @@ namespace _Project.Code.Scripts.Tutorial
 
             SetOverlayAlpha(0f);
             _textPanelRect.gameObject.SetActive(false);
+            _nextButton.gameObject.SetActive(false);
         }
 
         public void Initialize(ITutorialService tutorialService)
@@ -103,8 +106,9 @@ namespace _Project.Code.Scripts.Tutorial
             {
                 InputBlockMode.AlwaysBlock => true,
                 InputBlockMode.NeverBlock  => false,
-                _                          => hasHighlights, // Auto
+                _                          => hasHighlights,
             };
+            _overlayImage.gameObject.SetActive(true);
             _overlayImage.raycastTarget = shouldBlock;
             _inputBlocker.SetBlocking(shouldBlock);
 
@@ -159,7 +163,11 @@ namespace _Project.Code.Scripts.Tutorial
 
             _textTween?.Kill();
             _textTween = _textPanelGroup.DOFade(0f, _fadeDuration)
-                .OnComplete(() => _textPanelRect.gameObject.SetActive(false));
+                .OnComplete(() =>
+                {
+                    _textPanelRect.gameObject.SetActive(false);
+                    _nextButton.gameObject.SetActive(false);
+                });
         }
 
         private void OnNextClicked()
@@ -171,14 +179,17 @@ namespace _Project.Code.Scripts.Tutorial
 
         private void RefreshHoles(TutorialStepData step)
         {
+            // Ленивая инициализация registry — после Bootstrap гарантированно зарегистрирован
+            _targetRegistry ??= S.TryGet<ITutorialTargetRegistry>(out var reg) ? reg : null;
+
             var highlights = step.Highlights;
             var holeRects = new Vector4[4];
             for (int i = 0; i < 4; i++)
             {
                 Vector4 rect;
-                if (i < highlights.Count && IsHighlightValid(highlights[i]))
+                if (i < highlights.Count && IsHighlightValid(highlights[i], _targetRegistry))
                 {
-                    rect = CalculateHoleRect(highlights[i], _worldCamera);
+                    rect = CalculateHoleRect(highlights[i], _worldCamera, _targetRegistry);
                 }
                 else
                 {
@@ -196,16 +207,17 @@ namespace _Project.Code.Scripts.Tutorial
                 _overlayMaterial.SetVector(HoleIds[i], new Vector4(-1, -1, 0, 0));
         }
 
-        private static Vector4 CalculateHoleRect(TutorialHighlightTarget highlight, Camera worldCam)
+        private static Vector4 CalculateHoleRect(TutorialHighlightTarget highlight, Camera worldCam, ITutorialTargetRegistry registry)
         {
             return highlight.Type == HighlightTargetType.World
-                ? CalculateWorldHoleRect(highlight, worldCam)
-                : CalculateUIHoleRect(highlight);
+                ? CalculateWorldHoleRect(highlight, worldCam, registry)
+                : CalculateUIHoleRect(highlight, registry);
         }
 
-        private static Vector4 CalculateUIHoleRect(TutorialHighlightTarget highlight)
+        private static Vector4 CalculateUIHoleRect(TutorialHighlightTarget highlight, ITutorialTargetRegistry registry)
         {
-            var rt = highlight.UITarget;
+            var rt = ResolveRect(highlight, registry);
+            if (rt == null) return new Vector4(-1, -1, 0, 0);
             var corners = new Vector3[4];
             rt.GetWorldCorners(corners);
 
@@ -218,9 +230,11 @@ namespace _Project.Code.Scripts.Tutorial
             return BuildNormalizedRect(min, max, highlight.Padding);
         }
 
-        private static Vector4 CalculateWorldHoleRect(TutorialHighlightTarget highlight, Camera worldCam)
+        private static Vector4 CalculateWorldHoleRect(TutorialHighlightTarget highlight, Camera worldCam, ITutorialTargetRegistry registry)
         {
-            var target = highlight.WorldTarget;
+            var target = ResolveTransform(highlight, registry);
+            if (target == null) return new Vector4(-1, -1, 0, 0);
+
             worldCam ??= Camera.main;
             if (worldCam == null) return new Vector4(-1, -1, 0, 0);
 
@@ -268,8 +282,26 @@ namespace _Project.Code.Scripts.Tutorial
             return new Vector4(min.x / sw, min.y / sh, (max.x - min.x) / sw, (max.y - min.y) / sh);
         }
 
-        private static bool IsHighlightValid(TutorialHighlightTarget h)
-            => h.Type == HighlightTargetType.UI ? h.UITarget != null : h.WorldTarget != null;
+        private static bool IsHighlightValid(TutorialHighlightTarget h, ITutorialTargetRegistry registry)
+        {
+            if (!string.IsNullOrEmpty(h.TargetId))
+                return registry != null && registry.TryGet(h.TargetId, out _);
+            return h.Type == HighlightTargetType.UI ? h.UITarget != null : h.WorldTarget != null;
+        }
+
+        private static RectTransform ResolveRect(TutorialHighlightTarget h, ITutorialTargetRegistry registry)
+        {
+            if (!string.IsNullOrEmpty(h.TargetId) && registry != null)
+                if (registry.TryGetRect(h.TargetId, out var rt)) return rt;
+            return h.UITarget;
+        }
+
+        private static Transform ResolveTransform(TutorialHighlightTarget h, ITutorialTargetRegistry registry)
+        {
+            if (!string.IsNullOrEmpty(h.TargetId) && registry != null)
+                if (registry.TryGet(h.TargetId, out var t)) return t;
+            return h.WorldTarget;
+        }
 
         // ── Text positioning ─────────────────────────────────────────────────────
 

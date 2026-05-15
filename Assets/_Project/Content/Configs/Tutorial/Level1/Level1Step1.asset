@@ -16,9 +16,11 @@ MonoBehaviour:
   InstructionText: Welcome to the factory. Your job is to grow plants, craft medicine,
     and keep the station running!
   Highlights: []
+  BlockInput: 0
   Trigger: 1
   TriggerCount: 1
   WaitCondition: 0
   WaitCount: 1
+  SpawnWaveOnStart: 0
   TextPosition: 4
   CustomTextAnchor: {x: 0.5, y: 0.6}
