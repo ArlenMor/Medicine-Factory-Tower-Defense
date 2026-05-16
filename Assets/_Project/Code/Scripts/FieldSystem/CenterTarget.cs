@@ -31,6 +31,12 @@ namespace _Project.Code.Scripts.EnemySystem
             if (_healthBar != null) _healthBar.Initialize(_maxHp);
         }
 
+        public void Reset()
+        {
+            _currentHp = _maxHp;
+            if (_healthBar != null) _healthBar.SetHealth(_currentHp);
+        }
+
         public void TakeDamage(float damage)
         {
             Debug.Log($"{nameof(BrainView)} took {damage} damage");

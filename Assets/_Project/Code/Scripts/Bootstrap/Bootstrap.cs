@@ -91,6 +91,7 @@ namespace _Project.Code.Scripts.Bootstrap
             _playerClickDamage.ManualAwake(_inputResolver);
             //Game
             S.Register<IPlayerDamageEventProvider>(_brain);
+            S.Register<BrainView>(_brain);
 
             S.Register<IDefenseDragController>(_defenseDragController);
 

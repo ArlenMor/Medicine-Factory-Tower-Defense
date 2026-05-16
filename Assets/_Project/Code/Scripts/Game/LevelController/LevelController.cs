@@ -33,6 +33,7 @@ namespace _Project.Code.Scripts.Game.LvlController
         private ITaskService _taskService;
         private GardenBed _gardenBed;
         private IFieldSystem _fieldSystem;
+        private BrainView _brain;
         private const float ShowDelay = 1.5f;
 
         private List<IManualUpdate> _manualUpdates;
@@ -54,6 +55,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             _taskService = S.Get<ITaskService>();
             _gardenBed = S.Get<GardenBed>();
             _fieldSystem = S.Get<IFieldSystem>();
+            _brain = S.Get<BrainView>();
 
             _defenseDragController.Initialize(GameData.Instance.GameConfig.DefenseShopConfig, this);
 
@@ -111,6 +113,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             var levelConfig = gameConfig.GetLevel(levelIndex);
             GameData.Instance.ResetResources(levelConfig.StartCredits);
             _fieldSystem.Reset();
+            _brain.Reset();
             _pendingMonoBehaviourCleanup = true;
             _waveSpawner.StartLevel(levelConfig.WaveConfig, levelConfig.PauseSpawnDuringTutorial);
             _taskService.Reset(BuildTaskList(levelIndex, gameConfig));
