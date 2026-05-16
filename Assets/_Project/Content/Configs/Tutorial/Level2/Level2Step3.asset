@@ -16,7 +16,7 @@ MonoBehaviour:
   InstructionText: Click on enemies to damage them
   Highlights:
   - Type: 1
-    TargetId: 2_1
+    TargetId: TutorEnemySpawn
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
@@ -27,5 +27,6 @@ MonoBehaviour:
   WaitCondition: 0
   WaitCount: 1
   SpawnWaveOnStart: 1
+  SpawnWaveOnComplete: 0
   TextPosition: 7
   CustomTextAnchor: {x: 0.5, y: 0.1}

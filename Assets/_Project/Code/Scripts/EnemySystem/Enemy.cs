@@ -1,6 +1,7 @@
 using System;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.BattleField;
+using _Project.Code.Scripts.UI;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.EnemySystem
@@ -14,6 +15,7 @@ namespace _Project.Code.Scripts.EnemySystem
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private EnemyAnimator _animator;
+        [SerializeField] private HealthBar _healthBar;
 
         public event Action<Enemy> OnDied;
 
@@ -46,6 +48,7 @@ namespace _Project.Code.Scripts.EnemySystem
 
             _attackPosition = ComputeAttackPosition(centerTarget, out _lungeTarget);
             SetRotationTowards(_attackPosition);
+            _healthBar.Initialize(stats.HP);
         }
 
         private Vector3 ComputeAttackPosition(BrainView centerTarget, out Vector3 lungeTarget)
@@ -154,6 +157,7 @@ namespace _Project.Code.Scripts.EnemySystem
             if (IsDead) return;
 
             _currentHp -= damage;
+            if (_healthBar != null) _healthBar.SetHealth(_currentHp);
             if (_currentHp <= 0f)
             {
                 _currentHp = 0f;

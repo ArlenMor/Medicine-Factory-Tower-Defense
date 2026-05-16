@@ -5,18 +5,22 @@ namespace _Project.Code.Scripts.Tutorial
 {
     public class TutorialTargetRegistry : ITutorialTargetRegistry
     {
+        public event System.Action OnTargetsChanged;
+
         private readonly Dictionary<string, Transform> _targets = new();
 
         public void Register(string id, Transform target)
         {
             if (string.IsNullOrEmpty(id)) return;
             _targets[id] = target;
+            OnTargetsChanged?.Invoke();
         }
 
         public void Unregister(string id)
         {
             if (string.IsNullOrEmpty(id)) return;
-            _targets.Remove(id);
+            if (_targets.Remove(id))
+                OnTargetsChanged?.Invoke();
         }
 
         public bool TryGet(string id, out Transform target)

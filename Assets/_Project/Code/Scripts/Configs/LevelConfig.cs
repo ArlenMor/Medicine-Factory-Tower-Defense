@@ -22,6 +22,8 @@ namespace _Project.Code.Scripts.Configs
         public List<SlotPlantSetup> InitialPlants;
         public int StartCredits;
 
+        [Header("Tutorial")]
         public TutorialSequenceData TutorialSequence;
+        public bool PauseSpawnDuringTutorial;
     }
 }

@@ -17,7 +17,7 @@ MonoBehaviour:
     need to be crafted to complete the level"
   Highlights:
   - Type: 0
-    TargetId: 1_2
+    TargetId: TutorOrdersStation
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
@@ -28,5 +28,6 @@ MonoBehaviour:
   WaitCondition: 0
   WaitCount: 1
   SpawnWaveOnStart: 0
+  SpawnWaveOnComplete: 0
   TextPosition: 4
   CustomTextAnchor: {x: 0.5, y: 0.6}

@@ -26,6 +26,7 @@ namespace _Project.Code.Scripts.Game.LvlController
         
         private readonly List<IManualUpdate> _pendingAdd = new();
         private readonly List<IManualUpdate> _pendingRemove = new();
+        private bool _pendingMonoBehaviourCleanup;
         private IDefenseDragController _defenseDragController;
         private LevelEndChecker _levelEndChecker;
         private WaveSpawner _waveSpawner;
@@ -63,6 +64,13 @@ namespace _Project.Code.Scripts.Game.LvlController
 
         public void ManualUpdate(float deltaTime)
         {
+            if (_pendingMonoBehaviourCleanup)
+            {
+                _manualUpdates.RemoveAll(u => u is UnityEngine.MonoBehaviour mb && mb == null);
+                _pendingAdd.RemoveAll(u => u is UnityEngine.MonoBehaviour mb && mb == null);
+                _pendingMonoBehaviourCleanup = false;
+            }
+
             if (_pendingAdd.Count > 0)
             {
                 _manualUpdates.AddRange(_pendingAdd);
@@ -103,9 +111,8 @@ namespace _Project.Code.Scripts.Game.LvlController
             var levelConfig = gameConfig.GetLevel(levelIndex);
             GameData.Instance.ResetResources(levelConfig.StartCredits);
             _fieldSystem.Reset();
-            _manualUpdates.RemoveAll(u => u is UnityEngine.MonoBehaviour mb && mb == null);
-            _pendingAdd.RemoveAll(u => u is UnityEngine.MonoBehaviour mb && mb == null);
-            _waveSpawner.StartLevel(levelConfig.WaveConfig);
+            _pendingMonoBehaviourCleanup = true;
+            _waveSpawner.StartLevel(levelConfig.WaveConfig, levelConfig.PauseSpawnDuringTutorial);
             _taskService.Reset(BuildTaskList(levelIndex, gameConfig));
             _gardenBed.StartLevel(levelConfig.InitialPlants);
             _levelEndChecker.Reset();

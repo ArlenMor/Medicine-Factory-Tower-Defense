@@ -15,6 +15,7 @@ namespace _Project.Code.Scripts.UI
         [SerializeField] private Color _fillColor = new Color(0.2f, 0.8f, 0.2f, 1f);
         [SerializeField] private int _sortingOrder = 100;
         [SerializeField] private float _fontSize = 3f;
+        [SerializeField] private bool _flipText;
 
         private Transform _fillTransform;
         private TextMeshPro _hpText;
@@ -38,6 +39,12 @@ namespace _Project.Code.Scripts.UI
             _fillTransform.localScale = new Vector3(_size.x * ratio, _size.y, 1f);
             _fillTransform.localPosition = _offset + new Vector3((_size.x * ratio - _size.x) * 0.5f, 0f, 0f);
             _hpText.text = $"{Mathf.CeilToInt(_currentHp)}/{Mathf.CeilToInt(_maxHp)}";
+        }
+
+        public void SetTextFlipped(bool flipped)
+        {
+            _flipText = flipped;
+            ApplyTextFlip();
         }
 
         private void CreateBar()
@@ -75,6 +82,17 @@ namespace _Project.Code.Scripts.UI
             _hpText.alignment = TextAlignmentOptions.Center;
             _hpText.sortingOrder = _sortingOrder + 2;
             _hpText.rectTransform.sizeDelta = _size;
+            ApplyTextFlip();
+        }
+
+        private void ApplyTextFlip()
+        {
+            if (_hpText == null) return;
+
+            var scale = _hpText.transform.localScale;
+            float x = Mathf.Abs(scale.x);
+            float y = Mathf.Abs(scale.y);
+            _hpText.transform.localScale = new Vector3(_flipText ? -x : x, _flipText ? -y : y, scale.z);
         }
 
         private static Sprite CreatePixelSprite()
@@ -84,5 +102,24 @@ namespace _Project.Code.Scripts.UI
             tex.Apply();
             return Sprite.Create(tex, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f), 1f);
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Vector3 worldPos = transform.position + _offset;
+
+            // Фон
+            Gizmos.color = _backgroundColor;
+            Gizmos.DrawCube(worldPos, new Vector3(_size.x, _size.y, 0f));
+
+            // Заливка (полный HP)
+            Gizmos.color = _fillColor;
+            Gizmos.DrawCube(worldPos, new Vector3(_size.x, _size.y * 0.8f, 0f));
+
+            // Рамка
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube(worldPos, new Vector3(_size.x, _size.y, 0f));
+        }
+#endif
     }
 }

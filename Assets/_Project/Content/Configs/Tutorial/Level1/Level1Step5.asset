@@ -19,7 +19,7 @@ MonoBehaviour:
     and place it in a free bed'
   Highlights:
   - Type: 0
-    TargetId: 1_5
+    TargetId: TutorPlanting
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
@@ -30,5 +30,6 @@ MonoBehaviour:
   WaitCondition: 4
   WaitCount: 1
   SpawnWaveOnStart: 0
+  SpawnWaveOnComplete: 0
   TextPosition: 1
   CustomTextAnchor: {x: 0.5, y: 0.6}

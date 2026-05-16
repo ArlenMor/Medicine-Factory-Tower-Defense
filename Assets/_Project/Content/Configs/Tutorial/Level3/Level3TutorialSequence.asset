@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be0cfed4a952ca499889d3c3f24caec, type: 3}
+  m_Name: Level3TutorialSequence
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialSequenceData
+  DisableBuilding: 0
+  DisableUpgrades: 0
+  Steps:
+  - {fileID: 11400000, guid: 88f8d0ce0b29f4b45b79f33775d5e264, type: 2}
+  - {fileID: 11400000, guid: de33c772f1de25749b7ce1b239065b73, type: 2}
+  - {fileID: 11400000, guid: 8645a1f2a20b772488096af82a9702d2, type: 2}

@@ -16,19 +16,19 @@ MonoBehaviour:
   InstructionText: Defend the core and complete the orders to finish the level
   Highlights:
   - Type: 1
-    TargetId: 2_1
+    TargetId: TutorEnemySpawn
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
     Padding: 8
   - Type: 0
-    TargetId: 1_2
+    TargetId: TutorOrdersStation
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
     Padding: 8
   - Type: 0
-    TargetId: 1_4
+    TargetId: TutorCraftStation
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1

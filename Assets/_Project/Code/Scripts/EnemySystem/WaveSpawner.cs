@@ -28,14 +28,17 @@ namespace _Project.Code.Scripts.EnemySystem
         private bool _forceStartWave;
         private bool _isLoopCountdown;
         private float _loopTimer;
+        private bool _pauseSpawnDuringTutorial;
+        private ITutorialService _tutorialService;
 
         public void ManualAwake(EnemyConfig enemyConfig)
         {
             _enemyConfig = enemyConfig;
         }
 
-        public void StartLevel(WaveConfig waveConfig)
+        public void StartLevel(WaveConfig waveConfig, bool pauseSpawnDuringTutorial = false)
         {
+            _pauseSpawnDuringTutorial = pauseSpawnDuringTutorial;
             foreach (var enemy in _activeEnemies)
             {
                 if (enemy != null)
@@ -46,12 +49,13 @@ namespace _Project.Code.Scripts.EnemySystem
             }
             _activeEnemies.Clear();
 
-            if (S.TryGet<ITutorialService>(out var tutorial))
+            _tutorialService = S.TryGet<ITutorialService>(out var tutorial) ? tutorial : null;
+            if (_tutorialService != null)
             {
-                tutorial.OnStepStarted -= OnTutorialStepStarted;
-                tutorial.OnStepCompleted -= OnTutorialStepCompleted;
-                tutorial.OnStepStarted += OnTutorialStepStarted;
-                tutorial.OnStepCompleted += OnTutorialStepCompleted;
+                _tutorialService.OnStepStarted -= OnTutorialStepStarted;
+                _tutorialService.OnStepCompleted -= OnTutorialStepCompleted;
+                _tutorialService.OnStepStarted += OnTutorialStepStarted;
+                _tutorialService.OnStepCompleted += OnTutorialStepCompleted;
             }
 
             _waveConfig = waveConfig;
@@ -66,10 +70,10 @@ namespace _Project.Code.Scripts.EnemySystem
 
         private void OnDestroy()
         {
-            if (S.TryGet<ITutorialService>(out var tutorial))
+            if (_tutorialService != null)
             {
-                tutorial.OnStepStarted -= OnTutorialStepStarted;
-                tutorial.OnStepCompleted -= OnTutorialStepCompleted;
+                _tutorialService.OnStepStarted -= OnTutorialStepStarted;
+                _tutorialService.OnStepCompleted -= OnTutorialStepCompleted;
             }
         }
 
@@ -87,11 +91,16 @@ namespace _Project.Code.Scripts.EnemySystem
 
         public void ManualUpdate(float deltaTime)
         {
-            _gameTime += deltaTime;
+            bool spawnPaused = _pauseSpawnDuringTutorial && _tutorialService is { IsActive: true };
 
-            TickLoopCountdown(deltaTime);
-            TryStartNextWave();
-            ProcessSpawnQueue(deltaTime);
+            if (!spawnPaused)
+            {
+                _gameTime += deltaTime;
+                TickLoopCountdown(deltaTime);
+                TryStartNextWave();
+                ProcessSpawnQueue(deltaTime);
+            }
+
             UpdateEnemies(deltaTime);
         }
 

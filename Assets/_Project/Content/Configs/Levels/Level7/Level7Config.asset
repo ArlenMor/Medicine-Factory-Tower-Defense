@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800d5bfdcd50d0944960672c81651299, type: 3}
   m_Name: Level7Config
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.LevelConfig
-  WaveConfig: {fileID: 11400000, guid: 693415adfb108ab448f1f1b4fea2d5b2, type: 2}
+  WaveConfig: {fileID: 11400000, guid: 90b9d5210daaedf4f9e818bc2217ae52, type: 2}
   InitialPlants:
   - SlotIndex: 0
     PlantType: 1
@@ -27,3 +27,4 @@ MonoBehaviour:
     PlantType: 3
     IsAlreadyGrown: 1
   StartCredits: 25
+  TutorialSequence: {fileID: 0}

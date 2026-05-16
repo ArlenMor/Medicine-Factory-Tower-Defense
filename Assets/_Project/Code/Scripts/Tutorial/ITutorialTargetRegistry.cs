@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.Tutorial
 {
     public interface ITutorialTargetRegistry
     {
+        event Action OnTargetsChanged;
+
         void Register(string id, Transform target);
 
         void Unregister(string id);

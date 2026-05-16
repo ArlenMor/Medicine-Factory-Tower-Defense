@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b4477b2540c9c4db7f1442091126c1, type: 3}
   m_Name: Level3EnemyWaves
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.WaveConfig
-  Waves: []
+  Waves:
+  - WaveId: 0
+    StartTime: 5
+    ScoutCount: 3
+    GnawerCount: 0
+    TankCount: 0
+    IntraSpawnInterval: 0
+    Comment: 
+  LoopLastWave: 1
+  LoopDelay: 10

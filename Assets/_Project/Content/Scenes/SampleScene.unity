@@ -1779,7 +1779,7 @@ GameObject:
   - component: {fileID: 285500251}
   - component: {fileID: 285500250}
   m_Layer: 0
-  m_Name: Tutorial2Step1
+  m_Name: TutorEnemySpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1812,7 +1812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 2_1
+  _id: TutorEnemySpawn
 --- !u!212 &285500251
 SpriteRenderer:
   serializedVersion: 2
@@ -2097,7 +2097,7 @@ GameObject:
   - component: {fileID: 393723999}
   - component: {fileID: 393724000}
   m_Layer: 5
-  m_Name: Resources (Tutor1Step2.5)
+  m_Name: Resources (TutorResources)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2164,7 +2164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 1_2.5
+  _id: TutorResources
 --- !u!1 &408981818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3071,7 @@ GameObject:
   - component: {fileID: 598769645}
   - component: {fileID: 598769644}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: 'Canvas '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3685,7 +3685,7 @@ GameObject:
   - component: {fileID: 666388118}
   - component: {fileID: 666388121}
   m_Layer: 0
-  m_Name: Tutorial1Step4
+  m_Name: TutorCraftStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3785,7 +3785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 1_4
+  _id: TutorCraftStation
 --- !u!1 &684892031
 GameObject:
   m_ObjectHideFlags: 0
@@ -5111,6 +5111,7 @@ MonoBehaviour:
   - {fileID: 1670972064}
   - {fileID: 285500250}
   - {fileID: 1294299778}
+  - {fileID: 1324404298}
 --- !u!4 &835447615
 Transform:
   m_ObjectHideFlags: 0
@@ -6729,7 +6730,7 @@ GameObject:
   - component: {fileID: 1118043817}
   - component: {fileID: 1118043818}
   m_Layer: 0
-  m_Name: Background (Tutorial1Step2)
+  m_Name: Background (TutorOrdersStation)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6804,7 +6805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 1_2
+  _id: TutorOrdersStation
 --- !u!1 &1123757308
 GameObject:
   m_ObjectHideFlags: 0
@@ -8380,7 +8381,7 @@ GameObject:
   - component: {fileID: 1294299779}
   - component: {fileID: 1294299778}
   m_Layer: 0
-  m_Name: Tutorial2Step2_2_2
+  m_Name: TutorProtecttheCore_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8413,7 +8414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 2_2_2
+  _id: TutorProtecttheCore_1
 --- !u!212 &1294299779
 SpriteRenderer:
   serializedVersion: 2
@@ -8562,8 +8563,9 @@ GameObject:
   - component: {fileID: 1324404295}
   - component: {fileID: 1324404294}
   - component: {fileID: 1324404297}
+  - component: {fileID: 1324404298}
   m_Layer: 0
-  m_Name: UpgradeButton
+  m_Name: UpgradeButton (TutorUpgrades)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8686,6 +8688,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.UpgradesTopButton
   _upgradeButton: {fileID: 1324404296}
   _popupParent: {fileID: 1073855028}
+--- !u!114 &1324404298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324404292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
+  _id: TutorUpgrades
 --- !u!1 &1330688827
 GameObject:
   m_ObjectHideFlags: 0
@@ -10698,7 +10713,7 @@ GameObject:
   - component: {fileID: 1582233036}
   - component: {fileID: 1582233037}
   m_Layer: 0
-  m_Name: Tutorial1Step3
+  m_Name: TutorHarvestingPlants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10790,7 +10805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 1_3
+  _id: TutorHarvestingPlants
 --- !u!1 &1583448766
 GameObject:
   m_ObjectHideFlags: 0
@@ -11149,7 +11164,7 @@ GameObject:
   - component: {fileID: 1670972061}
   - component: {fileID: 1670972064}
   m_Layer: 0
-  m_Name: Canvas (Tutorial1Step5)
+  m_Name: Canvas (TutorPlanting)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11249,7 +11264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 1_5
+  _id: TutorPlanting
 --- !u!1 &1681331147
 GameObject:
   m_ObjectHideFlags: 0
@@ -15378,7 +15393,7 @@ GameObject:
   - component: {fileID: 1920336691}
   - component: {fileID: 1920336690}
   m_Layer: 0
-  m_Name: Tutorial2Step2_2_1
+  m_Name: TutorProtecttheCore_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15411,7 +15426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 2_2_1
+  _id: TutorProtecttheCore_2
 --- !u!212 &1920336691
 SpriteRenderer:
   serializedVersion: 2
@@ -15991,7 +16006,7 @@ GameObject:
   - component: {fileID: 1986410590}
   - component: {fileID: 1986410592}
   m_Layer: 0
-  m_Name: Background (Tutorial2Step4)
+  m_Name: Background (TutorDefenceShop)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16066,7 +16081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
-  _id: 2_4
+  _id: TutorDefenceShop
 --- !u!1 &1989812047
 GameObject:
   m_ObjectHideFlags: 0

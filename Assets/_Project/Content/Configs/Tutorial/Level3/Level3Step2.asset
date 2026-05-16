@@ -10,26 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60793dccc39d0d148ad89b5cad9b4093, type: 3}
-  m_Name: Level2Step2
+  m_Name: Level3Step2
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialStepData
-  StepName: Protect the Core
-  InstructionText: "The central core is the brain of the factory. \nIf enemies destroy
-    it, you lose the level"
+  StepName: Use Upgrades
+  InstructionText: Try using upgrades to make your production more efficient and
+    complete the level
   Highlights:
-  - Type: 1
-    TargetId: TutorProtecttheCore_1
-    UITarget: {fileID: 0}
-    WorldTarget: {fileID: 0}
-    WorldSize: 1
-    Padding: 10
-  - Type: 1
-    TargetId: TutorProtecttheCore_2
+  - Type: 0
+    TargetId: TutorUpgradesPanel
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
     Padding: 8
-  BlockInput: 2
-  Trigger: 1
+  BlockInput: 0
+  Trigger: 12
   TriggerCount: 1
   WaitCondition: 0
   WaitCount: 1

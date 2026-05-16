@@ -66,6 +66,10 @@ namespace _Project.Code.Scripts.Tutorial
             _tutorialService.OnStepHidden        += HideOverlay;
             _tutorialService.OnSequenceCompleted += OnSequenceCompleted;
 
+            _targetRegistry = S.TryGet<ITutorialTargetRegistry>(out var reg) ? reg : null;
+            if (_targetRegistry != null)
+                _targetRegistry.OnTargetsChanged += OnTargetsChanged;
+
             _nextButton.onClick.AddListener(OnNextClicked);
         }
 
@@ -79,6 +83,8 @@ namespace _Project.Code.Scripts.Tutorial
             }
 
             _nextButton.onClick.RemoveListener(OnNextClicked);
+            if (_targetRegistry != null)
+                _targetRegistry.OnTargetsChanged -= OnTargetsChanged;
             _fadeTween?.Kill();
             _textTween?.Kill();
 
@@ -175,6 +181,12 @@ namespace _Project.Code.Scripts.Tutorial
             _tutorialService?.AdvanceManually();
         }
 
+        private void OnTargetsChanged()
+        {
+            if (_currentStep != null && _tutorialService is { IsActive: true })
+                RefreshHoles(_currentStep);
+        }
+
         // ── Helpers ─────────────────────────────────────────────────────────────
 
         private void RefreshHoles(TutorialStepData step)
@@ -187,14 +199,19 @@ namespace _Project.Code.Scripts.Tutorial
             for (int i = 0; i < 4; i++)
             {
                 Vector4 rect;
-                if (i < highlights.Count && IsHighlightValid(highlights[i], _targetRegistry))
+                if (i < highlights.Count)
                 {
-                    rect = CalculateHoleRect(highlights[i], _worldCamera, _targetRegistry);
+                    var h = highlights[i];
+                    bool valid = IsHighlightValid(h, _targetRegistry);
+                    rect = valid
+                        ? CalculateHoleRect(h, _worldCamera, _targetRegistry)
+                        : new Vector4(-1, -1, 0, 0);
                 }
                 else
                 {
                     rect = new Vector4(-1, -1, 0, 0);
                 }
+
                 _overlayMaterial.SetVector(HoleIds[i], rect);
                 holeRects[i] = rect;
             }
@@ -217,7 +234,11 @@ namespace _Project.Code.Scripts.Tutorial
         private static Vector4 CalculateUIHoleRect(TutorialHighlightTarget highlight, ITutorialTargetRegistry registry)
         {
             var rt = ResolveRect(highlight, registry);
-            if (rt == null) return new Vector4(-1, -1, 0, 0);
+            if (rt == null)
+            {
+                Debug.LogWarning("[TutorialOverlay] CalculateUIHoleRect: RectTransform не найден.");
+                return new Vector4(-1, -1, 0, 0);
+            }
             var corners = new Vector3[4];
             rt.GetWorldCorners(corners);
 
