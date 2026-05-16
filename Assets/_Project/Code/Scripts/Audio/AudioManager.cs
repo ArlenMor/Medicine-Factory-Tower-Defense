@@ -32,6 +32,7 @@ namespace _Project.Code.Scripts.Audio
         [Header("Player Click Hit")]
         [SerializeField] private AudioClip[] _clickHit;
         [SerializeField] [Range(0f, 1f)] private float _clickHitVolume = 0.35f;
+        [SerializeField] [Range(0f, 0.5f)] private float _clickHitPitchVariation = 0.15f;
 
         [Header("Enemy Attack")]
         [SerializeField] private AudioClip[] _enemyAttack;
@@ -144,7 +145,10 @@ namespace _Project.Code.Scripts.Audio
         {
             if (_clickHit == null || _clickHit.Length == 0) return;
             var clip = _clickHit[Random.Range(0, _clickHit.Length)];
-            if (clip != null) _sfxSource.PlayOneShot(clip, _clickHitVolume);
+            if (clip == null) return;
+            _sfxSource.pitch = Random.Range(1f - _clickHitPitchVariation, 1f + _clickHitPitchVariation);
+            _sfxSource.PlayOneShot(clip, _clickHitVolume);
+            _sfxSource.pitch = 1f;
         }
 
         public void PlayEnemyAttack()

@@ -16,6 +16,9 @@ namespace _Project.Code.Scripts.EnemySystem
     {
         [SerializeField] private EnemyAnimator _animator;
         [SerializeField] private HealthBar _healthBar;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
+        [SerializeField] private float FlashDuration = 0.15f;
 
         public event Action<Enemy> OnDied;
 
@@ -31,6 +34,10 @@ namespace _Project.Code.Scripts.EnemySystem
         private BrainView _centerTarget;
         private IFieldPlaceable _targetPlaceable;
         private bool _reachedCenter;
+
+        private MaterialPropertyBlock _mpb;
+        private float _flashTimer;
+        private static readonly int FlashAmountId = Shader.PropertyToID("_FlashAmount");
 
         public bool IsDead => _currentHp <= 0f;
 
@@ -49,6 +56,8 @@ namespace _Project.Code.Scripts.EnemySystem
             _attackPosition = ComputeAttackPosition(centerTarget, out _lungeTarget);
             SetRotationTowards(_attackPosition);
             _healthBar.Initialize(stats.HP);
+
+            _mpb ??= new MaterialPropertyBlock();
         }
 
         private Vector3 ComputeAttackPosition(BrainView centerTarget, out Vector3 lungeTarget)
@@ -85,6 +94,14 @@ namespace _Project.Code.Scripts.EnemySystem
         public void Tick(float deltaTime)
         {
             if (IsDead) return;
+
+            if (_flashTimer > 0f)
+            {
+                _flashTimer -= deltaTime;
+                float amount = Mathf.Clamp01(_flashTimer / FlashDuration);
+                _mpb.SetFloat(FlashAmountId, amount);
+                _spriteRenderer.SetPropertyBlock(_mpb);
+            }
 
             if (_animator.IsLunging)
             {
@@ -158,6 +175,13 @@ namespace _Project.Code.Scripts.EnemySystem
 
             _currentHp -= damage;
             if (_healthBar != null) _healthBar.SetHealth(_currentHp);
+            DamagePopup.Spawn(transform.position, damage);
+            if (_spriteRenderer != null)
+            {
+                _flashTimer = FlashDuration;
+                _mpb.SetFloat(FlashAmountId, 1f);
+                _spriteRenderer.SetPropertyBlock(_mpb);
+            }
             if (_currentHp <= 0f)
             {
                 _currentHp = 0f;
