@@ -16,6 +16,7 @@ namespace _Project.Code.Scripts.UI
         [SerializeField] private int _sortingOrder = 100;
         [SerializeField] private float _fontSize = 3f;
         [SerializeField] private bool _flipText;
+        [SerializeField] [Range(0f, 0.5f)] private float _cornerRadius = 0.3f;
 
         private Transform _fillTransform;
         private TextMeshPro _hpText;
@@ -36,7 +37,7 @@ namespace _Project.Code.Scripts.UI
 
             _currentHp = Mathf.Max(0f, currentHp);
             float ratio = Mathf.Clamp01(_currentHp / _maxHp);
-            _fillTransform.localScale = new Vector3(_size.x * ratio, _size.y, 1f);
+            _fillTransform.localScale = new Vector3(ratio, 1f, 1f);
             _fillTransform.localPosition = _offset + new Vector3((_size.x * ratio - _size.x) * 0.5f, 0f, 0f);
             _hpText.text = $"{Mathf.CeilToInt(_currentHp)}/{Mathf.CeilToInt(_maxHp)}";
         }
@@ -49,13 +50,13 @@ namespace _Project.Code.Scripts.UI
 
         private void CreateBar()
         {
-            _pixel = CreatePixelSprite();
+            _pixel = CreateRoundedSprite();
 
             var bgGo = new GameObject("HealthBar_BG");
             bgGo.transform.SetParent(transform);
             bgGo.transform.localPosition = _offset;
             bgGo.transform.localRotation = Quaternion.identity;
-            bgGo.transform.localScale = new Vector3(_size.x, _size.y, 1f);
+            bgGo.transform.localScale = Vector3.one;
             var bgRenderer = bgGo.AddComponent<SpriteRenderer>();
             bgRenderer.sprite = _pixel;
             bgRenderer.color = _backgroundColor;
@@ -65,7 +66,7 @@ namespace _Project.Code.Scripts.UI
             fillGo.transform.SetParent(transform);
             fillGo.transform.localPosition = _offset;
             fillGo.transform.localRotation = Quaternion.identity;
-            fillGo.transform.localScale = new Vector3(_size.x, _size.y, 1f);
+            fillGo.transform.localScale = Vector3.one;
             var fillRenderer = fillGo.AddComponent<SpriteRenderer>();
             fillRenderer.sprite = _pixel;
             fillRenderer.color = _fillColor;
@@ -95,12 +96,43 @@ namespace _Project.Code.Scripts.UI
             _hpText.transform.localScale = new Vector3(_flipText ? -x : x, _flipText ? -y : y, scale.z);
         }
 
-        private static Sprite CreatePixelSprite()
+        private Sprite CreateRoundedSprite()
         {
-            var tex = new Texture2D(1, 1);
-            tex.SetPixel(0, 0, Color.white);
+            const int texH = 64;
+            int texW = Mathf.Max(1, Mathf.RoundToInt(_size.x / _size.y * texH));
+            float r = _cornerRadius * _size.y;
+            float pixelSize = _size.y / texH;
+
+            var tex = new Texture2D(texW, texH, TextureFormat.RGBA32, false);
+            tex.filterMode = FilterMode.Bilinear;
+            tex.wrapMode = TextureWrapMode.Clamp;
+
+            var pixels = new Color32[texW * texH];
+            for (int py = 0; py < texH; py++)
+            {
+                for (int px = 0; px < texW; px++)
+                {
+                    float wx = (px + 0.5f) / texW * _size.x;
+                    float wy = (py + 0.5f) / texH * _size.y;
+                    float sdf = RoundedRectSDF(wx, wy, _size.x, _size.y, r);
+                    float alpha = Mathf.Clamp01(0.5f - sdf / pixelSize);
+                    pixels[py * texW + px] = new Color32(255, 255, 255, (byte)(alpha * 255f));
+                }
+            }
+
+            tex.SetPixels32(pixels);
             tex.Apply();
-            return Sprite.Create(tex, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f), 1f);
+
+            float ppu = texH / _size.y;
+            return Sprite.Create(tex, new Rect(0, 0, texW, texH), new Vector2(0.5f, 0.5f), ppu);
+        }
+
+        private static float RoundedRectSDF(float wx, float wy, float W, float H, float r)
+        {
+            float qx = Mathf.Abs(wx - W * 0.5f) - (W * 0.5f - r);
+            float qy = Mathf.Abs(wy - H * 0.5f) - (H * 0.5f - r);
+            float outer = Mathf.Sqrt(Mathf.Max(qx, 0f) * Mathf.Max(qx, 0f) + Mathf.Max(qy, 0f) * Mathf.Max(qy, 0f));
+            return outer + Mathf.Min(Mathf.Max(qx, qy), 0f) - r;
         }
 
 #if UNITY_EDITOR

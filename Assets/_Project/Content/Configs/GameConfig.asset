@@ -23,8 +23,8 @@ MonoBehaviour:
   DamagePopupConfig: {fileID: 11400000, guid: b50996c1795015a49b4edd38e2495b7c, type: 2}
   LevelOrdersConfig: {fileID: 11400000, guid: d47c957972fad064ab0b61599fa66a34, type: 2}
   Levels:
-  - {fileID: 11400000, guid: 303d11bd7f5f6844e8ecb47ba00236f2, type: 2}
   - {fileID: 11400000, guid: a38fc9faaf0e34745b19820d75a98294, type: 2}
+  - {fileID: 11400000, guid: 303d11bd7f5f6844e8ecb47ba00236f2, type: 2}
   - {fileID: 11400000, guid: 5a43651903c7bf7489ac1903b6571192, type: 2}
   - {fileID: 11400000, guid: c3a75a82b7c23fd4f9aa35616d7a72b9, type: 2}
   - {fileID: 11400000, guid: 8e344c220d6252044bc3c6b21ef1e4a2, type: 2}

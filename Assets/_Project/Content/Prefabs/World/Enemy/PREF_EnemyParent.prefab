@@ -157,10 +157,11 @@ MonoBehaviour:
   _size: {x: 1, y: 0.15}
   _offset: {x: 0, y: 0.8, z: 0}
   _backgroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.8}
-  _fillColor: {r: 0.9056604, g: 0.17515129, b: 0.2251487, a: 1}
+  _fillColor: {r: 0.6, g: 0.14117648, b: 0.14117648, a: 1}
   _sortingOrder: 100
   _fontSize: 1
   _flipText: 1
+  _cornerRadius: 0.3
 --- !u!1 &7639038669695859728
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +213,7 @@ MonoBehaviour:
   _animator: {fileID: 4773692039793622043}
   _healthBar: {fileID: 5236318546102730346}
   _spriteRenderer: {fileID: 4842051899184676215}
+  FlashDuration: 0.15
 --- !u!70 &96513774714026447
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

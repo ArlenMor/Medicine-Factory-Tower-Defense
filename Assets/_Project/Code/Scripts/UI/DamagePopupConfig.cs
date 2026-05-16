@@ -13,6 +13,7 @@ namespace _Project.Code.Scripts.UI
         public Vector3 Offset = new Vector3(0f, 0.5f, 0f);
         public int SortingOrder = 200;
         public TMP_FontAsset Font; //установить шрифт
+        public Material FontMaterial; //установить материал для шрифта (например, с эффектом обводки)
 
 
         private static DamagePopupConfig _default;

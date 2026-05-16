@@ -41,13 +41,16 @@ namespace _Project.Code.Scripts.UI
 
             float rad = (90f + angleDeg) * Mathf.Deg2Rad;
             _direction = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f);
-
+            
             _text = gameObject.AddComponent<TextMeshPro>();
             _text.text = Mathf.CeilToInt(damage).ToString();
             _text.fontSize = config.FontSize;
             _text.color = _color;
             _text.alignment = TextAlignmentOptions.Center;
             _text.sortingOrder = config.SortingOrder;
+            var textMaterial = new Material(config.FontMaterial);
+            textMaterial.SetColor("_Color", config.Color);
+            _text.fontSharedMaterial = textMaterial;
             _text.rectTransform.sizeDelta = new Vector2(2f, 1f);
         }
 

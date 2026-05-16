@@ -1,6 +1,7 @@
 using System;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.BattleField;
+using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.UI;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace _Project.Code.Scripts.EnemySystem
         [SerializeField] private HealthBar _healthBar;
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
-        [SerializeField] private float FlashDuration = 0.15f;
+        [SerializeField] private float _flashDuration = 0.15f;
 
         public event Action<Enemy> OnDied;
 
@@ -98,7 +99,7 @@ namespace _Project.Code.Scripts.EnemySystem
             if (_flashTimer > 0f)
             {
                 _flashTimer -= deltaTime;
-                float amount = Mathf.Clamp01(_flashTimer / FlashDuration);
+                float amount = Mathf.Clamp01(_flashTimer / _flashDuration);
                 _mpb.SetFloat(FlashAmountId, amount);
                 _spriteRenderer.SetPropertyBlock(_mpb);
             }
@@ -175,10 +176,10 @@ namespace _Project.Code.Scripts.EnemySystem
 
             _currentHp -= damage;
             if (_healthBar != null) _healthBar.SetHealth(_currentHp);
-            DamagePopup.Spawn(transform.position, damage);
+            DamagePopup.Spawn(transform.position, damage, transform, GameData.Instance.GameConfig.DamagePopupConfig);
             if (_spriteRenderer != null)
             {
-                _flashTimer = FlashDuration;
+                _flashTimer = _flashDuration;
                 _mpb.SetFloat(FlashAmountId, 1f);
                 _spriteRenderer.SetPropertyBlock(_mpb);
             }

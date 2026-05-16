@@ -49,6 +49,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5236318546102730346, guid: e8bd209446d74ef4382822ff8ae34be8, type: 3}
+      propertyPath: _size.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236318546102730346, guid: e8bd209446d74ef4382822ff8ae34be8, type: 3}
       propertyPath: _offset.y
       value: -0.5
       objectReference: {fileID: 0}
