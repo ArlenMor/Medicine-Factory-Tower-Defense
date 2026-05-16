@@ -17,6 +17,8 @@ namespace _Project.Code.Scripts.UI
         [SerializeField] private float _fontSize = 3f;
         [SerializeField] private bool _flipText;
         [SerializeField] [Range(0f, 0.5f)] private float _cornerRadius = 0.3f;
+        [SerializeField] private Color _outlineColor = new Color(0f, 0f, 0f, 0.9f);
+        [SerializeField] [Min(0f)] private float _outlineWidth = 0.0075f;
 
         private Transform _fillTransform;
         private TextMeshPro _hpText;
@@ -51,6 +53,22 @@ namespace _Project.Code.Scripts.UI
         private void CreateBar()
         {
             _pixel = CreateRoundedSprite();
+
+            if (_outlineWidth > 0f)
+            {
+                var outlineGo = new GameObject("HealthBar_Outline");
+                outlineGo.transform.SetParent(transform);
+                outlineGo.transform.localPosition = _offset;
+                outlineGo.transform.localRotation = Quaternion.identity;
+                outlineGo.transform.localScale = new Vector3(
+                    1f + _outlineWidth * 2f / _size.x,
+                    1f + _outlineWidth * 2f / _size.y,
+                    1f);
+                var outlineRenderer = outlineGo.AddComponent<SpriteRenderer>();
+                outlineRenderer.sprite = _pixel;
+                outlineRenderer.color = _outlineColor;
+                outlineRenderer.sortingOrder = _sortingOrder - 1;
+            }
 
             var bgGo = new GameObject("HealthBar_BG");
             bgGo.transform.SetParent(transform);

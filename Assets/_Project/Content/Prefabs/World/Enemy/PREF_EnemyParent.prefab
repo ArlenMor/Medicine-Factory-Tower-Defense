@@ -162,6 +162,8 @@ MonoBehaviour:
   _fontSize: 1
   _flipText: 1
   _cornerRadius: 0.3
+  _outlineColor: {r: 0, g: 0, b: 0, a: 0.9}
+  _outlineWidth: 0.005
 --- !u!1 &7639038669695859728
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +215,7 @@ MonoBehaviour:
   _animator: {fileID: 4773692039793622043}
   _healthBar: {fileID: 5236318546102730346}
   _spriteRenderer: {fileID: 4842051899184676215}
-  FlashDuration: 0.15
+  _flashDuration: 0.15
 --- !u!70 &96513774714026447
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
