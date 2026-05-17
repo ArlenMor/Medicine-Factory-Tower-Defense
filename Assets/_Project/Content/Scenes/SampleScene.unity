@@ -1221,8 +1221,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279900350
-  m_fontColor: {r: 0.745283, g: 0.094918124, b: 0.10094, a: 1}
+    rgba: 4280558490
+  m_fontColor: {r: 0.6039216, g: 0.13725491, b: 0.14117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4372,7 +4372,7 @@ RectTransform:
   m_Father: {fileID: 215915842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9098,7 +9098,7 @@ MonoBehaviour:
   _hitEffectPrefabs:
   - {fileID: 8980576891327173574, guid: c6db55fc06cbf394fb1d3528e1230b3b, type: 3}
   - {fileID: 8980576891327173574, guid: 44aab848abcb9c54f92c932f72cc99e3, type: 3}
-  _inputBufferWindow: 0.06
+  _inputBufferWindow: 0.04
 --- !u!1 &1369011344
 GameObject:
   m_ObjectHideFlags: 0
@@ -9993,7 +9993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1435675950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10056,7 +10056,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2050022998}
+  m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 713924257}
   m_HandleRect: {fileID: 2050022997}
   m_Direction: 0
@@ -15318,7 +15318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
+  m_Color: {r: 0.9150943, g: 0.60862404, b: 0.60862404, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15641,6 +15641,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dacec6febdbf98d4d9ee897397d300d4, type: 3}
   - {fileID: 8300000, guid: 95f61a4be28494e4483abfa27563f985, type: 3}
   _enemyAttackVolume: 0.35
+  _crossfadeDuration: 0.5
   _musicSource: {fileID: 776049278}
   _sfxSource: {fileID: 1568748282}
   _gameResultSource: {fileID: 1019378732}
@@ -17033,8 +17034,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1579584352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 30, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

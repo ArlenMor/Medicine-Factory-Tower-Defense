@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using URandom = UnityEngine.Random;
 
@@ -40,11 +41,16 @@ namespace _Project.Code.Scripts.Audio
         [SerializeField] private AudioClip[] _enemyAttack;
         [SerializeField] [Range(0f, 1f)] private float _enemyAttackVolume = 0.55f;
 
+        [Header("Crossfade")]
+        [SerializeField] private float _crossfadeDuration = 1.5f;
+
         [Header("Sources")]
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _sfxSource;
         [SerializeField] private AudioSource _gameResultSource;
         [SerializeField] private AudioSource _loopSfxSource;
+
+        private Coroutine _crossfadeCoroutine;
 
         public bool IsMuted { get; private set; }
         public float Volume => AudioListener.volume;
@@ -60,6 +66,7 @@ namespace _Project.Code.Scripts.Audio
             }
 
             Instance = this;
+            SetVolume(0.35f);
         }
 
         public void SetMuted(bool muted)
@@ -84,14 +91,57 @@ namespace _Project.Code.Scripts.Audio
         public void PlayMainTheme()
         {
             if (_mainTheme == null) return;
-            _musicSource.clip = _mainTheme;
-            _musicSource.loop = true;
-            _musicSource.Play();
+
+            if (_crossfadeCoroutine != null)
+                StopCoroutine(_crossfadeCoroutine);
+
+            if (_gameResultSource.isPlaying)
+            {
+                _crossfadeCoroutine = StartCoroutine(CrossfadeToMainTheme());
+            }
+            else
+            {
+                _musicSource.volume = 1f;
+                _musicSource.clip = _mainTheme;
+                _musicSource.loop = true;
+                _musicSource.Play();
+            }
         }
 
         public void StopMusic()
         {
+            if (_crossfadeCoroutine != null)
+            {
+                StopCoroutine(_crossfadeCoroutine);
+                _crossfadeCoroutine = null;
+            }
+
             _musicSource.Stop();
+        }
+
+        private IEnumerator CrossfadeToMainTheme()
+        {
+            _musicSource.volume = 0f;
+            _musicSource.clip = _mainTheme;
+            _musicSource.loop = true;
+            _musicSource.Play();
+
+            float startResultVolume = _gameResultSource.volume;
+            float elapsed = 0f;
+
+            while (elapsed < _crossfadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / _crossfadeDuration);
+                _gameResultSource.volume = Mathf.Lerp(startResultVolume, 0f, t);
+                _musicSource.volume = Mathf.Lerp(0f, 1f, t);
+                yield return null;
+            }
+
+            _gameResultSource.volume = startResultVolume;
+            _gameResultSource.Stop();
+            _musicSource.volume = 1f;
+            _crossfadeCoroutine = null;
         }
 
         public void PlayCraftWorking()
@@ -151,7 +201,7 @@ namespace _Project.Code.Scripts.Audio
         {
             StopMusic();
             if (_defeat == null) return;
-            _sfxSource.PlayOneShot(_defeat);
+            _gameResultSource.PlayOneShot(_defeat);
         }
 
         public void PlayClickHit()
