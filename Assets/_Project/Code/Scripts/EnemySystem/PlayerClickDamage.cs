@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.InputResolverService;
 using UnityEngine;
@@ -9,10 +10,12 @@ namespace _Project.Code.Scripts.EnemySystem
         private const float ClickDamage = 7f;
         private const float ClickCooldown = 0.22f;
 
-        [SerializeField] private ParticleSystem _hitEffectPrefab;
+        [SerializeField] private List<ParticleSystem> _hitEffectPrefabs;
+        [SerializeField] private float _inputBufferWindow = 0.03f;
 
         private IInputResolver _inputResolver;
         private float _lastClickTime = float.NegativeInfinity;
+        private InputEventData? _bufferedClick;
 
         public void ManualAwake(IInputResolver inputResolver)
         {
@@ -30,20 +33,42 @@ namespace _Project.Code.Scripts.EnemySystem
         {
             if (data.Button != MouseButton.Left) return;
             if (!data.IsWorldHit) return;
-            if (Time.time - _lastClickTime < ClickCooldown) return;
 
-            if (data.HitObject != null && data.HitObject.TryGetComponent(out Enemy enemy))
+            float timeSinceLastClick = Time.time - _lastClickTime;
+
+            if (timeSinceLastClick < ClickCooldown)
             {
-                enemy.TakeDamage(ClickDamage);
-                _lastClickTime = Time.time;
-                AudioManager.Instance.PlayClickHit();
-                SpawnHitEffect(data);
+                float remaining = ClickCooldown - timeSinceLastClick;
+                if (remaining <= _inputBufferWindow)
+                    _bufferedClick = data;
+                return;
             }
+
+            ExecuteClick(data);
+        }
+
+        private void Update()
+        {
+            if (_bufferedClick.HasValue && Time.time - _lastClickTime >= ClickCooldown)
+            {
+                ExecuteClick(_bufferedClick.Value);
+                _bufferedClick = null;
+            }
+        }
+
+        private void ExecuteClick(InputEventData data)
+        {
+            if (data.HitObject == null || !data.HitObject.TryGetComponent(out Enemy enemy)) return;
+
+            enemy.TakeDamage(ClickDamage);
+            _lastClickTime = Time.time;
+            AudioManager.Instance.PlayClickHit();
+            SpawnHitEffect(data);
         }
 
         private void SpawnHitEffect(InputEventData data)
         {
-            if (_hitEffectPrefab == null) return;
+            if (_hitEffectPrefabs == null || _hitEffectPrefabs.Count == 0) return;
 
             Vector3 hitPosition = data.WorldHit.HasValue
                 ? data.WorldHit.Value.point
@@ -51,7 +76,7 @@ namespace _Project.Code.Scripts.EnemySystem
                     ? (Vector3)data.WorldHit2D.Value.point
                     : data.HitObject.transform.position;
 
-            ParticleSystem fx = Instantiate(_hitEffectPrefab, hitPosition, Quaternion.identity, transform);
+            ParticleSystem fx = Instantiate(_hitEffectPrefabs[Random.Range(0, _hitEffectPrefabs.Count)], hitPosition, Quaternion.identity, transform);
             fx.Play();
             Destroy(fx.gameObject, fx.main.duration + fx.main.startLifetime.constantMax);
         }

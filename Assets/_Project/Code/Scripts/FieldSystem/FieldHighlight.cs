@@ -9,7 +9,7 @@ namespace _Project.Code.Scripts.BattleField
         private Sprite _whiteSprite;
         [SerializeField] private GameObject _highlightRoot;
 
-        private static readonly Color FreeCellColor = new Color(0.3f, 0.8f, 0.3f, 0.15f);
+        [SerializeField] private Color FreeCellColor = new Color(0.3f, 0.8f, 0.3f, 0.15f);
         private static readonly Color OccupiedCellColor = new Color(0.9f, 0.2f, 0.2f, 0.2f);
         private static readonly Color FreeBorderColor = new Color(0.3f, 0.8f, 0.3f, 0.5f);
         private static readonly Color OccupiedBorderColor = new Color(0.9f, 0.2f, 0.2f, 0.6f);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8980576891327173574}
   - component: {fileID: 1244893007827735738}
   m_Layer: 0
-  m_Name: PREF_FX_EnemyTakeDamageClick
+  m_Name: PREF_FX_EnemyTakeDamageClick 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -1545,14 +1545,11 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: f40c48f50e967604f8efbfd4774b943e, type: 3}
-    - sprite: {fileID: 21300000, guid: d3da0176c4fae6947b211a022d2968e3, type: 3}
-    - sprite: {fileID: 21300000, guid: 3d381508d847297469f9ca25c9e65e5c, type: 3}
-    - sprite: {fileID: 21300000, guid: bb9fe1638a08cce47ba38df709e102ba, type: 3}
-    - sprite: {fileID: 21300000, guid: fc52222c5a8924b47acde1a784b5669b, type: 3}
-    - sprite: {fileID: 21300000, guid: 098b2fa8ba356bd44b006d77f999c8f0, type: 3}
-    - sprite: {fileID: 21300000, guid: 7bfe18f0a9c984d49b892fbb3b61bf31, type: 3}
-    - sprite: {fileID: 21300000, guid: d416fc83ca95ff04bac8411c0c556425, type: 3}
+    - sprite: {fileID: 4768729545416510474, guid: 2e6550a54b02c614d8bcc0971c25e1c1, type: 3}
+    - sprite: {fileID: -4419609359786851668, guid: 2e6550a54b02c614d8bcc0971c25e1c1, type: 3}
+    - sprite: {fileID: -742889317, guid: 2e6550a54b02c614d8bcc0971c25e1c1, type: 3}
+    - sprite: {fileID: -646970623, guid: 2e6550a54b02c614d8bcc0971c25e1c1, type: 3}
+    - sprite: {fileID: 758748774, guid: 2e6550a54b02c614d8bcc0971c25e1c1, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4823,7 +4820,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1244893007827735738
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4869,6 +4866,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4900,4 +4898,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
