@@ -22,3 +22,4 @@ MonoBehaviour:
     IsAlreadyGrown: 1
   StartCredits: 0
   TutorialSequence: {fileID: 11400000, guid: d81f955436094ca4bae40b91112ecb79, type: 2}
+  PauseSpawnDuringTutorial: 0

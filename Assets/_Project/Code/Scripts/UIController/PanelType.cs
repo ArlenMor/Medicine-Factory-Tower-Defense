@@ -6,5 +6,6 @@ namespace _Project.Code.Scripts.UIService
         PlantPanelInfo = 1,
         UpgradesPopup = 2,
         GameOver = 3,
+        RemovePlant = 4,
     }
 }

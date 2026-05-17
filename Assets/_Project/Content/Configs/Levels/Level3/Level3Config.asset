@@ -26,6 +26,6 @@ MonoBehaviour:
   - SlotIndex: 3
     PlantType: 3
     IsAlreadyGrown: 1
-  StartCredits: 50
+  StartCredits: 25
   TutorialSequence: {fileID: 11400000, guid: 2f82026c7844baf4a812261ada1776b6, type: 2}
   PauseSpawnDuringTutorial: 1

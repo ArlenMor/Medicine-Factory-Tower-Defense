@@ -56,15 +56,21 @@ namespace _Project.Code.Scripts.Garden
             {
                 if (inputData.HitObject != null)
                 {
-                    if (!inputData.HitObject.TryGetComponent<PlantChooseView>(out var view))
+                    if (!inputData.HitObject.TryGetComponent<PlantChooseView>(out _))
                     {
                         _panelShower.HideView(PanelType.PlantPanelInfo);
+                    }
+
+                    if (inputData.HitObject.GetComponentInParent<RemovePlantPanel>() == null)
+                    {
+                        _panelShower.HideView(PanelType.RemovePlant);
                     }
                 }
             }
             else
             {
                 _panelShower.HideView(PanelType.PlantPanelInfo);
+                _panelShower.HideView(PanelType.RemovePlant);
             }
             
             if (inputData.Target != InputTarget.World) return;

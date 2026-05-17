@@ -133,12 +133,18 @@ namespace _Project.Code.Editor.SpreadsheetImporter
 
             string exportUrl = ToExportUrl(_googleSheetsUrl.Trim());
 
-#pragma warning disable SYSLIB0014 // WebClient is deprecated only in .NET 5+ desktop; fine in Unity Editor
-            using (var client = new WebClient())
+            var request = (HttpWebRequest)WebRequest.Create(exportUrl);
+            request.Timeout = 30_000;        // 30 секунд
+            request.Proxy = null;            // отключаем авто-определение прокси (частая причина зависания в Unity Mono)
+            request.AllowAutoRedirect = true;
+
+            using (var response = (HttpWebResponse)request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            using (var ms = new System.IO.MemoryStream())
             {
-                return client.DownloadData(exportUrl);
+                stream.CopyTo(ms);
+                return ms.ToArray();
             }
-#pragma warning restore SYSLIB0014
         }
 
         // ── Google Sheets URL helpers ──────────────────────────────────────────

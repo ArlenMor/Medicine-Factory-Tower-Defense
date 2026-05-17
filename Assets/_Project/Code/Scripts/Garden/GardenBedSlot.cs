@@ -9,15 +9,18 @@ using _Project.Code.Scripts.UI;
 using _Project.Code.Scripts.UIService;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace _Project.Code.Scripts.Garden
 {
     public class GardenBedSlot: MonoBehaviour
     {
         [SerializeField] private Transform _plantParent;
-        [SerializeField] private Transform _panelPosition;
+        [SerializeField] private Transform _selectPanelPosition;
+        [SerializeField] private Transform _removePanelPosition;
         [SerializeField] private Plant[] _plantPrefabs;
         [SerializeField] private Transform _message;
+        [SerializeField] private SpriteRenderer _messageIcon;
         [SerializeField] private Animator _animator;
         [SerializeField] private ResourcesAnimatorWidget _resourcesAnimatorWidget;
         
@@ -65,6 +68,15 @@ namespace _Project.Code.Scripts.Garden
                         HandleMassage(false);
                         _isOccupied = false;
                     }
+                    else
+                    {
+                        var settings = new RemovePlantPanelSettings()
+                        {
+                            Callback = OnRemovePlant,
+                            Position = _removePanelPosition.position,
+                        };
+                        _panelShower.ShowView(PanelType.RemovePlant, settings, _canvasParent);
+                    }
                 }
             }
             else
@@ -72,7 +84,7 @@ namespace _Project.Code.Scripts.Garden
                 var settings = new PlantChoosePanelSettings()
                 {
                     Callback = OnPlantChosen,
-                    Position = _panelPosition.position,
+                    Position = _selectPanelPosition.position,
                 };
                 _panelShower.ShowView(PanelType.PlantPanelInfo, settings, _canvasParent);
             }
@@ -105,9 +117,22 @@ namespace _Project.Code.Scripts.Garden
         
         private void OnPlantGrown()
         {
+            if (_messageIcon != null)
+            {
+                var resourceType = _plantInstance.Type.GetResourceType();
+                _messageIcon.sprite = GameData.Instance.GameConfig.ResourceIconConfig.GetIcon(resourceType);
+            }
             HandleMassage(true);
         }
         
+        private void OnRemovePlant()
+        {
+            Destroy(_plantInstance.gameObject);
+            _plantInstance = null;
+            _isOccupied = false;
+            _panelShower.HideView(PanelType.RemovePlant);
+        }
+
         private void OnPlantChosen(PlantType plantType)
         {
             var plant = _plantPrefabs.FirstOrDefault(plant => plant.Type == plantType);

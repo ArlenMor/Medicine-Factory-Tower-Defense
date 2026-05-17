@@ -3,17 +3,17 @@ namespace _Project.Code.Scripts.Data.TaskData
     public enum MedicationsType
     {
         None = 0,
-        GelPotion = 1,
-        GelСapsules = 2,
-        GelSyringe = 3,
-        CryustalGelSyringe = 4,
-        CrystalSyringe = 5,
-        CrystalСapsulesBox = 6,
-        CrystalСapsulesRaw = 7,
-        CrystalPlastine = 8,
-        PolymerСapsules = 9,
-        PolymerBandage = 10,
-        PolymerСapsulesBox = 11,
-        FirstAidKit = 12
+        CrystalSyringe = 1,
+        PolymerСapsules = 2,
+        CryustalGelSyringe = 3,
+        CrystalСapsulesBox = 4,
+        CrystalСapsulesRaw = 5,
+        GelСapsules = 6,
+        PolymerСapsulesBox = 7,
+        FirstAidKit = 8,
+        PolymerBandage = 9,
+        GelPotion = 10,
+        CrystalPlastine = 11,
+        GelSyringe = 12,
     }
 }

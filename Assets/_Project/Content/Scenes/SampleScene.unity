@@ -8525,7 +8525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6232645, g: 0.75795656, b: 0.8867924, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15183,6 +15183,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e312a0dcdaf3add46b4883f4de59bae0, type: 3}
   - {fileID: 8300000, guid: 0e32aaf91bbbb3e42b790ef76ccde5e1, type: 3}
   _clickHitVolume: 0.25
+  _clickHitPitchVariation: 0.15
   _enemyAttack:
   - {fileID: 8300000, guid: fa7203b24c02dae49a5c1a0e43efbab0, type: 3}
   - {fileID: 8300000, guid: 6f4e454650e3cca43b832bdb7044a825, type: 3}

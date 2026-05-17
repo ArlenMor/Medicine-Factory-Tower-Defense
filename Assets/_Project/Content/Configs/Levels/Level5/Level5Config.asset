@@ -28,3 +28,4 @@ MonoBehaviour:
     IsAlreadyGrown: 1
   StartCredits: 20
   TutorialSequence: {fileID: 0}
+  PauseSpawnDuringTutorial: 0
