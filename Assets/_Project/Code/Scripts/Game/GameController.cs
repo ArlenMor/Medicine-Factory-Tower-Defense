@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game.LvlController;
+using TMPro;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.Game
 {
     public class GameController : MonoBehaviour, IGamePauseHandler {
+        [SerializeField] private TMP_Text _levelText;
+
         private bool _paused;
         private LevelController _levelController;
         private int _currentLevel = 1;
@@ -26,6 +29,11 @@ namespace _Project.Code.Scripts.Game
 
             if(_levelController.State == LevelState.NonPlaying)
             {
+                if (_levelText != null)
+                {
+                    var totalLevels = GameData.Instance.GameConfig.Levels.Count;
+                    _levelText.text = $"Level {_currentLevel}/{totalLevels}";
+                }
                 _levelController.StartLevel(_currentLevel);
             }
             else if (_levelController.State == LevelState.Playing)

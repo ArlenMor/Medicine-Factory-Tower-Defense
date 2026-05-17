@@ -7,6 +7,7 @@ using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.TaskSystem;
 using _Project.Code.Scripts.Timer;
 using _Project.Code.Scripts.Tutorial;
+using _Project.Code.Scripts.UI;
 using DG.Tweening;
 using TMPro;
 using _Project.Code.Scripts.Audio;
@@ -23,6 +24,7 @@ namespace _Project.Code.Scripts.CraftSystem
         [SerializeField] private Image _taskIcon;
         [SerializeField] private RectTransform _animRectTransform;
         [SerializeField] private TMP_Text _timerText;
+        [SerializeField] private ResourcesAnimatorWidget _resourcesAnimatorWidget;
 
 
         [Header("Shake Settings")]
@@ -205,6 +207,11 @@ namespace _Project.Code.Scripts.CraftSystem
             AudioManager.Instance.PlayCraftComplete();
 
             GameData.Instance.AddResource(ResourceType.Credit, task.CreditReward);
+            _resourcesAnimatorWidget.PlayAnimation(ResourceType.Credit, task.CreditReward);
+            if (S.TryGet<FlyingIconService>(out var flyService))
+                flyService.FlyCoin(transform);
+            else
+                Debug.LogWarning("[CraftStantionView] FlyingIconService not found in S.");
             ClearAll();
             _taskService.CompleteCurrentTask();
 
@@ -331,6 +338,24 @@ namespace _Project.Code.Scripts.CraftSystem
                 .SetEase(Ease.OutSine)
                 .SetLink(gameObject)
                 .OnKill(() => _craftButton.interactable = true);
+        }
+
+        public void Reset()
+        {
+            if (_isCrafting)
+            {
+                _timerService.Cancel(_craftTimerHandle);
+                _isCrafting = false;
+                _craftButton.interactable = true;
+                StopCraftAnimation();
+                AudioManager.Instance.StopCraftWorking();
+                _resourceSlotsContainer.gameObject.SetActive(true);
+            }
+
+            StopReadyWiggle();
+            ClearAll();
+            _firstCraftStarted = false;
+            _firstOrderCompleted = false;
         }
 
         private void UpdateTimerText(float time)

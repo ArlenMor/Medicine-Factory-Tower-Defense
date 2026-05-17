@@ -13,19 +13,7 @@ MonoBehaviour:
   m_Name: Level4Config
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.LevelConfig
   WaveConfig: {fileID: 11400000, guid: 46c74ccf4c4639449abfc38003041af3, type: 2}
-  InitialPlants:
-  - SlotIndex: 0
-    PlantType: 1
-    IsAlreadyGrown: 1
-  - SlotIndex: 1
-    PlantType: 1
-    IsAlreadyGrown: 1
-  - SlotIndex: 2
-    PlantType: 2
-    IsAlreadyGrown: 1
-  - SlotIndex: 3
-    PlantType: 3
-    IsAlreadyGrown: 1
+  InitialPlants: []
   StartCredits: 20
   TutorialSequence: {fileID: 0}
   PauseSpawnDuringTutorial: 0

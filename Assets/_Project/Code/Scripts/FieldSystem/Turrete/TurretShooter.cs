@@ -37,7 +37,7 @@ namespace _Project.Code.Scripts.BattleField
             if (_fireCooldown <= 0f)
             {
                 Shoot();
-                _fireCooldown = 1f / _fireRate;
+                _fireCooldown = _fireRate;
             }
         }
 

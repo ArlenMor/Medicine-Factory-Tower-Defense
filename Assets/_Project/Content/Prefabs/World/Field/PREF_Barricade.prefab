@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3350508b2f795d4478c30c97e04ffca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.Barricade
-  _maxHp: 95
+  _maxHp: 90
   _healthBar: {fileID: 5029548501464398150}
 --- !u!61 &4511851643308496930
 BoxCollider2D:
@@ -206,3 +206,5 @@ MonoBehaviour:
   _fontSize: 3
   _flipText: 0
   _cornerRadius: 0.3
+  _outlineColor: {r: 0, g: 0, b: 0, a: 0.9}
+  _outlineWidth: 0.0075

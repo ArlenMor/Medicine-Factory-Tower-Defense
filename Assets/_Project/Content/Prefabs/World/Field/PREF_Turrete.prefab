@@ -272,9 +272,11 @@ MonoBehaviour:
   _backgroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.8}
   _fillColor: {r: 0.21960784, g: 0.7647059, b: 0.0627451, a: 1}
   _sortingOrder: 100
-  _fontSize: 3
+  _fontSize: 2.5
   _flipText: 0
   _cornerRadius: 0.3
+  _outlineColor: {r: 0, g: 0, b: 0, a: 0.9}
+  _outlineWidth: 0.0075
 --- !u!1 &4653685802700116276
 GameObject:
   m_ObjectHideFlags: 0

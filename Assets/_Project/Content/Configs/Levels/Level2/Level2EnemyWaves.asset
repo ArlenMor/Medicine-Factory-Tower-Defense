@@ -15,14 +15,14 @@ MonoBehaviour:
   Waves:
   - WaveId: 0
     StartTime: 1e+11
-    ScoutCount: 1
+    ScoutCount: 2
     GnawerCount: 1
-    TankCount: 1
+    TankCount: 0
     IntraSpawnInterval: 0
     Comment: 
   - WaveId: 1
     StartTime: 1e+11
-    ScoutCount: 2
+    ScoutCount: 3
     GnawerCount: 1
     TankCount: 0
     IntraSpawnInterval: 0

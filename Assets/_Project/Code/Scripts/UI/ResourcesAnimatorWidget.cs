@@ -27,7 +27,7 @@ namespace _Project.Code.Scripts.UI
             _currentImage = Instantiate(_resourceImage, transform);
             _currentImage.Initialize(sprite, value);
             
-            var t1 = _currentImage.transform.DOLocalMoveY(_offset, _duration)
+            var t1 = _currentImage.transform.DOLocalMoveY(-_offset, _duration)
                 .SetEase(_ease);
 
             var t2 = _currentImage.CanvasGroup.DOFade(0f, _duration).SetEase(_ease);

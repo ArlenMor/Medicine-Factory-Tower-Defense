@@ -12,4 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b4477b2540c9c4db7f1442091126c1, type: 3}
   m_Name: Level7EnemyWaves
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.WaveConfig
-  Waves: []
+  Waves:
+  - WaveId: 1
+    StartTime: 8
+    ScoutCount: 3
+    GnawerCount: 2
+    TankCount: 0
+    IntraSpawnInterval: 1
+    Comment: L7 hard opener
+  - WaveId: 2
+    StartTime: 28
+    ScoutCount: 4
+    GnawerCount: 2
+    TankCount: 0
+    IntraSpawnInterval: 0.95
+    Comment: L7 pressure
+  - WaveId: 3
+    StartTime: 50
+    ScoutCount: 3
+    GnawerCount: 3
+    TankCount: 1
+    IntraSpawnInterval: 0.9
+    Comment: L7 tank mixed
+  - WaveId: 4
+    StartTime: 74
+    ScoutCount: 5
+    GnawerCount: 3
+    TankCount: 1
+    IntraSpawnInterval: 0.85
+    Comment: L7 late pressure
+  - WaveId: 5
+    StartTime: 96
+    ScoutCount: 4
+    GnawerCount: 4
+    TankCount: 1
+    IntraSpawnInterval: 0.85
+    Comment: L7 loop wave
+  LoopLastWave: 1
+  LoopDelay: 11

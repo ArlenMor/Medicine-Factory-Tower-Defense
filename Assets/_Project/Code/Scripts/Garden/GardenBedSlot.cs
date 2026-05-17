@@ -22,7 +22,11 @@ namespace _Project.Code.Scripts.Garden
         [SerializeField] private Transform _message;
         [SerializeField] private SpriteRenderer _messageIcon;
         [SerializeField] private Animator _animator;
-        [SerializeField] private ResourcesAnimatorWidget _resourcesAnimatorWidget;
+        //TODO: fix after
+        [SerializeField] private ResourcesAnimatorWidget _resourcesAnimatorWidgetCrystal;
+        [SerializeField] private ResourcesAnimatorWidget _resourcesAnimatorWidgetPolymer;
+        [SerializeField] private ResourcesAnimatorWidget _resourcesAnimatorWidgetNanoGel;
+
         
         private GameConfig _config;
         private Transform _canvasParent;
@@ -60,8 +64,25 @@ namespace _Project.Code.Scripts.Garden
                         var amount = GetDefaultProductivity(resourceType) * Mathf.RoundToInt(productivityMultiplier);
                         GameData.Instance.AddResource(resourceType, amount);
                         GameData.Instance.Stats.ResourcesCollected++;
-                        _resourcesAnimatorWidget.PlayAnimation(resourceType, amount);
+                        switch (resourceType)
+                        {
+                            case ResourceType.Crystal:
+                                _resourcesAnimatorWidgetCrystal.PlayAnimation(resourceType, amount);
+                                break;
+                            case ResourceType.Polymer:
+                                _resourcesAnimatorWidgetPolymer.PlayAnimation(resourceType, amount);
+                                break;
+                            case ResourceType.NanoGel:
+                                _resourcesAnimatorWidgetNanoGel.PlayAnimation(resourceType, amount);
+                                break;
+                        }
                         AudioManager.Instance.PlayResourceGather();
+                        var plantWorldPos = _plantInstance.transform.position;
+                        if (S.TryGet<FlyingIconService>(out var flyService))
+                            flyService.FlyResource(plantWorldPos, resourceType);
+                        else
+                            Debug.LogWarning("[GardenBedSlot] FlyingIconService not found in S. " +
+                                "Assign _flyingIconService in Bootstrap and check scene setup.");
                         if (S.TryGet<ITutorialService>(out var tutorial))
                             tutorial.NotifyEvent(TutorialEventType.ResourceHarvested);
                         Destroy(_plantInstance.gameObject);
@@ -123,6 +144,7 @@ namespace _Project.Code.Scripts.Garden
                 _messageIcon.sprite = GameData.Instance.GameConfig.ResourceIconConfig.GetIcon(resourceType);
             }
             HandleMassage(true);
+            _panelShower.HideView(PanelType.RemovePlant);
         }
         
         private void OnRemovePlant()

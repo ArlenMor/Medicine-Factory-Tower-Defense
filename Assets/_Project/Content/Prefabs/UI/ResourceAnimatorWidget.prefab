@@ -49,6 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.ResourcesAnimatorWidget
   _resourceImage: {fileID: 8053880149715036523, guid: 528d7cf7c2dff7d40a4b6f4c8bfdf298, type: 3}
-  _offset: 0.75
-  _duration: 0.5
+  _offset: 50
+  _duration: 2
   _ease: 2

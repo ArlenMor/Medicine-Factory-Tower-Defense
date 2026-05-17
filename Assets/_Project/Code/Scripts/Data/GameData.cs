@@ -79,6 +79,17 @@ namespace _Project.Code.Scripts.Data
             OnResourcesChanged?.Invoke();
         }
 
+        public void ResetUpgrades()
+        {
+            var config = _config.UpgradesConfig;
+            foreach (var upgradeDef in config.Upgrades)
+            {
+                UpgradesData[upgradeDef.Type].Multiplier = upgradeDef.Multipliers[0];
+                UpgradesData[upgradeDef.Type].Step = 0;
+                UpgradesData[upgradeDef.Type].IsMax = false;
+            }
+        }
+
         private void GenerateResourceData()
         {
             Resources.Add(ResourceType.Crystal, GetResourceStartAmount(ResourceType.Crystal));

@@ -43,6 +43,7 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private TutorialOverlayView _tutorialOverlayView;
         [SerializeField] private TutorialVisibilityController _tutorialVisibilityController;
         [SerializeField] private List<TutorialTarget> _tutorialTargets;
+        [SerializeField] private FlyingIconService _flyingIconService;
         private GameData _gameData;
         private ITimerService _timerService;
         private ITaskService _taskService;
@@ -68,13 +69,14 @@ namespace _Project.Code.Scripts.Bootstrap
             //UI
             _uiController.Initialize(_inputResolver);
             S.Register<IPanelShower>(_uiController);
-            foreach (var storedResource in _storedResources) storedResource.Initialize();
+            foreach (var storedResource in _storedResources) storedResource.Initialize(_flyingIconService);
             _upgradesTopButton.Initialize(_uiController);
             //Task and Craft
             _taskService = new TaskService();
             S.Register<ITaskService>(_taskService);
             _taskSystemView.ManualAwake(_taskService, _gameConfig.TaskIconConfig);
             _craftStantionView.ManualAwake(_taskService, _timerService, _gameConfig.ResourceIconConfig, _gameConfig.TaskIconConfig, _gardenAttentionAnimator, _gardenBed);
+            S.Register<CraftStantionView>(_craftStantionView);
             //Garden
             _gardenBed.Initialize(_uiController, _gameConfig, _inputResolver, _timerService, _gardenAttentionAnimator);
             S.Register<GardenBed>(_gardenBed);
@@ -109,6 +111,9 @@ namespace _Project.Code.Scripts.Bootstrap
                 _tutorialOverlayView.Initialize(tutorialService);
             if (_tutorialVisibilityController != null)
                 _tutorialVisibilityController.Initialize(tutorialService);
+            //Flying Icons
+            if (_flyingIconService != null)
+                S.Register(_flyingIconService);
             //Audio
             _audioManager.PlayMainTheme();
             //Loading

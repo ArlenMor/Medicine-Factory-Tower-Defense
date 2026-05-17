@@ -12,4 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b4477b2540c9c4db7f1442091126c1, type: 3}
   m_Name: Level8EnemyWaves
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.WaveConfig
-  Waves: []
+  Waves:
+  - WaveId: 1
+    StartTime: 8
+    ScoutCount: 4
+    GnawerCount: 2
+    TankCount: 0
+    IntraSpawnInterval: 0.95
+    Comment: L8 opener
+  - WaveId: 2
+    StartTime: 26
+    ScoutCount: 3
+    GnawerCount: 3
+    TankCount: 0
+    IntraSpawnInterval: 0.9
+    Comment: L8 gnawers
+  - WaveId: 3
+    StartTime: 46
+    ScoutCount: 5
+    GnawerCount: 3
+    TankCount: 1
+    IntraSpawnInterval: 0.85
+    Comment: L8 tank 1
+  - WaveId: 4
+    StartTime: 68
+    ScoutCount: 4
+    GnawerCount: 4
+    TankCount: 1
+    IntraSpawnInterval: 0.85
+    Comment: L8 pressure
+  - WaveId: 5
+    StartTime: 90
+    ScoutCount: 6
+    GnawerCount: 4
+    TankCount: 1
+    IntraSpawnInterval: 0.8
+    Comment: L8 late
+  - WaveId: 6
+    StartTime: 108
+    ScoutCount: 5
+    GnawerCount: 4
+    TankCount: 2
+    IntraSpawnInterval: 0.8
+    Comment: L8 loop wave
+  LoopLastWave: 1
+  LoopDelay: 10

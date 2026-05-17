@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.Code.Scripts.Audio;
+using _Project.Code.Scripts.CraftSystem;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Data.TaskData;
 using _Project.Code.Scripts.EnemySystem;
@@ -34,6 +35,7 @@ namespace _Project.Code.Scripts.Game.LvlController
         private GardenBed _gardenBed;
         private IFieldSystem _fieldSystem;
         private BrainView _brain;
+        private CraftStantionView _craftStantionView;
         private const float ShowDelay = 1.5f;
 
         private List<IManualUpdate> _manualUpdates;
@@ -56,6 +58,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             _gardenBed = S.Get<GardenBed>();
             _fieldSystem = S.Get<IFieldSystem>();
             _brain = S.Get<BrainView>();
+            _craftStantionView = S.Get<CraftStantionView>();
 
             _defenseDragController.Initialize(GameData.Instance.GameConfig.DefenseShopConfig, this);
 
@@ -112,6 +115,8 @@ namespace _Project.Code.Scripts.Game.LvlController
             var gameConfig = GameData.Instance.GameConfig;
             var levelConfig = gameConfig.GetLevel(levelIndex);
             GameData.Instance.ResetResources(levelConfig.StartCredits);
+            GameData.Instance.ResetUpgrades();
+            _craftStantionView.Reset();
             _fieldSystem.Reset();
             _brain.Reset();
             _pendingMonoBehaviourCleanup = true;

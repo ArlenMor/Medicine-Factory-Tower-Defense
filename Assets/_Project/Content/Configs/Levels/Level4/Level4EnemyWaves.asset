@@ -12,4 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b4477b2540c9c4db7f1442091126c1, type: 3}
   m_Name: Level4EnemyWaves
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.WaveConfig
-  Waves: []
+  Waves:
+  - WaveId: 1
+    StartTime: 12
+    ScoutCount: 2
+    GnawerCount: 0
+    TankCount: 0
+    IntraSpawnInterval: 1.2
+    Comment: L4 warmup
+  - WaveId: 2
+    StartTime: 38
+    ScoutCount: 2
+    GnawerCount: 1
+    TankCount: 0
+    IntraSpawnInterval: 1.1
+    Comment: L4 first pressure
+  - WaveId: 3
+    StartTime: 68
+    ScoutCount: 3
+    GnawerCount: 1
+    TankCount: 0
+    IntraSpawnInterval: 1
+    Comment: L4 loop wave
+  LoopLastWave: 1
+  LoopDelay: 14

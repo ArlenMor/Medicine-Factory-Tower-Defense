@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba609f6ee9ee84d4aa1e38a16a37c683, type: 3}
   m_Name: TurretConfig
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.BattleField.TurretConfig
-  MaxHp: 55
-  AttackRadius: 2.6
-  FireRate: 0.5
-  Damage: 10
-  BulletSpeed: 8
+  MaxHp: 60
+  AttackRadius: 1.75
+  FireRate: 0.75
+  Damage: 8
+  BulletSpeed: 5
   RadiusFadeDuration: 1
   RadiusMaxAlpha: 0.25
