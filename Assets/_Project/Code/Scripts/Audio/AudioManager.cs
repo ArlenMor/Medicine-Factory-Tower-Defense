@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using URandom = UnityEngine.Random;
 
 namespace _Project.Code.Scripts.Audio
 {
@@ -45,6 +47,9 @@ namespace _Project.Code.Scripts.Audio
         [SerializeField] private AudioSource _loopSfxSource;
 
         public bool IsMuted { get; private set; }
+        public float Volume => AudioListener.volume;
+
+        public event Action<float> OnVolumeChanged;
 
         private void Awake()
         {
@@ -61,11 +66,19 @@ namespace _Project.Code.Scripts.Audio
         {
             IsMuted = muted;
             AudioListener.volume = muted ? 0f : 1f;
+            OnVolumeChanged?.Invoke(AudioListener.volume);
         }
 
         public void ToggleMute()
         {
             SetMuted(!IsMuted);
+        }
+
+        public void SetVolume(float volume)
+        {
+            AudioListener.volume = Mathf.Clamp01(volume);
+            IsMuted = AudioListener.volume <= 0f;
+            OnVolumeChanged?.Invoke(AudioListener.volume);
         }
 
         public void PlayMainTheme()
@@ -104,14 +117,14 @@ namespace _Project.Code.Scripts.Audio
         public void PlayResourceGather()
         {
             if (_resourceGather == null || _resourceGather.Length == 0) return;
-            var clip = _resourceGather[Random.Range(0, _resourceGather.Length)];
+            var clip = _resourceGather[URandom.Range(0, _resourceGather.Length)];
             if (clip != null) _sfxSource.PlayOneShot(clip);
         }
 
         public void PlayPlantPlanting()
         {
             if (_plantPlanting == null || _plantPlanting.Length == 0) return;
-            var clip = _plantPlanting[Random.Range(0, _plantPlanting.Length)];
+            var clip = _plantPlanting[URandom.Range(0, _plantPlanting.Length)];
             if (clip != null) _sfxSource.PlayOneShot(clip);
         }
 
@@ -144,9 +157,9 @@ namespace _Project.Code.Scripts.Audio
         public void PlayClickHit()
         {
             if (_clickHit == null || _clickHit.Length == 0) return;
-            var clip = _clickHit[Random.Range(0, _clickHit.Length)];
+            var clip = _clickHit[URandom.Range(0, _clickHit.Length)];
             if (clip == null) return;
-            _sfxSource.pitch = Random.Range(1f - _clickHitPitchVariation, 1f + _clickHitPitchVariation);
+            _sfxSource.pitch = URandom.Range(1f - _clickHitPitchVariation, 1f + _clickHitPitchVariation);
             _sfxSource.PlayOneShot(clip, _clickHitVolume);
             _sfxSource.pitch = 1f;
         }
@@ -154,7 +167,7 @@ namespace _Project.Code.Scripts.Audio
         public void PlayEnemyAttack()
         {
             if (_enemyAttack == null || _enemyAttack.Length == 0) return;
-            var clip = _enemyAttack[Random.Range(0, _enemyAttack.Length)];
+            var clip = _enemyAttack[URandom.Range(0, _enemyAttack.Length)];
             if (clip != null) _sfxSource.PlayOneShot(clip, _enemyAttackVolume);
         }
     }

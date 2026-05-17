@@ -1,13 +1,18 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace _Project.Code.Scripts.Audio
 {
-    public class SoundToggleButton : MonoBehaviour
+    public class SoundVolumeButton : MonoBehaviour
     {
         [SerializeField] private Button _button;
+        [SerializeField] private RectTransform _buttonRect;
+        [SerializeField] private GameObject _volumePanel;
         [SerializeField] private GameObject _iconOn;
         [SerializeField] private GameObject _iconOff;
+        [SerializeField] private float _hideDistance = 150f;
+
 
         private void Awake()
         {
@@ -16,25 +21,44 @@ namespace _Project.Code.Scripts.Audio
 
         private void Start()
         {
-            Refresh();
+            AudioManager.Instance.OnVolumeChanged += OnVolumeChanged;
+            RefreshIcons();
         }
 
         private void OnDestroy()
         {
             _button.onClick.RemoveListener(OnClick);
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.OnVolumeChanged -= OnVolumeChanged;
+        }
+
+        private void Update()
+        {
+            if (_volumePanel == null || !_volumePanel.activeSelf) return;
+
+            Vector2 buttonScreenPos = RectTransformUtility.WorldToScreenPoint(null, _buttonRect.position);
+            float distance = Vector2.Distance(Mouse.current.position.ReadValue(), buttonScreenPos);
+
+            if (distance > _hideDistance)
+                _volumePanel.SetActive(false);
         }
 
         private void OnClick()
         {
-            AudioManager.Instance.ToggleMute();
-            Refresh();
+            if (_volumePanel != null)
+                _volumePanel.SetActive(true);
         }
 
-        private void Refresh()
+        private void OnVolumeChanged(float volume)
         {
-            bool muted = AudioManager.Instance.IsMuted;
-            if (_iconOn != null) _iconOn.SetActive(!muted);
-            if (_iconOff != null) _iconOff.SetActive(muted);
+            RefreshIcons();
+        }
+
+        private void RefreshIcons()
+        {
+            bool hasSound = AudioListener.volume > 0f;
+            if (_iconOn != null) _iconOn.SetActive(hasSound);
+            if (_iconOff != null) _iconOff.SetActive(!hasSound);
         }
     }
 }
