@@ -31,18 +31,18 @@ namespace _Project.Code.Scripts.UI
         }
 
         public void RefreshText(
-            string currentMultiplier, 
-            string nextMultiplier = "",
+            string currentValue,
+            string nextValue = "",
             string upgradeCost = "")
         {
             if (IsMax)
             {
-                _maxText.text = $"MAX: x{currentMultiplier}";
+                _maxText.text = $"MAX: {currentValue}";
             }
             else
             {
-                _currentMultiplier.text = $"x{currentMultiplier}";
-                _nextMultiplier.text = $"x{nextMultiplier}";
+                _currentMultiplier.text = currentValue;
+                _nextMultiplier.text = nextValue;
                 _upgradeCost.text = upgradeCost;
             }
             

@@ -18,6 +18,7 @@ namespace _Project.Code.Scripts.Data
         public event Action OnResourcesChanged; 
         
         public int ProductionProductivityMultiplier = 1;
+        private int _produceDoubleMissStreak;
         
         public Camera Camera;
         public readonly Dictionary<UpgradeType, UpgradeData> UpgradesData = new();
@@ -88,6 +89,71 @@ namespace _Project.Code.Scripts.Data
                 UpgradesData[upgradeDef.Type].Step = 0;
                 UpgradesData[upgradeDef.Type].IsMax = false;
             }
+
+            _produceDoubleMissStreak = 0;
+        }
+
+        public float GetProduceDoubleChance()
+        {
+            if (!UpgradesData.TryGetValue(UpgradeType.Produce, out var produceUpgrade))
+                return 0f;
+
+            // Step 0 means no upgrade purchased yet, so chance must stay 0.
+            if (produceUpgrade.Step <= 0)
+                return 0f;
+
+            return NormalizeChance(produceUpgrade.Multiplier);
+        }
+
+        public float GetProduceExpectedMultiplier() => 1f + GetProduceDoubleChance();
+
+        public bool RollProduceDoubleWithPity()
+        {
+            if (!UpgradesData.TryGetValue(UpgradeType.Produce, out var produceUpgrade))
+                return false;
+
+            if (produceUpgrade.Step <= 0)
+                return false;
+
+            int maxAttempts = GetProducePityMaxAttempts(produceUpgrade.Step);
+            if (maxAttempts > 0 && _produceDoubleMissStreak >= maxAttempts - 1)
+            {
+                _produceDoubleMissStreak = 0;
+                return true;
+            }
+
+            bool doubled = UnityEngine.Random.value < NormalizeChance(produceUpgrade.Multiplier);
+            if (doubled)
+            {
+                _produceDoubleMissStreak = 0;
+                return true;
+            }
+
+            _produceDoubleMissStreak++;
+            return false;
+        }
+
+        private static float NormalizeChance(float rawChance)
+        {
+            // Supports both [0..1] and [0..100] authoring formats in config.
+            if (rawChance > 1f)
+                rawChance /= 100f;
+
+            return Mathf.Clamp01(rawChance);
+        }
+
+        private static int GetProducePityMaxAttempts(int produceStep)
+        {
+            // Multipliers[0] is base (no purchased upgrade).
+            // Step 1 -> guarantee no later than every 4th harvest.
+            // Step 2+ -> guarantee no later than every 3rd harvest.
+            if (produceStep >= 2)
+                return 3;
+
+            if (produceStep == 1)
+                return 4;
+
+            return 0;
         }
 
         private void GenerateResourceData()

@@ -60,8 +60,9 @@ namespace _Project.Code.Scripts.Garden
                     if (_plantInstance.IsGrown)
                     {
                         var resourceType = _plantInstance.Type.GetResourceType();
-                        var productivityMultiplier = GameData.Instance.UpgradesData[UpgradeType.Produce].Multiplier;
-                        var amount = GetDefaultProductivity(resourceType) * Mathf.RoundToInt(productivityMultiplier);
+                        var defaultProductivity = GetDefaultProductivity(resourceType);
+                        var isDoubled = GameData.Instance.RollProduceDoubleWithPity();
+                        var amount = defaultProductivity * (isDoubled ? 2 : 1);
                         GameData.Instance.AddResource(resourceType, amount);
                         GameData.Instance.Stats.ResourcesCollected++;
                         switch (resourceType)
@@ -79,7 +80,12 @@ namespace _Project.Code.Scripts.Garden
                         AudioManager.Instance.PlayResourceGather();
                         var plantWorldPos = _plantInstance.transform.position;
                         if (S.TryGet<FlyingIconService>(out var flyService))
-                            flyService.FlyResource(plantWorldPos, resourceType);
+                        {
+                            if (isDoubled)
+                                flyService.FlyResourceBurst(plantWorldPos, resourceType, 2);
+                            else
+                                flyService.FlyResource(plantWorldPos, resourceType);
+                        }
                         else
                             Debug.LogWarning("[GardenBedSlot] FlyingIconService not found in S. " +
                                 "Assign _flyingIconService in Bootstrap and check scene setup.");

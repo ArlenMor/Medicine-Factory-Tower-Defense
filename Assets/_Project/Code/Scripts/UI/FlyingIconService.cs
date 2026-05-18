@@ -94,6 +94,37 @@ namespace _Project.Code.Scripts.UI
             Fly(worldFrom, target, sprite, () => { OnIconArrived?.Invoke(resourceType); onComplete?.Invoke(); });
         }
 
+        public void FlyResourceBurst(
+            Vector3 worldFrom,
+            ResourceType resourceType,
+            int iconCount,
+            float delayBetweenIcons = 0.08f,
+            Action onComplete = null)
+        {
+            if (iconCount <= 1)
+            {
+                FlyResource(worldFrom, resourceType, onComplete);
+                return;
+            }
+
+            var sprite = GameData.Instance.GameConfig.ResourceIconConfig.GetIcon(resourceType);
+            if (!_hudTargetLookup.TryGetValue(resourceType, out var target) || target == null)
+            {
+                Debug.LogWarning($"[FlyingIconService] HUD target not found for ResourceType={resourceType}. "
+                    + "Check _resourceHudTargets in Inspector.");
+                return;
+            }
+
+            StartCoroutine(FlyResourceBurstRoutine(
+                worldFrom,
+                resourceType,
+                target,
+                sprite,
+                iconCount,
+                delayBetweenIcons,
+                onComplete));
+        }
+
         public void FlyCoin(Transform from, Action onComplete = null)
         {
             if (_creditHudTarget == null)
@@ -182,6 +213,31 @@ namespace _Project.Code.Scripts.UI
         {
             float u = 1f - t;
             return u * u * p0 + 2f * u * t * p1 + t * t * p2;
+        }
+
+        private System.Collections.IEnumerator FlyResourceBurstRoutine(
+            Vector3 worldFrom,
+            ResourceType resourceType,
+            Transform target,
+            Sprite sprite,
+            int iconCount,
+            float delayBetweenIcons,
+            Action onComplete)
+        {
+            int completed = 0;
+            for (int i = 0; i < iconCount; i++)
+            {
+                Fly(worldFrom, target, sprite, () =>
+                {
+                    OnIconArrived?.Invoke(resourceType);
+                    completed++;
+                    if (completed >= iconCount)
+                        onComplete?.Invoke();
+                });
+
+                if (i < iconCount - 1)
+                    yield return new WaitForSeconds(delayBetweenIcons);
+            }
         }
     }
 }

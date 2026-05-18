@@ -110,20 +110,23 @@ namespace _Project.Code.Scripts.UI
 
             foreach (var upgradeButtonView in _upgradeButtonViews)
             {
-                var currentMultiplier = upgradesData[upgradeButtonView.Type].Multiplier.ToString(CultureInfo.InvariantCulture);
+                var upgradeType = upgradeButtonView.Type;
+                var currentStep = upgradesData[upgradeType].Step;
+                var currentValue = FormatUpgradeValue(
+                    upgradeType,
+                    upgradesData[upgradeType].Multiplier,
+                    currentStep);
                 
-                if (upgradesData[upgradeButtonView.Type].IsMax)
+                if (upgradesData[upgradeType].IsMax)
                 {
                     upgradeButtonView.SetMax(true);
-                    upgradeButtonView.RefreshText(currentMultiplier);
+                    upgradeButtonView.RefreshText(currentValue);
                     continue;
                 }
+
+                upgradeButtonView.SetMax(false);
                 
-                var upgradeType = upgradeButtonView.Type;
-                
-                var currentStep = upgradesData[upgradeType].Step;
-                
-                var nextMultiplier = string.Empty;
+                var nextValue = string.Empty;
                 var upgradeCost = string.Empty;
                 foreach (var upgradeDef in _gameConfig.UpgradesConfig.Upgrades)
                 {
@@ -136,12 +139,33 @@ namespace _Project.Code.Scripts.UI
 
                     var nextStep = upgradesData[upgradeButtonView.Type].Step + 1;
                     
-                    nextMultiplier = upgradeDef.Multipliers[nextStep].ToString(CultureInfo.InvariantCulture);
+                    nextValue = FormatUpgradeValue(upgradeType, upgradeDef.Multipliers[nextStep], nextStep);
                     upgradeCost = upgradeDef.Costs[nextStep].ToString(CultureInfo.InvariantCulture);
                 }
                 
-                upgradeButtonView.RefreshText(currentMultiplier, nextMultiplier, upgradeCost);
+                upgradeButtonView.RefreshText(currentValue, nextValue, upgradeCost);
             }
+        }
+
+        private static string FormatUpgradeValue(UpgradeType type, float rawValue, int step)
+        {
+            if (type == UpgradeType.Produce)
+            {
+                if (step <= 0)
+                    return "0%";
+
+                return $"{NormalizeChance(rawValue) * 100f:0.#}%";
+            }
+
+            return $"x{rawValue.ToString(CultureInfo.InvariantCulture)}";
+        }
+
+        private static float NormalizeChance(float rawChance)
+        {
+            if (rawChance > 1f)
+                rawChance /= 100f;
+
+            return Mathf.Clamp01(rawChance);
         }
 
         private void OnDestroy()
