@@ -1,8 +1,8 @@
-using System;
 using System.Globalization;
 using System.Linq;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UIPanels.Settings;
@@ -21,6 +21,8 @@ namespace _Project.Code.Scripts.UI
         private GameData _gameData;
         private GameConfig _gameConfig;
         private IPanelShower _shower;
+        private IGamePauseHandler _gamePauseHandler;
+        private bool _isPauseSetByScreen;
         
         public override void Initialize(PanelSettings settings)
         {
@@ -33,6 +35,13 @@ namespace _Project.Code.Scripts.UI
             }
             
             _shower = upgradeScreenSettings.Shower;
+
+            _gamePauseHandler = S.TryGet<IGamePauseHandler>(out var pauseHandler) ? pauseHandler : null;
+            if (_gamePauseHandler != null)
+            {
+                _gamePauseHandler.SetPaused(true);
+                _isPauseSetByScreen = true;
+            }
             
             _gameData = GameData.Instance;
             _gameConfig = _gameData.GameConfig;
@@ -50,7 +59,16 @@ namespace _Project.Code.Scripts.UI
 
         private void HidePanel()
         {
+            ReleasePause();
             _shower.HideView(PanelType.UpgradesPopup);
+        }
+
+        private void ReleasePause()
+        {
+            if (!_isPauseSetByScreen) return;
+
+            _gamePauseHandler?.SetPaused(false);
+            _isPauseSetByScreen = false;
         }
         
         private void Upgrade(UpgradeButtonView upgrade)
@@ -128,8 +146,9 @@ namespace _Project.Code.Scripts.UI
 
         private void OnDestroy()
         {
-            _backGroundFade.onClick.RemoveListener(Close);
-            _closeButton.onClick.RemoveListener(Close);
+            _backGroundFade.onClick.RemoveListener(HidePanel);
+            _closeButton.onClick.RemoveListener(HidePanel);
+            ReleasePause();
         }
     }
 }

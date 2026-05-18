@@ -1,4 +1,3 @@
-using System;
 using _Project.Code.Scripts.Data;
 using DG.Tweening;
 using TMPro;
@@ -36,6 +35,7 @@ namespace _Project.Code.Scripts.UI
         {
             if (arrivedType != resourceType) return;
             transform.DOKill();
+            transform.localScale = Vector3.one;
             transform.DOPunchScale(Vector3.one * _bumpPunch, _bumpDuration, 5, 0.5f)
                      .SetAutoKill(true);
         }

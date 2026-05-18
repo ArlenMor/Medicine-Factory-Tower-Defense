@@ -49,10 +49,7 @@ namespace _Project.Code.Scripts.UI
         private RectTransform _canvasRect;
         private Dictionary<ResourceType, RectTransform> _hudTargetLookup;
 
-        /// <summary>
-        /// Срабатывает когда летящая иконка долетает до цели.
-        /// Параметр — тип ресурса (ResourceType.Credit для монет).
-        /// </summary>
+
         public event Action<ResourceType> OnIconArrived;
 
         private void Awake()
@@ -64,15 +61,6 @@ namespace _Project.Code.Scripts.UI
                 _hudTargetLookup[entry.Type] = entry.Target;
         }
 
-        /// <summary>
-        /// Запускает полёт иконки от <paramref name="from"/> до <paramref name="to"/>
-        /// с дугообразной анимацией. Оба аргумента могут быть как мировыми объектами,
-        /// так и UI-элементами (RectTransform) — тип определяется автоматически.
-        /// </summary>
-        /// <param name="from">Точка старта (мировой или UI Transform).</param>
-        /// <param name="to">Точка назначения (мировой или UI Transform).</param>
-        /// <param name="sprite">Спрайт иконки.</param>
-        /// <param name="onComplete">Колбэк по завершении (опционально).</param>
         public void Fly(Transform from, Transform to, Sprite sprite, Action onComplete = null)
         {
             Vector2 startScreen = TransformToScreenPoint(from);
@@ -80,10 +68,6 @@ namespace _Project.Code.Scripts.UI
             SpawnAndAnimate(startScreen, endScreen, sprite, onComplete);
         }
 
-        /// <summary>
-        /// Удобный метод для анимации ресурса: спрайт и HUD-таргет берутся автоматически
-        /// по типу ресурса (настраивается через _resourceHudTargets в Inspector).
-        /// </summary>
         public void FlyResource(Transform from, ResourceType resourceType, Action onComplete = null)
         {
             var sprite = GameData.Instance.GameConfig.ResourceIconConfig.GetIcon(resourceType);
@@ -97,9 +81,6 @@ namespace _Project.Code.Scripts.UI
             Fly(from, target, sprite, () => { OnIconArrived?.Invoke(resourceType); onComplete?.Invoke(); });
         }
 
-        /// <summary>
-        /// Перегрузка FlyResource для мировой позиции старта.
-        /// </summary>
         public void FlyResource(Vector3 worldFrom, ResourceType resourceType, Action onComplete = null)
         {
             var sprite = GameData.Instance.GameConfig.ResourceIconConfig.GetIcon(resourceType);
@@ -113,10 +94,6 @@ namespace _Project.Code.Scripts.UI
             Fly(worldFrom, target, sprite, () => { OnIconArrived?.Invoke(resourceType); onComplete?.Invoke(); });
         }
 
-        /// <summary>
-        /// Удобный метод для анимации монеты/кредита: спрайт и таргет (_creditHudTarget)
-        /// берутся автоматически.
-        /// </summary>
         public void FlyCoin(Transform from, Action onComplete = null)
         {
             if (_creditHudTarget == null)
@@ -129,9 +106,6 @@ namespace _Project.Code.Scripts.UI
             Fly(from, _creditHudTarget, sprite, () => { OnIconArrived?.Invoke(ResourceType.Credit); onComplete?.Invoke(); });
         }
 
-        /// <summary>
-        /// Перегрузка для случая, когда начальная точка задана мировой позицией (Vector3).
-        /// </summary>
         public void Fly(Vector3 worldFrom, Transform to, Sprite sprite, Action onComplete = null)
         {
             Vector2 startScreen = GetWorldCamera().WorldToScreenPoint(worldFrom);
