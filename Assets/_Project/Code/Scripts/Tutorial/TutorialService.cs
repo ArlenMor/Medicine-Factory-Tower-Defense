@@ -11,6 +11,7 @@ namespace _Project.Code.Scripts.Tutorial
         public event Action OnSequenceCompleted;
 
         public bool IsActive { get; private set; }
+        public TutorialStepData ActiveStep => CurrentStep();
         public bool IsBuildingDisabled => IsActive && _currentSequence != null && _currentSequence.DisableBuilding;
         public bool IsUpgradesDisabled => IsActive && _currentSequence != null && _currentSequence.DisableUpgrades;
 
@@ -142,6 +143,7 @@ namespace _Project.Code.Scripts.Tutorial
             StepTrigger.WaveCleared        => ev == TutorialEventType.WaveCleared,
             StepTrigger.UpgradePurchased   => ev == TutorialEventType.UpgradePurchased,
             StepTrigger.UpgradesPanelOpened => ev == TutorialEventType.UpgradesPanelOpened,
+            StepTrigger.PlantRemoved       => ev == TutorialEventType.PlantRemoved,
             _                              => false,
         };
     }

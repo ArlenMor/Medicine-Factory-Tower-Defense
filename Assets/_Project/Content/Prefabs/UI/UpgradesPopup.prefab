@@ -1716,11 +1716,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562264193290321725, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
       propertyPath: m_text
-      value: Increase plants productivity
+      value: Double Harvest Chance Upgrade
       objectReference: {fileID: 0}
     - target: {fileID: 3562264193290321725, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
       propertyPath: m_fontSize
-      value: 24.55
+      value: 22.4
       objectReference: {fileID: 0}
     - target: {fileID: 3562264193290321725, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
       propertyPath: m_fontSizeMax

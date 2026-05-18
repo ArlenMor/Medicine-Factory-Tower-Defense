@@ -14,6 +14,8 @@ namespace _Project.Code.Scripts.Tutorial
 
         bool IsActive { get; }
 
+        TutorialStepData ActiveStep { get; }
+
         bool IsBuildingDisabled { get; }
 
         bool IsUpgradesDisabled { get; }

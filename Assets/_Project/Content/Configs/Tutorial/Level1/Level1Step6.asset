@@ -15,9 +15,21 @@ MonoBehaviour:
   StepName: Remove Planting
   InstructionText: You can remove an unripe plant by tapping it, then tapping the
     trash button.
-  Highlights: []
-  BlockInput: 0
-  Trigger: 1
+  Highlights:
+  - Type: 1
+    TargetId: TutorCurrentPlantedPlant
+    UITarget: {fileID: 0}
+    WorldTarget: {fileID: 0}
+    WorldSize: 1
+    Padding: 8
+  - Type: 0
+    TargetId: TutorRemovePlantPanel
+    UITarget: {fileID: 5380912345638360694, guid: a5afba7664057e043a42db0df0ba431b, type: 3}
+    WorldTarget: {fileID: 0}
+    WorldSize: 1
+    Padding: 8
+  BlockInput: 1
+  Trigger: 14
   TriggerCount: 1
   WaitCondition: 0
   WaitCount: 1

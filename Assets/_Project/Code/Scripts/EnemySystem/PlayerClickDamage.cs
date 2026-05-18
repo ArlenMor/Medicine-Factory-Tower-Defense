@@ -58,7 +58,14 @@ namespace _Project.Code.Scripts.EnemySystem
 
         private void ExecuteClick(InputEventData data)
         {
-            if (data.HitObject == null || !data.HitObject.TryGetComponent(out Enemy enemy)) return;
+            Vector2 worldPoint = data.WorldHit2D.HasValue
+                ? data.WorldHit2D.Value.point
+                : data.WorldHit.HasValue
+                    ? (Vector2)data.WorldHit.Value.point
+                    : (Vector2)(data.HitObject ? data.HitObject.transform.position : Vector3.zero);
+
+            Collider2D col = Physics2D.OverlapPoint(worldPoint, LayerMask.GetMask("Enemy"));
+            if (col == null || !col.TryGetComponent(out Enemy enemy)) return;
 
             enemy.TakeDamage(ClickDamage);
             _lastClickTime = Time.time;

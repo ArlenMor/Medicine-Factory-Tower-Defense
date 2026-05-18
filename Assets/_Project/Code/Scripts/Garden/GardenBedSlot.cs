@@ -2,19 +2,22 @@ using System.Linq;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Timer;
 using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UI;
 using _Project.Code.Scripts.UIService;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.Code.Scripts.Garden
 {
     public class GardenBedSlot: MonoBehaviour
     {
+        private const string TutorialCurrentPlantedPlantTargetId = "TutorCurrentPlantedPlant";
+        private const string TutorialRemovePlantPanelTargetId = "TutorRemovePlantPanel";
+
         [SerializeField] private Transform _plantParent;
         [SerializeField] private Transform _selectPanelPosition;
         [SerializeField] private Transform _removePanelPosition;
@@ -34,6 +37,10 @@ namespace _Project.Code.Scripts.Garden
         private Plant _plantInstance;
         private IPanelShower _panelShower;
         private bool _isOccupied;
+        private static GardenBedSlot s_removePanelOwner;
+        private static Plant s_removePanelPlant;
+
+        private bool _isPausedByTutorialRemove;
 
         public bool IsOccupied => _isOccupied;
         
@@ -91,18 +98,14 @@ namespace _Project.Code.Scripts.Garden
                                 "Assign _flyingIconService in Bootstrap and check scene setup.");
                         if (S.TryGet<ITutorialService>(out var tutorial))
                             tutorial.NotifyEvent(TutorialEventType.ResourceHarvested);
+                        UnregisterCurrentPlantedPlantTutorialTargetIfCurrentPlant();
                         Destroy(_plantInstance.gameObject);
                         HandleMassage(false);
                         _isOccupied = false;
                     }
                     else
                     {
-                        var settings = new RemovePlantPanelSettings()
-                        {
-                            Callback = OnRemovePlant,
-                            Position = _removePanelPosition.position,
-                        };
-                        _panelShower.ShowView(PanelType.RemovePlant, settings, _canvasParent);
+                        ShowRemovePlantPanel();
                     }
                 }
             }
@@ -129,11 +132,18 @@ namespace _Project.Code.Scripts.Garden
         {
             if (_plantInstance != null)
             {
+                UnregisterCurrentPlantedPlantTutorialTargetIfCurrentPlant();
                 Destroy(_plantInstance.gameObject);
                 _plantInstance = null;
             }
+            ReleaseTutorialRemovePause();
             _message.gameObject.SetActive(false);
             _isOccupied = false;
+        }
+
+        private void OnDestroy()
+        {
+            ReleaseTutorialRemovePause();
         }
 
         private void HandleMassage(bool isShown)
@@ -150,15 +160,24 @@ namespace _Project.Code.Scripts.Garden
                 _messageIcon.sprite = GameData.Instance.GameConfig.ResourceIconConfig.GetIcon(resourceType);
             }
             HandleMassage(true);
-            _panelShower.HideView(PanelType.RemovePlant);
+            if (OwnsRemovePanelForCurrentPlant())
+            {
+                _panelShower.HideView(PanelType.RemovePlant);
+                ReleaseRemovePanelOwnership();
+            }
         }
         
         private void OnRemovePlant()
         {
+            UnregisterCurrentPlantedPlantTutorialTargetIfCurrentPlant();
             Destroy(_plantInstance.gameObject);
             _plantInstance = null;
             _isOccupied = false;
             _panelShower.HideView(PanelType.RemovePlant);
+            ReleaseRemovePanelOwnership();
+            ReleaseTutorialRemovePause();
+            if (S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.NotifyEvent(TutorialEventType.PlantRemoved);
         }
 
         private void OnPlantChosen(PlantType plantType)
@@ -167,14 +186,97 @@ namespace _Project.Code.Scripts.Garden
             _plantInstance = Instantiate(plant, _plantParent);
             _plantInstance.Initialize(_config, _timer, OnPlantGrown);
             _isOccupied = true;
+            RegisterCurrentPlantedPlantTutorialTarget();
             GameData.Instance.Stats.PlantsPlanted++;
             AudioManager.Instance.PlayPlantPlanting();
             _panelShower.HideView(PanelType.PlantPanelInfo);
             if (S.TryGet<ITutorialService>(out var tutorial))
+            {
                 tutorial.NotifyEvent(TutorialEventType.PlantPlanted);
+                TryOpenTutorialRemovePanelAfterPlanting(tutorial);
+            }
         }
         
         private int GetDefaultProductivity(ResourceType resourceType) => 
             _config.GardenConfig.GetGrowableResourceData(resourceType).DefaultProductivity;
+
+        private void ClaimRemovePanelOwnership()
+        {
+            s_removePanelOwner = this;
+            s_removePanelPlant = _plantInstance;
+        }
+
+        private bool OwnsRemovePanelForCurrentPlant()
+        {
+            return s_removePanelOwner == this && s_removePanelPlant == _plantInstance;
+        }
+
+        private void ReleaseRemovePanelOwnership()
+        {
+            if (s_removePanelOwner != this) return;
+
+            s_removePanelOwner = null;
+            s_removePanelPlant = null;
+        }
+
+        private void ShowRemovePlantPanel()
+        {
+            ClaimRemovePanelOwnership();
+            var settings = new RemovePlantPanelSettings()
+            {
+                Callback = OnRemovePlant,
+                Position = _removePanelPosition.position,
+                TutorialTargetId = TutorialRemovePlantPanelTargetId,
+            };
+            _panelShower.ShowView(PanelType.RemovePlant, settings, _canvasParent);
+        }
+
+        private void RegisterCurrentPlantedPlantTutorialTarget()
+        {
+            if (_plantInstance == null) return;
+            if (!S.TryGet<ITutorialTargetRegistry>(out var registry)) return;
+
+            registry.Register(TutorialCurrentPlantedPlantTargetId, _plantInstance.transform);
+        }
+
+        private void UnregisterCurrentPlantedPlantTutorialTargetIfCurrentPlant()
+        {
+            if (_plantInstance == null) return;
+            if (!S.TryGet<ITutorialTargetRegistry>(out var registry)) return;
+
+            if (registry.TryGet(TutorialCurrentPlantedPlantTargetId, out var target) && target == _plantInstance.transform)
+                registry.Unregister(TutorialCurrentPlantedPlantTargetId);
+        }
+
+        private void TryOpenTutorialRemovePanelAfterPlanting(ITutorialService tutorial)
+        {
+            if (tutorial == null || !tutorial.IsActive) return;
+            if (_plantInstance == null || _plantInstance.IsGrown) return;
+
+            var activeStep = tutorial.ActiveStep;
+            if (activeStep == null || activeStep.Trigger != StepTrigger.PlantRemoved)
+                return;
+
+            ShowRemovePlantPanel();
+            SetTutorialRemovePause();
+        }
+
+        private void SetTutorialRemovePause()
+        {
+            if (_isPausedByTutorialRemove) return;
+            if (!S.TryGet<IGamePauseHandler>(out var pauseHandler)) return;
+
+            _isPausedByTutorialRemove = true;
+            pauseHandler.SetPaused(true);
+        }
+
+        private void ReleaseTutorialRemovePause()
+        {
+            if (!_isPausedByTutorialRemove) return;
+            if (!S.TryGet<IGamePauseHandler>(out var pauseHandler)) return;
+
+            _isPausedByTutorialRemove = false;
+            pauseHandler.SetPaused(false);
+        }
     }
 }

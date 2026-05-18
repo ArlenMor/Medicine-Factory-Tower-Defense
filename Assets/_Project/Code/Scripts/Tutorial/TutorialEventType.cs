@@ -13,5 +13,6 @@ namespace _Project.Code.Scripts.Tutorial
         WaveCleared,
         UpgradePurchased,
         UpgradesPanelOpened,
+        PlantRemoved,
     }
 }
