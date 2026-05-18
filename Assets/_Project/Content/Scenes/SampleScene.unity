@@ -5385,7 +5385,7 @@ MonoBehaviour:
   _waveSpawner: {fileID: 2097377663}
   _playerClickDamage: {fileID: 1337694781}
   _fieldSystem: {fileID: 1986192963}
-  _defenseShopView: {fileID: 0}
+  _defenseShopView: {fileID: 1123757310}
   _brain: {fileID: 1097907399}
   _storedResources:
   - {fileID: 305450508}
