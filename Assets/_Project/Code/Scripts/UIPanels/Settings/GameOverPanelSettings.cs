@@ -5,5 +5,6 @@ namespace _Project.Code.Scripts.UIPanels.Settings
     public class GameOverPanelSettings : PanelSettings
     {
         public bool IsVictory;
+        public int LevelIndex;
     }
 }

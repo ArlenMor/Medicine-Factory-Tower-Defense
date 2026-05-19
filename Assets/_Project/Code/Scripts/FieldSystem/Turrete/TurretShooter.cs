@@ -1,4 +1,6 @@
+using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.EnemySystem;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.BattleField
@@ -83,6 +85,12 @@ namespace _Project.Code.Scripts.BattleField
 
             var bullet = BulletPool.Instance.Get(_firePoint.position, _firePoint.rotation);
             bullet.Initialize(_currentTarget.transform, _bulletSpeed, _damage);
+
+            AudioManager.Instance.PlayTurretShoot();
+
+            _gunTransform.DOKill();
+            _gunTransform.DOPunchPosition(-_gunTransform.up * 0.08f, 0.15f, 1, 0.5f)
+                         .SetUpdate(UpdateType.Normal, false);
         }
     }
 }

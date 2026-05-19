@@ -1,6 +1,7 @@
 using System;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.UI;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.BattleField
@@ -57,8 +58,18 @@ namespace _Project.Code.Scripts.BattleField
             {
                 _currentHp = 0f;
                 OnPlaceableDestroyed?.Invoke(this);
-                gameObject.SetActive(false);
+                PlayDeathAnimation();
             }
+        }
+        private void PlayDeathAnimation()
+        {
+            if (_healthBar != null) _healthBar.gameObject.SetActive(false);
+            transform.DOKill();
+            float startY = transform.localPosition.y;
+            DOTween.Sequence()
+                .Append(transform.DOLocalMoveY(startY + 0.3f, 0.12f).SetEase(Ease.OutQuad))
+                .Append(transform.DOLocalMoveY(startY - 1.5f, 0.35f).SetEase(Ease.InQuad))
+                .OnComplete(() => gameObject.SetActive(false));
         }
     }
 }

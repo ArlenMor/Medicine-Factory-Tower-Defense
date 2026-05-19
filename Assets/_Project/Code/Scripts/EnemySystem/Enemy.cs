@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.Data;
@@ -34,6 +35,7 @@ namespace _Project.Code.Scripts.EnemySystem
         private Vector3 _lungeTarget;
         private BrainView _centerTarget;
         private IFieldPlaceable _targetPlaceable;
+        private readonly List<IFieldPlaceable> _overlappingPlaceables = new();
         private bool _reachedCenter;
 
         private MaterialPropertyBlock _mpb;
@@ -117,7 +119,15 @@ namespace _Project.Code.Scripts.EnemySystem
                 return;
             }
 
-            _targetPlaceable = null;
+            _targetPlaceable = TryPickOverlappingTarget();
+
+            if (_targetPlaceable != null)
+            {
+                _attackTimer = 0f;
+                AttackPlaceable(deltaTime);
+                _animator.TickIdle(deltaTime);
+                return;
+            }
 
             if (_reachedCenter)
             {
@@ -153,7 +163,7 @@ namespace _Project.Code.Scripts.EnemySystem
             {
                 _centerTarget.TakeDamage(_centerDamage);
                 _attackTimer = _attackInterval;
-                AudioManager.Instance.PlayEnemyAttack();
+                //AudioManager.Instance.PlayEnemyAttack();
                 _animator.StartLunge(_lungeTarget);
             }
         }
@@ -193,11 +203,38 @@ namespace _Project.Code.Scripts.EnemySystem
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_targetPlaceable == null && other.TryGetComponent(out IFieldPlaceable placeable) && !placeable.IsDead)
+            if (other.TryGetComponent(out IFieldPlaceable placeable) && !placeable.IsDead)
             {
-                _targetPlaceable = placeable;
-                _attackTimer = 0f;
+                if (!_overlappingPlaceables.Contains(placeable))
+                    _overlappingPlaceables.Add(placeable);
+
+                if (_targetPlaceable == null)
+                {
+                    _targetPlaceable = placeable;
+                    _attackTimer = 0f;
+                }
             }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.TryGetComponent(out IFieldPlaceable placeable))
+                _overlappingPlaceables.Remove(placeable);
+        }
+
+        private IFieldPlaceable TryPickOverlappingTarget()
+        {
+            for (int i = _overlappingPlaceables.Count - 1; i >= 0; i--)
+            {
+                var p = _overlappingPlaceables[i];
+                if (p == null || p.IsDead)
+                {
+                    _overlappingPlaceables.RemoveAt(i);
+                    continue;
+                }
+                return p;
+            }
+            return null;
         }
     }
 }

@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1537,15 +1537,23 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 100, y: 100}
-    tilesX: 14
-    tilesY: 1
+    tilesX: 4
+    tilesY: 4
     animationType: 0
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 8020143640844766479, guid: d94654364252a2b43821c5ec54123229, type: 3}
+    - sprite: {fileID: -4397869019433388150, guid: 6087120352027ae4fbfce9482561d31e, type: 3}
+    - sprite: {fileID: -7047057619695080704, guid: 6087120352027ae4fbfce9482561d31e, type: 3}
+    - sprite: {fileID: -2865973518876683229, guid: 6087120352027ae4fbfce9482561d31e, type: 3}
+    - sprite: {fileID: 2247736158199483681, guid: 6087120352027ae4fbfce9482561d31e, type: 3}
+    - sprite: {fileID: -5167502337198507894, guid: 6087120352027ae4fbfce9482561d31e, type: 3}
+    - sprite: {fileID: -613077874506004694, guid: 6087120352027ae4fbfce9482561d31e, type: 3}
+    - sprite: {fileID: 0}
+    - sprite: {fileID: 0}
+    - sprite: {fileID: 0}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4816,7 +4824,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1244893007827735738
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4862,6 +4870,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4893,4 +4902,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0

@@ -1,13 +1,17 @@
 using System.Collections.Generic;
+using _Project.Code.Scripts.Cheats;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game.LvlController;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Code.Scripts.Game
 {
     public class GameController : MonoBehaviour, IGamePauseHandler {
         [SerializeField] private TMP_Text _levelText;
+        [SerializeField] private Button _restartButton;
+        [SerializeField] private CheatSkipLevel _cheatSkipLevel;
 
         private bool _paused;
         private LevelController _levelController;
@@ -16,6 +20,18 @@ namespace _Project.Code.Scripts.Game
         public void ManualAwake(List<IManualUpdate> manualUpdates) {
             _levelController = new LevelController(manualUpdates, this);
             _levelController.OnVictory += () => _currentLevel++;
+            _restartButton?.onClick.AddListener(OnRestartPressed);
+            _cheatSkipLevel?.Initialize(_levelController);
+        }
+
+        private void OnDestroy()
+        {
+            _restartButton?.onClick.RemoveListener(OnRestartPressed);
+        }
+
+        private void OnRestartPressed()
+        {
+            _levelController.RequestRestart();
         }
 
         public void SetPaused(bool paused)

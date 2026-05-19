@@ -15,7 +15,10 @@ namespace _Project.Code.Scripts.Data
         public GameConfig GameConfig => _config;
         
         public Dictionary<ResourceType, int> Resources { get; set; } = new ();
-        public event Action OnResourcesChanged; 
+        public event Action OnResourcesChanged;
+        public event Action<UpgradeType> OnUpgradePurchased;
+
+        public void NotifyUpgradePurchased(UpgradeType type) => OnUpgradePurchased?.Invoke(type);
         
         public int ProductionProductivityMultiplier = 1;
         private int _produceDoubleMissStreak;

@@ -28,6 +28,12 @@ MonoBehaviour:
     WorldTarget: {fileID: 0}
     WorldSize: 1
     Padding: 8
+  - Type: 0
+    TargetId: TutorHudCredits
+    UITarget: {fileID: 0}
+    WorldTarget: {fileID: 0}
+    WorldSize: 1
+    Padding: 8
   BlockInput: 0
   Trigger: 6
   TriggerCount: 1

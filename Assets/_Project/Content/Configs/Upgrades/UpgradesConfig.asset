@@ -16,18 +16,18 @@ MonoBehaviour:
   - Type: 1
     Multipliers:
     - 1
-    - 1.15
-    - 1.35
+    - 1.3
+    - 1.5
     Costs: 000000000a00000014000000
   - Type: 2
     Multipliers:
     - 0
     - 25
     - 40
-    Costs: 000000001900000019000000
+    Costs: 000000001100000016000000
   - Type: 3
     Multipliers:
     - 1
-    - 1.15
-    - 1.35
+    - 1.4
+    - 1.8
     Costs: 000000000a00000014000000

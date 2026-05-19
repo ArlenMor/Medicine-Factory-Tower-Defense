@@ -1,4 +1,5 @@
 using System;
+using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.UI;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace _Project.Code.Scripts.EnemySystem
             if (_healthBar != null) _healthBar.SetHealth(_currentHp);
             DamagePopup.Spawn(transform.position, damage, transform, GameData.Instance.GameConfig.DamagePopupConfig);
             SpawnHitEffect();
+            AudioManager.Instance.PlayBrainHit();
             OnDamageReceived?.Invoke(damage);
             if (_currentHp <= 0f) OnDied?.Invoke();
         }

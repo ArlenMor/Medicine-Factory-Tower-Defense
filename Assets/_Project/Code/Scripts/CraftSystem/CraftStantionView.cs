@@ -69,6 +69,7 @@ namespace _Project.Code.Scripts.CraftSystem
 
             _taskService.OnTaskStarted += OnTaskStarted;
             _craftButton.onClick.AddListener(OnCraftClicked);
+            GameData.Instance.OnUpgradePurchased += OnUpgradePurchased;
 
             if (_taskService.HasActiveTask)
                 OnTaskStarted(_taskService.CurrentTask.Value);
@@ -93,6 +94,8 @@ namespace _Project.Code.Scripts.CraftSystem
                 _taskService.OnTaskStarted -= OnTaskStarted;
 
             _craftButton.onClick.RemoveListener(OnCraftClicked);
+            if (GameData.Instance != null)
+                GameData.Instance.OnUpgradePurchased -= OnUpgradePurchased;
             _shakeTween?.Kill();
             _readyWiggleTween?.Kill();
             StopCraftAnimation();
@@ -111,7 +114,7 @@ namespace _Project.Code.Scripts.CraftSystem
             RefreshSlots();
             RefreshIcon(task.ResultType);
 
-            var totalTime = task.ProduceTime * GameData.Instance.UpgradesData[UpgradeType.CraftSpeed].Multiplier;
+            var totalTime = task.ProduceTime / GameData.Instance.UpgradesData[UpgradeType.CraftSpeed].Multiplier;
             UpdateTimerText(totalTime);
         }
 
@@ -176,7 +179,7 @@ namespace _Project.Code.Scripts.CraftSystem
                 SpendResources(task.CostInfo);
                 _isCrafting = true;
                 _craftButton.interactable = false;
-                _craftTotalTime = task.ProduceTime * GameData.Instance.UpgradesData[UpgradeType.CraftSpeed].Multiplier;
+                _craftTotalTime = task.ProduceTime / GameData.Instance.UpgradesData[UpgradeType.CraftSpeed].Multiplier;
                 _craftTimeRemaining = _craftTotalTime;
                 StopReadyWiggle();
                 StartCraftAnimation();
@@ -193,6 +196,7 @@ namespace _Project.Code.Scripts.CraftSystem
             else
             {
                 Debug.Log("Not enough resources to craft!");
+                AudioManager.Instance.PlayCraftNoResources();
                 Shake();
             }
         }
@@ -356,6 +360,28 @@ namespace _Project.Code.Scripts.CraftSystem
             ClearAll();
             _firstCraftStarted = false;
             _firstOrderCompleted = false;
+        }
+
+        private void OnUpgradePurchased(UpgradeType type)
+        {
+            if (type != UpgradeType.CraftSpeed || !_taskService.HasActiveTask) return;
+
+            var task = _taskService.CurrentTask.Value;
+            var newTotalTime = task.ProduceTime / GameData.Instance.UpgradesData[UpgradeType.CraftSpeed].Multiplier;
+
+            if (_isCrafting)
+            {
+                var progress = _craftTotalTime > 0f ? 1f - (_craftTimeRemaining / _craftTotalTime) : 0f;
+                _craftTotalTime = newTotalTime;
+                _craftTimeRemaining = _craftTotalTime * (1f - progress);
+                _timerService.Cancel(_craftTimerHandle);
+                _craftTimerHandle = _timerService.Start(_craftTimeRemaining, () => OnCraftFinished(task));
+                UpdateTimerText(_craftTimeRemaining);
+            }
+            else
+            {
+                UpdateTimerText(newTotalTime);
+            }
         }
 
         private void UpdateTimerText(float time)

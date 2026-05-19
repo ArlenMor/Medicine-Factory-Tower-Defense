@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
+using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Tutorial;
 using Unity.VisualScripting;
@@ -30,6 +31,8 @@ namespace _Project.Code.Scripts.EnemySystem
         private float _loopTimer;
         private bool _pauseSpawnDuringTutorial;
         private ITutorialService _tutorialService;
+        private bool _waitingForFirstInteraction;
+        private IInputResolver _inputResolver;
 
         public void ManualAwake(EnemyConfig enemyConfig)
         {
@@ -66,6 +69,18 @@ namespace _Project.Code.Scripts.EnemySystem
             _isLoopCountdown = false;
             _loopTimer = 0f;
             _spawnQueue.Clear();
+
+            if (_inputResolver != null)
+                _inputResolver.OnPointerDown -= OnFirstInteraction;
+            _inputResolver = S.Get<IInputResolver>();
+            _waitingForFirstInteraction = true;
+            _inputResolver.OnPointerDown += OnFirstInteraction;
+        }
+
+        private void OnFirstInteraction(InputEventData _)
+        {
+            _waitingForFirstInteraction = false;
+            _inputResolver.OnPointerDown -= OnFirstInteraction;
         }
 
         private void OnDestroy()
@@ -75,6 +90,8 @@ namespace _Project.Code.Scripts.EnemySystem
                 _tutorialService.OnStepStarted -= OnTutorialStepStarted;
                 _tutorialService.OnStepCompleted -= OnTutorialStepCompleted;
             }
+            if (_inputResolver != null)
+                _inputResolver.OnPointerDown -= OnFirstInteraction;
         }
 
         private void OnTutorialStepStarted(TutorialStepData step)
@@ -91,7 +108,8 @@ namespace _Project.Code.Scripts.EnemySystem
 
         public void ManualUpdate(float deltaTime)
         {
-            bool spawnPaused = _pauseSpawnDuringTutorial && _tutorialService is { IsActive: true };
+            bool spawnPaused = _waitingForFirstInteraction ||
+                               (_pauseSpawnDuringTutorial && _tutorialService is { IsActive: true });
 
             if (!spawnPaused)
             {

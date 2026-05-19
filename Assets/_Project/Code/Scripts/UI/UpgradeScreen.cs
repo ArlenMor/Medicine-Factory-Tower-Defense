@@ -23,6 +23,8 @@ namespace _Project.Code.Scripts.UI
         private IPanelShower _shower;
         private IGamePauseHandler _gamePauseHandler;
         private bool _isPauseSetByScreen;
+        private ITutorialService _tutorialService;
+        private TutorialStepData _awaitedTutorialStep;
         
         public override void Initialize(PanelSettings settings)
         {
@@ -53,7 +55,16 @@ namespace _Project.Code.Scripts.UI
             
             _backGroundFade.onClick.AddListener(HidePanel);
             _closeButton.onClick.AddListener(HidePanel);
-            
+
+            if (S.TryGet<ITutorialService>(out var tutorial) && tutorial.IsActive)
+            {
+                _tutorialService = tutorial;
+                _closeButton.gameObject.SetActive(false);
+                _backGroundFade.interactable = false;
+                _tutorialService.OnStepStarted += OnTutorialStepStarted;
+                _tutorialService.OnStepCompleted += OnTutorialStepCompleted;
+            }
+
             RefreshButtons();
         }
 
@@ -91,6 +102,7 @@ namespace _Project.Code.Scripts.UI
                 upgradeData.Step += 1;
                 _gameData.AddResource(ResourceType.Credit, -upgradeDef.Costs[upgradeData.Step]);
                 upgradeData.Multiplier = upgradeDef.Multipliers[upgradeData.Step];
+                GameData.Instance.NotifyUpgradePurchased(upgrade.Type);
                 GameData.Instance.Stats.UpgradesPurchased++;
                 if (S.TryGet<ITutorialService>(out var tutorial))
                     tutorial.NotifyEvent(TutorialEventType.UpgradePurchased);
@@ -168,10 +180,31 @@ namespace _Project.Code.Scripts.UI
             return Mathf.Clamp01(rawChance);
         }
 
+        private void OnTutorialStepStarted(TutorialStepData step)
+        {
+            _awaitedTutorialStep = step;
+            _tutorialService.OnStepStarted -= OnTutorialStepStarted;
+        }
+
+        private void OnTutorialStepCompleted(TutorialStepData step)
+        {
+            if (step != _awaitedTutorialStep) return;
+
+            _closeButton.gameObject.SetActive(true);
+            _backGroundFade.interactable = true;
+            _tutorialService.OnStepCompleted -= OnTutorialStepCompleted;
+            _tutorialService = null;
+        }
+
         private void OnDestroy()
         {
             _backGroundFade.onClick.RemoveListener(HidePanel);
             _closeButton.onClick.RemoveListener(HidePanel);
+            if (_tutorialService != null)
+            {
+                _tutorialService.OnStepStarted -= OnTutorialStepStarted;
+                _tutorialService.OnStepCompleted -= OnTutorialStepCompleted;
+            }
             ReleasePause();
         }
     }

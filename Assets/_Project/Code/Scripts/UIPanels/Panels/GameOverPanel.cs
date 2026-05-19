@@ -32,7 +32,7 @@ namespace _Project.Code.Scripts.UIPanels.Panels
             }
 
             _gameOverSettings = gameOverSettings;
-            _finalButtonText.text = gameOverSettings.IsVictory ? "Next Level" : "Retry";
+            _finalButtonText.text = gameOverSettings.IsVictory ? "Next Level" : $"Retry Level {gameOverSettings.LevelIndex}";
             _titleText.text = gameOverSettings.IsVictory ? "Victory!" : "Defeat!";
 
             var stats = GameData.Instance.Stats;

@@ -30,6 +30,12 @@ namespace _Project.Code.Scripts.GameOver
             _gameOver = false;
         }
 
+        public void ForceVictory()
+        {
+            if (_gameOver) return;
+            EndGame(true);
+        }
+
         private void OnDestroy()
         {
             _playerDamageEventProvider.OnDied -= HandleDefeat;

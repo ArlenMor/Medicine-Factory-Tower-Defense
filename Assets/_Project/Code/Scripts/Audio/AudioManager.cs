@@ -37,6 +37,17 @@ namespace _Project.Code.Scripts.Audio
         [SerializeField] [Range(0f, 1f)] private float _clickHitVolume = 0.35f;
         [SerializeField] [Range(0f, 0.5f)] private float _clickHitPitchVariation = 0.15f;
 
+        [Header("Turret Shoot")]
+        [SerializeField] private AudioClip[] _turretShoot;
+        [SerializeField] [Range(0f, 1f)] private float _turretShootVolume = 0.4f;
+
+        [Header("Craft No Resources")]
+        [SerializeField] private AudioClip _craftNoResources;
+
+        [Header("Brain Hit")]
+        [SerializeField] private AudioClip[] _brainHit;
+        [SerializeField] [Range(0f, 1f)] private float _brainHitVolume = 0.7f;
+
         [Header("Enemy Attack")]
         [SerializeField] private AudioClip[] _enemyAttack;
         [SerializeField] [Range(0f, 1f)] private float _enemyAttackVolume = 0.55f;
@@ -49,6 +60,7 @@ namespace _Project.Code.Scripts.Audio
         [SerializeField] private AudioSource _sfxSource;
         [SerializeField] private AudioSource _gameResultSource;
         [SerializeField] private AudioSource _loopSfxSource;
+        [SerializeField] private AudioSource _brainHitSource;
 
         private Coroutine _crossfadeCoroutine;
 
@@ -219,6 +231,30 @@ namespace _Project.Code.Scripts.Audio
             if (_enemyAttack == null || _enemyAttack.Length == 0) return;
             var clip = _enemyAttack[URandom.Range(0, _enemyAttack.Length)];
             if (clip != null) _sfxSource.PlayOneShot(clip, _enemyAttackVolume);
+        }
+
+        public void PlayTurretShoot()
+        {
+            if (_turretShoot == null || _turretShoot.Length == 0) return;
+            var clip = _turretShoot[URandom.Range(0, _turretShoot.Length)];
+            if (clip != null) _sfxSource.PlayOneShot(clip, _turretShootVolume);
+        }
+
+        public void PlayCraftNoResources()
+        {
+            if (_craftNoResources == null) return;
+            _sfxSource.PlayOneShot(_craftNoResources);
+        }
+
+        public void PlayBrainHit()
+        {
+            if (_brainHit == null || _brainHit.Length == 0) return;
+            if (_brainHitSource.isPlaying) return;
+            var clip = _brainHit[URandom.Range(0, _brainHit.Length)];
+            if (clip == null) return;
+            _brainHitSource.clip = clip;
+            _brainHitSource.volume = _brainHitVolume;
+            _brainHitSource.Play();
         }
     }
 }

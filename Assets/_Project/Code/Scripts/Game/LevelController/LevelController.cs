@@ -41,6 +41,7 @@ namespace _Project.Code.Scripts.Game.LvlController
         private List<IManualUpdate> _manualUpdates;
         private readonly IGamePauseHandler _gamePauseHandler;
         private readonly IPanelShower _panelShower;
+        private int _currentLevelIndex;
 
         public LevelState State { get; private set; } = LevelState.NonPlaying;
 
@@ -110,8 +111,21 @@ namespace _Project.Code.Scripts.Game.LvlController
 
         #region Level Setup logic
 
+        public void RequestRestart()
+        {
+            if (State == LevelState.Playing)
+                State = LevelState.NonPlaying;
+        }
+
+        public void ForceVictory()
+        {
+            if (State == LevelState.Playing)
+                _levelEndChecker.ForceVictory();
+        }
+
         public void StartLevel(int levelIndex)
         {
+            _currentLevelIndex = levelIndex;
             var gameConfig = GameData.Instance.GameConfig;
             var levelConfig = gameConfig.GetLevel(levelIndex);
             GameData.Instance.ResetResources(levelConfig.StartCredits);
@@ -170,7 +184,7 @@ namespace _Project.Code.Scripts.Game.LvlController
             if (isVictory)
                 OnVictory?.Invoke();
 
-            _panelShower.ShowView(PanelType.GameOver, new GameOverPanelSettings { IsVictory = isVictory }).OnClose += () =>
+            _panelShower.ShowView(PanelType.GameOver, new GameOverPanelSettings { IsVictory = isVictory, LevelIndex = _currentLevelIndex }).OnClose += () =>
             {
                 State = LevelState.NonPlaying;
             };
