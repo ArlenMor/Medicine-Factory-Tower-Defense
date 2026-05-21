@@ -7,6 +7,8 @@ using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Timer;
 using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UI;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.UIService;
 using UnityEngine;
 using UnityEngine.UI;
@@ -85,6 +87,8 @@ namespace _Project.Code.Scripts.Garden
                                 break;
                         }
                         AudioManager.Instance.PlayResourceGather();
+                        if (S.TryGet<GameplayLogger>(out var harvLog))
+                            harvLog.LogHarvest(resourceType.ToString(), amount, isDoubled);
                         var plantWorldPos = _plantInstance.transform.position;
                         if (S.TryGet<FlyingIconService>(out var flyService))
                         {
@@ -188,6 +192,8 @@ namespace _Project.Code.Scripts.Garden
             _isOccupied = true;
             RegisterCurrentPlantedPlantTutorialTarget();
             GameData.Instance.Stats.PlantsPlanted++;
+            if (S.TryGet<GameplayLogger>(out var plantLog))
+                plantLog.LogPlant(plantType);
             AudioManager.Instance.PlayPlantPlanting();
             _panelShower.HideView(PanelType.PlantPanelInfo);
             if (S.TryGet<ITutorialService>(out var tutorial))

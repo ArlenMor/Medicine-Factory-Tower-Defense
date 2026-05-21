@@ -14,32 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.WaveConfig
   Waves:
   - WaveId: 1
-    StartTime: 10
-    ScoutCount: 2
-    GnawerCount: 0
+    StartTime: 5
+    ScoutCount: 5
+    GnawerCount: 3
     TankCount: 0
-    IntraSpawnInterval: 1.15
+    IntraSpawnInterval: 0.5
     Comment: L5 opener
   - WaveId: 2
-    StartTime: 32
-    ScoutCount: 3
-    GnawerCount: 1
+    StartTime: 24
+    ScoutCount: 5
+    GnawerCount: 4
     TankCount: 0
-    IntraSpawnInterval: 1.05
+    IntraSpawnInterval: 0.5
     Comment: L5 light mixed
-  - WaveId: 3
-    StartTime: 58
-    ScoutCount: 2
-    GnawerCount: 2
-    TankCount: 0
-    IntraSpawnInterval: 1
-    Comment: L5 gnawer pressure
-  - WaveId: 4
-    StartTime: 84
-    ScoutCount: 4
-    GnawerCount: 2
-    TankCount: 0
-    IntraSpawnInterval: 0.95
-    Comment: L5 loop wave
   LoopLastWave: 1
-  LoopDelay: 13
+  LoopDelay: 10

@@ -4,6 +4,7 @@ using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UIPanels.Settings;
 using _Project.Code.Scripts.UIService;
@@ -104,6 +105,8 @@ namespace _Project.Code.Scripts.UI
                 upgradeData.Multiplier = upgradeDef.Multipliers[upgradeData.Step];
                 GameData.Instance.NotifyUpgradePurchased(upgrade.Type);
                 GameData.Instance.Stats.UpgradesPurchased++;
+                if (S.TryGet<GameplayLogger>(out var upLog))
+                    upLog.LogPurchase($"Upgrade_{upgrade.Type}", upgradeDef.Costs[upgradeData.Step]);
                 if (S.TryGet<ITutorialService>(out var tutorial))
                     tutorial.NotifyEvent(TutorialEventType.UpgradePurchased);
                 AudioManager.Instance.PlayUpgrade();

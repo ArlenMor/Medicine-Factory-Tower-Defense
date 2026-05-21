@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.EnemySystem.WaveConfig
   Waves:
   - WaveId: 0
-    StartTime: 5
+    StartTime: 6
     ScoutCount: 3
     GnawerCount: 0
     TankCount: 0

@@ -4,6 +4,8 @@ using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.Tutorial;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -152,6 +154,8 @@ namespace _Project.Code.Scripts.EnemySystem
 
         private void StartWave(WaveData wave)
         {
+            if (S.TryGet<GameplayLogger>(out var wLog))
+                wLog.LogWaveStart(wave.WaveId, wave.ScoutCount, wave.GnawerCount, wave.TankCount);
             _spawnQueue.Clear();
 
             var list = new List<EnemyType>(wave.ScoutCount + wave.GnawerCount + wave.TankCount);
@@ -195,6 +199,8 @@ namespace _Project.Code.Scripts.EnemySystem
 
             if (_spawnQueue.Count == 0)
             {
+                if (S.TryGet<GameplayLogger>(out var lsLog))
+                    lsLog.LogWaveLastSpawn(_currentWaveIndex + 1);
                 _isSpawningWave = false;
                 _currentWaveIndex++;
             }
@@ -231,6 +237,11 @@ namespace _Project.Code.Scripts.EnemySystem
             enemy.OnDied -= HandleEnemyDied;
             _activeEnemies.Remove(enemy);
             GameData.Instance.Stats.EnemiesKilled++;
+            if (S.TryGet<GameplayLogger>(out var eLog))
+            {
+                string type = enemy is null ? "Unknown" : "Enemy";
+                eLog.LogEnemyKilled(type);
+            }
             if (S.TryGet<ITutorialService>(out var tutorial))
             {
                 tutorial.NotifyEvent(TutorialEventType.EnemyKilled);
@@ -238,12 +249,16 @@ namespace _Project.Code.Scripts.EnemySystem
                     tutorial.NotifyEvent(TutorialEventType.WaveCleared);
             }
 
-            if (_activeEnemies.Count == 0 && _spawnQueue.Count == 0 &&
-                _currentWaveIndex >= _waveConfig.Waves.Count &&
-                _waveConfig.LoopLastWave && !_isLoopCountdown)
+            if (_activeEnemies.Count == 0 && _spawnQueue.Count == 0)
             {
-                _isLoopCountdown = true;
-                _loopTimer = _waveConfig.LoopDelay;
+                if (S.TryGet<GameplayLogger>(out var wcLog) && _currentWaveIndex > 0)
+                    wcLog.LogWaveClear(_currentWaveIndex);
+
+                if (_currentWaveIndex >= _waveConfig.Waves.Count && _waveConfig.LoopLastWave && !_isLoopCountdown)
+                {
+                    _isLoopCountdown = true;
+                    _loopTimer = _waveConfig.LoopDelay;
+                }
             }
         }
     }

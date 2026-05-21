@@ -4,6 +4,7 @@ using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 
@@ -144,6 +145,8 @@ namespace _Project.Code.Scripts.BattleField
                 }
                 GameData.Instance.AddResource(ResourceType.Credit, -_dragItemData.CreditCost);
                 AudioManager.Instance.PlayBuilding();
+                if (S.TryGet<GameplayLogger>(out var dLog))
+                    dLog.LogPurchase(_dragItemData.Type == DefenseType.Turret ? "Turret" : "Barricade", _dragItemData.CreditCost);
                 if (S.TryGet<ITutorialService>(out var tutorial))
                     tutorial.NotifyEvent(TutorialEventType.BuildingPlaced);
             }

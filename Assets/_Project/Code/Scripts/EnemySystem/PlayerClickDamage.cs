@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.InputResolverService;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
 using UnityEngine;
 
 namespace _Project.Code.Scripts.EnemySystem
@@ -70,6 +72,8 @@ namespace _Project.Code.Scripts.EnemySystem
             enemy.TakeDamage(ClickDamage);
             _lastClickTime = Time.time;
             AudioManager.Instance.PlayClickHit();
+            if (S.TryGet<GameplayLogger>(out var pLog))
+                pLog.LogPlayerClick();
             SpawnHitEffect(data);
         }
 

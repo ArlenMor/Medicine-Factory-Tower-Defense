@@ -43,15 +43,15 @@ MonoBehaviour:
     Comment: L8 pressure
   - WaveId: 5
     StartTime: 90
-    ScoutCount: 6
-    GnawerCount: 4
+    ScoutCount: 5
+    GnawerCount: 3
     TankCount: 1
     IntraSpawnInterval: 0.8
     Comment: L8 late
   - WaveId: 6
     StartTime: 108
-    ScoutCount: 5
-    GnawerCount: 4
+    ScoutCount: 4
+    GnawerCount: 3
     TankCount: 2
     IntraSpawnInterval: 0.8
     Comment: L8 loop wave

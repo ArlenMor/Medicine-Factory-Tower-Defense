@@ -1,6 +1,8 @@
 using System;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.UI;
 using UnityEngine;
 
@@ -42,6 +44,8 @@ namespace _Project.Code.Scripts.EnemySystem
         {
             Debug.Log($"{nameof(BrainView)} took {damage} damage");
             _currentHp -= damage;
+            if (S.TryGet<GameplayLogger>(out var bLog))
+                bLog.LogBrainHit("Enemy", (int)damage, _currentHp);
             if (_currentHp <= 0f) _currentHp = 0f;
             if (_healthBar != null) _healthBar.SetHealth(_currentHp);
             DamagePopup.Spawn(transform.position, damage, transform, GameData.Instance.GameConfig.DamagePopupConfig);

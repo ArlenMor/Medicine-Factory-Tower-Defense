@@ -11,6 +11,8 @@ using _Project.Code.Scripts.UI;
 using DG.Tweening;
 using TMPro;
 using _Project.Code.Scripts.Audio;
+using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -177,6 +179,11 @@ namespace _Project.Code.Scripts.CraftSystem
             if (CanCraft(task.CostInfo))
             {
                 SpendResources(task.CostInfo);
+                if (S.TryGet<GameplayLogger>(out var crLog))
+                {
+                    crLog.LogResourceSpent(task.CostInfo.CrystalCost, task.CostInfo.PolymerCost, task.CostInfo.NanoGelCost);
+                    crLog.LogOrderStart((int)task.ResultType, task.CostInfo.CrystalCost, task.CostInfo.PolymerCost, task.CostInfo.NanoGelCost, _craftTotalTime);
+                }
                 _isCrafting = true;
                 _craftButton.interactable = false;
                 _craftTotalTime = task.ProduceTime / GameData.Instance.UpgradesData[UpgradeType.CraftSpeed].Multiplier;
@@ -211,6 +218,8 @@ namespace _Project.Code.Scripts.CraftSystem
             AudioManager.Instance.PlayCraftComplete();
 
             GameData.Instance.AddResource(ResourceType.Credit, task.CreditReward);
+            if (S.TryGet<GameplayLogger>(out var crLog))
+                crLog.LogOrderComplete((int)task.ResultType, task.CreditReward);
             _resourcesAnimatorWidget.PlayAnimation(ResourceType.Credit, task.CreditReward);
             if (S.TryGet<FlyingIconService>(out var flyService))
                 flyService.FlyCoin(transform);

@@ -21,7 +21,7 @@ MonoBehaviour:
     IntraSpawnInterval: 1.2
     Comment: L4 warmup
   - WaveId: 2
-    StartTime: 16
+    StartTime: 14
     ScoutCount: 3
     GnawerCount: 1
     TankCount: 0

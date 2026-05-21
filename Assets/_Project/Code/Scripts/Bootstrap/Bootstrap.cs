@@ -15,6 +15,8 @@ using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.ServiceLocator;
+using _Project.Code.Scripts.Stats;
+using _Project.Code.Scripts.UI;
 
 namespace _Project.Code.Scripts.Bootstrap
 {
@@ -44,6 +46,7 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private TutorialVisibilityController _tutorialVisibilityController;
         [SerializeField] private List<TutorialTarget> _tutorialTargets;
         [SerializeField] private FlyingIconService _flyingIconService;
+        [SerializeField] private LevelTimer _levelTimer;
         private GameData _gameData;
         private ITimerService _timerService;
         private ITaskService _taskService;
@@ -87,6 +90,11 @@ namespace _Project.Code.Scripts.Bootstrap
             //Defense Shop
             _defenseShopView.Initialize(_gameConfig.DefenseShopConfig);
 
+            //Logger + Timer (must register before GameController → LevelController)
+            var logger = new GameplayLogger();
+            S.Register(logger);
+            S.Register(_levelTimer);
+
             //Enemies
             _waveSpawner.ManualAwake(_gameConfig.EnemyConfig);
             S.Register<WaveSpawner>(_waveSpawner);
@@ -116,6 +124,7 @@ namespace _Project.Code.Scripts.Bootstrap
                 S.Register(_flyingIconService);
             //Audio
             _audioManager.PlayMainTheme();
+
             //Loading
             _loadingScreen.Hide();
         }

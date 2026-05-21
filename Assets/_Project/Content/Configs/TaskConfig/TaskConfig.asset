@@ -49,51 +49,51 @@ MonoBehaviour:
       PolymerCost: 1
       NanoGelCost: 0
   - ResultType: 6
-    CreditReward: 4
-    ProduceTime: 6
+    CreditReward: 5
+    ProduceTime: 8
     CostInfo:
-      CrystalCost: 1
-      PolymerCost: 1
+      CrystalCost: 2
+      PolymerCost: 2
       NanoGelCost: 1
   - ResultType: 7
-    CreditReward: 5
-    ProduceTime: 6
-    CostInfo:
-      CrystalCost: 0
-      PolymerCost: 2
-      NanoGelCost: 1
-  - ResultType: 8
     CreditReward: 6
-    ProduceTime: 7
-    CostInfo:
-      CrystalCost: 2
-      PolymerCost: 0
-      NanoGelCost: 2
-  - ResultType: 9
-    CreditReward: 6
-    ProduceTime: 7
-    CostInfo:
-      CrystalCost: 2
-      PolymerCost: 2
-      NanoGelCost: 1
-  - ResultType: 10
-    CreditReward: 7
-    ProduceTime: 8
-    CostInfo:
-      CrystalCost: 1
-      PolymerCost: 2
-      NanoGelCost: 2
-  - ResultType: 11
-    CreditReward: 8
-    ProduceTime: 8
+    ProduceTime: 9
     CostInfo:
       CrystalCost: 3
       PolymerCost: 2
       NanoGelCost: 1
-  - ResultType: 12
-    CreditReward: 8
-    ProduceTime: 9
+  - ResultType: 8
+    CreditReward: 7
+    ProduceTime: 10
     CostInfo:
-      CrystalCost: 2
+      CrystalCost: 3
       PolymerCost: 2
       NanoGelCost: 2
+  - ResultType: 9
+    CreditReward: 7
+    ProduceTime: 11
+    CostInfo:
+      CrystalCost: 3
+      PolymerCost: 3
+      NanoGelCost: 2
+  - ResultType: 10
+    CreditReward: 8
+    ProduceTime: 12
+    CostInfo:
+      CrystalCost: 3
+      PolymerCost: 3
+      NanoGelCost: 3
+  - ResultType: 11
+    CreditReward: 9
+    ProduceTime: 13
+    CostInfo:
+      CrystalCost: 4
+      PolymerCost: 3
+      NanoGelCost: 3
+  - ResultType: 12
+    CreditReward: 10
+    ProduceTime: 15
+    CostInfo:
+      CrystalCost: 4
+      PolymerCost: 4
+      NanoGelCost: 3

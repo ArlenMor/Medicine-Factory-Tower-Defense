@@ -10,6 +10,8 @@ using _Project.Code.Scripts.GameOver;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.TaskSystem;
 using _Project.Code.Scripts.Tutorial;
+using _Project.Code.Scripts.Stats;
+using _Project.Code.Scripts.UI;
 using _Project.Code.Scripts.UIPanels.Settings;
 using _Project.Code.Scripts.UIService;
 
@@ -36,6 +38,8 @@ namespace _Project.Code.Scripts.Game.LvlController
         private IFieldSystem _fieldSystem;
         private BrainView _brain;
         private CraftStantionView _craftStantionView;
+        private LevelTimer _timer;
+        private GameplayLogger _logger;
         private const float ShowDelay = 1.5f;
 
         private List<IManualUpdate> _manualUpdates;
@@ -60,6 +64,8 @@ namespace _Project.Code.Scripts.Game.LvlController
             _fieldSystem = S.Get<IFieldSystem>();
             _brain = S.Get<BrainView>();
             _craftStantionView = S.Get<CraftStantionView>();
+            _timer = S.Get<LevelTimer>();
+            _logger = S.Get<GameplayLogger>();
 
             _defenseDragController.Initialize(GameData.Instance.GameConfig.DefenseShopConfig, this);
 
@@ -139,6 +145,9 @@ namespace _Project.Code.Scripts.Game.LvlController
             _gardenBed.StartLevel(levelConfig.InitialPlants);
             _levelEndChecker.Reset();
             AudioManager.Instance.PlayMainTheme();
+            _timer.StartTimer();
+            _logger.StartLevel(levelIndex);
+
             State = LevelState.Playing;
 
             if (levelConfig.TutorialSequence != null && S.TryGet<ITutorialService>(out var tutorial))
@@ -179,6 +188,9 @@ namespace _Project.Code.Scripts.Game.LvlController
         {
             //TODO: add coroutimeService 
             //yield return new WaitForSeconds(ShowDelay);
+
+            _timer.StopTimer();
+            _logger.EndLevel(isVictory);
 
             State = isVictory ? LevelState.Win : LevelState.Loss;
             if (isVictory)

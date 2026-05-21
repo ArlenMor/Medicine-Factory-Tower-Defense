@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Configs.LevelConfig
   WaveConfig: {fileID: 11400000, guid: 79152b51602f7fc47b33bab4f058f019, type: 2}
   InitialPlants: []
-  StartCredits: 25
+  StartCredits: 38
   TutorialSequence: {fileID: 0}
   PauseSpawnDuringTutorial: 0
