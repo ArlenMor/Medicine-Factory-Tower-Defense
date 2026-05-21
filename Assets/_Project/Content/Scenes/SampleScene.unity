@@ -507,7 +507,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 711
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &53932660
 GameObject:
@@ -1582,7 +1582,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2057575618675085026, guid: 22755591792191845931a2fb70b48b1c, type: 3}
       propertyPath: m_Name
-      value: PREF_ShopButton (1)
+      value: PREF_ShopButton
       objectReference: {fileID: 0}
     - target: {fileID: 3041825264620180061, guid: 22755591792191845931a2fb70b48b1c, type: 3}
       propertyPath: m_Pivot.x
@@ -1710,7 +1710,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3041825264620180061, guid: 22755591792191845931a2fb70b48b1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1852863417}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22755591792191845931a2fb70b48b1c, type: 3}
 --- !u!224 &256307066 stripped
@@ -1902,6 +1905,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &286042794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1431678838542627354, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
+  m_PrefabInstance: {fileID: 1464838868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &305450507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3112096519651701621, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
@@ -2101,7 +2109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.GameController.GameController
   _levelText: {fileID: 1174525935}
   _restartButton: {fileID: 2051346929}
-  _cheatSkipLevel: {fileID: 0}
+  _cheatSkipLevel: {fileID: 1168830827}
 --- !u!114 &382477788 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5379454922502546747, guid: 2639e7c1ef7bb2145809071669d54baf, type: 3}
@@ -5713,6 +5721,9 @@ MonoBehaviour:
   - {fileID: 285500250}
   - {fileID: 1294299778}
   - {fileID: 1324404298}
+  - {fileID: 1137099064}
+  - {fileID: 1852863418}
+  - {fileID: 1464838872}
   _flyingIconService: {fileID: 2129047123}
 --- !u!4 &835447615
 Transform:
@@ -7584,6 +7595,55 @@ MonoBehaviour:
   _buttons:
   - {fileID: 1970904077}
   - {fileID: 1031964162}
+--- !u!1 &1137099062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1137099063}
+  - component: {fileID: 1137099064}
+  m_Layer: 0
+  m_Name: TutorBarricade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1137099063
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137099062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1970904076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1137099064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137099062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
+  _id: TutorBarricade
 --- !u!1 &1168830824
 GameObject:
   m_ObjectHideFlags: 0
@@ -11088,7 +11148,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1431678838542627354, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1464838872}
   m_SourcePrefab: {fileID: 100100000, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
 --- !u!224 &1464838869 stripped
 RectTransform:
@@ -11100,7 +11163,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2984873792770545651, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
   m_PrefabInstance: {fileID: 1464838868}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 286042794}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4035e9b82df4ede854fb1ebc24d1ffc, type: 3}
@@ -11117,6 +11180,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56066172a1c442899caf46129e8686ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.ResourcesAnimatorWidget
+--- !u!114 &1464838872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286042794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
+  _id: TutorHudCredits
 --- !u!1 &1470315912
 GameObject:
   m_ObjectHideFlags: 0
@@ -16227,6 +16303,55 @@ MonoBehaviour:
   _gameResultSource: {fileID: 1019378732}
   _loopSfxSource: {fileID: 2543996}
   _brainHitSource: {fileID: 637765879}
+--- !u!1 &1852863416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1852863417}
+  - component: {fileID: 1852863418}
+  m_Layer: 0
+  m_Name: TutorTurret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1852863417
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852863416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 256307066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1852863418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852863416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71270fff064a484aa6a63f5c349015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialTarget
+  _id: TutorTurret
 --- !u!1 &1854350595
 GameObject:
   m_ObjectHideFlags: 0
@@ -18955,7 +19080,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3041825264620180061, guid: 22755591792191845931a2fb70b48b1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1137099063}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22755591792191845931a2fb70b48b1c, type: 3}
 --- !u!1660057539 &9223372036854775807

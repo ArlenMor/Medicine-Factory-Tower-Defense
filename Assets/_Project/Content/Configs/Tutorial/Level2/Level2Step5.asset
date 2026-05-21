@@ -12,23 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60793dccc39d0d148ad89b5cad9b4093, type: 3}
   m_Name: Level2Step5
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialStepData
-  StepName: Survive the Attack
-  InstructionText: Defend the core and complete the orders to finish the level
+  StepName: Turrete
+  InstructionText: "This is a turret. \nIt slows enemies and attacks the strongest
+    enemy in range"
   Highlights:
-  - Type: 1
-    TargetId: TutorEnemySpawn
-    UITarget: {fileID: 0}
-    WorldTarget: {fileID: 0}
-    WorldSize: 1
-    Padding: 8
   - Type: 0
-    TargetId: TutorOrdersStation
-    UITarget: {fileID: 0}
-    WorldTarget: {fileID: 0}
-    WorldSize: 1
-    Padding: 8
-  - Type: 0
-    TargetId: TutorCraftStation
+    TargetId: TutorTurret
     UITarget: {fileID: 0}
     WorldTarget: {fileID: 0}
     WorldSize: 1
@@ -39,6 +28,6 @@ MonoBehaviour:
   WaitCondition: 0
   WaitCount: 1
   SpawnWaveOnStart: 0
-  SpawnWaveOnComplete: 1
-  TextPosition: 7
+  SpawnWaveOnComplete: 0
+  TextPosition: 5
   CustomTextAnchor: {x: 0.5, y: 0.1}
