@@ -5723,7 +5723,7 @@ MonoBehaviour:
   - {fileID: 1324404298}
   - {fileID: 1137099064}
   - {fileID: 1852863418}
-  - {fileID: 1464838872}
+  - {fileID: 1464838873}
   _flyingIconService: {fileID: 2129047123}
 --- !u!4 &835447615
 Transform:
@@ -11151,7 +11151,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1431678838542627354, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1464838872}
+      addedObject: {fileID: 1464838873}
   m_SourcePrefab: {fileID: 100100000, guid: 4719571c2daae8946a6fdbfb0656653d, type: 3}
 --- !u!224 &1464838869 stripped
 RectTransform:
@@ -11180,7 +11180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56066172a1c442899caf46129e8686ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.ResourcesAnimatorWidget
---- !u!114 &1464838872
+--- !u!114 &1464838873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16284,7 +16284,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e039d4bc530ae024e90099aa633c7ef3, type: 3}
   - {fileID: 8300000, guid: 7c9bfc779aa4f044695efe3b076eede5, type: 3}
   _turretShootVolume: 0.5
-  _craftNoResources: {fileID: 8300000, guid: bc476c2cc96c4f641993fa2f9983b6e4, type: 3}
+  _wrongNotify: {fileID: 8300000, guid: bc476c2cc96c4f641993fa2f9983b6e4, type: 3}
   _brainHit:
   - {fileID: 8300000, guid: 9bece75d120fee641aa57957a5a313f5, type: 3}
   - {fileID: 8300000, guid: 7e05ce7e6f637874eb8b802e06c9738e, type: 3}

@@ -11,15 +11,16 @@ namespace _Project.Code.Scripts.BattleField
         public event Action<Barricade> OnDestroyed;
         public event Action<IFieldPlaceable> OnPlaceableDestroyed;
 
-        [SerializeField] private float _maxHp = 80f;
         [SerializeField] private HealthBar _healthBar;
 
+        private float _maxHp;
         private float _currentHp;
 
         public bool IsDead => _currentHp <= 0f;
 
-        private void Awake()
+        public void Initialize(DefenseItemData data)
         {
+            _maxHp = data.MaxHp;
             _currentHp = _maxHp;
             if (_healthBar != null) _healthBar.Initialize(_maxHp);
         }

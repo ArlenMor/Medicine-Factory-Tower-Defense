@@ -20,6 +20,17 @@ namespace _Project.Code.Scripts.BattleField
         [Tooltip("Смещение пивота в клетках от левого-нижнего угла объекта")]
         public Vector2 PivotOffset;
 
+        [Header("Combat")]
+        public float MaxHp;
+
+        [Header("Turret Only")]
+        public float AttackRadius;
+        public float FireRate;
+        public float Damage;
+        public float BulletSpeed;
+        public float RadiusFadeDuration;
+        public float RadiusMaxAlpha;
+
         public int SafeWidth => Mathf.Max(1, Width);
         public int SafeHeight => Mathf.Max(1, Height);
     }

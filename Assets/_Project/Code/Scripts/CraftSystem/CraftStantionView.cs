@@ -196,7 +196,7 @@ namespace _Project.Code.Scripts.CraftSystem
             else
             {
                 Debug.Log("Not enough resources to craft!");
-                AudioManager.Instance.PlayCraftNoResources();
+                AudioManager.Instance.PlayWrongNotify();
                 Shake();
             }
         }

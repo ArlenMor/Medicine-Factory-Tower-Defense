@@ -20,6 +20,13 @@ MonoBehaviour:
     Width: 2
     Height: 1
     PivotOffset: {x: 0, y: 0}
+    MaxHp: 80
+    AttackRadius: 0
+    FireRate: 0
+    Damage: 0
+    BulletSpeed: 0
+    RadiusFadeDuration: 0
+    RadiusMaxAlpha: 0
   - Type: 1
     Prefab: {fileID: 3853458227276684402, guid: 049e6ab88dc6fa441929c3e41c97a0bf, type: 3}
     Icon: {fileID: 21300000, guid: 9cb60776ab699134b97e9e9e5ad3bd69, type: 3}
@@ -27,3 +34,10 @@ MonoBehaviour:
     Width: 1
     Height: 1
     PivotOffset: {x: 0, y: 0}
+    MaxHp: 60
+    AttackRadius: 1.75
+    FireRate: 0.75
+    Damage: 8
+    BulletSpeed: 5
+    RadiusFadeDuration: 1
+    RadiusMaxAlpha: 0.25

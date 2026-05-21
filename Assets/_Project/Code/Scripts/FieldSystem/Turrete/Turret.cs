@@ -10,7 +10,6 @@ namespace _Project.Code.Scripts.BattleField
     {
         public event Action<IFieldPlaceable> OnPlaceableDestroyed;
 
-        [SerializeField] private TurretConfig _config;
         [SerializeField] private TurretShooter _shooter;
         [SerializeField] private TurretRadiusDisplay _radiusDisplay;
         [SerializeField] private HealthBar _healthBar;
@@ -20,12 +19,12 @@ namespace _Project.Code.Scripts.BattleField
 
         public bool IsDead => _currentHp <= 0f;
 
-        private void Awake()
+        public void Initialize(DefenseItemData data)
         {
-            _currentHp = _config.MaxHp;
-            _shooter.Initialize(_config.AttackRadius, _config.FireRate, _config.Damage, _config.BulletSpeed);
-            _radiusDisplay.Initialize(_config.AttackRadius, _config.RadiusFadeDuration, _config.RadiusMaxAlpha);
-            if (_healthBar != null) _healthBar.Initialize(_config.MaxHp);
+            _currentHp = data.MaxHp;
+            _shooter.Initialize(data.AttackRadius, data.FireRate, data.Damage, data.BulletSpeed);
+            _radiusDisplay.Initialize(data.AttackRadius, data.RadiusFadeDuration, data.RadiusMaxAlpha);
+            if (_healthBar != null) _healthBar.Initialize(data.MaxHp);
         }
 
         public void ManualUpdate(float deltaTime)

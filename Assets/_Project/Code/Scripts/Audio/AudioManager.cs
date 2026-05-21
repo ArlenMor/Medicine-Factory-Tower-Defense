@@ -41,8 +41,8 @@ namespace _Project.Code.Scripts.Audio
         [SerializeField] private AudioClip[] _turretShoot;
         [SerializeField] [Range(0f, 1f)] private float _turretShootVolume = 0.4f;
 
-        [Header("Craft No Resources")]
-        [SerializeField] private AudioClip _craftNoResources;
+        [Header("Wrong Notify")]
+        [SerializeField] private AudioClip _wrongNotify;
 
         [Header("Brain Hit")]
         [SerializeField] private AudioClip[] _brainHit;
@@ -240,10 +240,10 @@ namespace _Project.Code.Scripts.Audio
             if (clip != null) _sfxSource.PlayOneShot(clip, _turretShootVolume);
         }
 
-        public void PlayCraftNoResources()
+        public void PlayWrongNotify()
         {
-            if (_craftNoResources == null) return;
-            _sfxSource.PlayOneShot(_craftNoResources);
+            if (_wrongNotify == null) return;
+            _sfxSource.PlayOneShot(_wrongNotify);
         }
 
         public void PlayBrainHit()

@@ -58,7 +58,12 @@ namespace _Project.Code.Scripts.BattleField
             if (button == null) return;
 
             int credits = GameData.Instance.Resources[ResourceType.Credit];
-            if (credits < button.Price) return;
+            
+            if (credits < button.Price) 
+            {
+                AudioManager.Instance.PlayWrongNotify();
+                return;
+            }
 
             DefenseItemData? found = null;
             foreach (var item in _shopConfig.Items)
@@ -77,8 +82,17 @@ namespace _Project.Code.Scripts.BattleField
             Vector3 worldPos = ScreenToWorld(data.ScreenPosition);
             _dragInstance = Instantiate(_dragItemData.Prefab, worldPos, Quaternion.identity);
             _dragPlaceable = _dragInstance.GetComponent<IFieldPlaceable>();
+
             if (_dragInstance.TryGetComponent(out Turret dragTurret))
+            {
+                dragTurret.Initialize(_dragItemData);
                 dragTurret.LockRadius(true);
+            }
+            else if (_dragInstance.TryGetComponent(out Barricade dragBarricade))
+            {
+                dragBarricade.Initialize(_dragItemData);
+            }
+
             SetCollidersEnabled(_dragInstance, false);
             _isDragging = true;
             _isSnapped = false;
