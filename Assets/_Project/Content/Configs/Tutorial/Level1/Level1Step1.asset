@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Welcome
   InstructionText: Welcome to the factory. Your job is to grow plants, craft medicine,
     and keep the station running!
+  LocalizationKey: level1Step1
   Highlights: []
   BlockInput: 0
   Trigger: 1
@@ -22,5 +23,6 @@ MonoBehaviour:
   WaitCondition: 0
   WaitCount: 1
   SpawnWaveOnStart: 0
+  SpawnWaveOnComplete: 0
   TextPosition: 4
   CustomTextAnchor: {x: 0.5, y: 0.6}

@@ -129,6 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.StoredResourceView
   resourceType: 1
   _resourceAmount: {fileID: 8496542194420961304}
+  _bumpPunch: 0.3
+  _bumpDuration: 0.35
 --- !u!1 &3601744676077222064
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,8 +349,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
-  m_sharedMaterial: {fileID: -227520147869339562, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f034c4e42517c4c4d9436fecf08b4aee, type: 2}
+  m_sharedMaterial: {fileID: -8117602718824465666, guid: f034c4e42517c4c4d9436fecf08b4aee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -2,6 +2,7 @@
 using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.EnemySystem;
+using _Project.Code.Scripts.Localization;
 using _Project.Code.Scripts.UI;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace _Project.Code.Scripts
         public DefenseShopConfig DefenseShopConfig;
         public DamagePopupConfig DamagePopupConfig;
         public LevelOrdersConfig LevelOrdersConfig;
+        public LocalizationConfig LocalizationConfig;
 
         public List<LevelConfig> Levels;
         public LevelConfig GetLevel(int levelIndex)

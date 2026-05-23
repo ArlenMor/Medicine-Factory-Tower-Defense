@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Level1Step4
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialStepData
   StepName: Craft Station
-  InstructionText: This is the Craft Station. Use your resources here to craft medicine
-    and complete orders
+  InstructionText: This is a crafting station. Click to create medicines in exchange
+    for resources and fulfill orders.
+  LocalizationKey: level1Step4
   Highlights:
   - Type: 0
     TargetId: TutorCraftStation
@@ -29,5 +30,5 @@ MonoBehaviour:
   WaitCount: 1
   SpawnWaveOnStart: 0
   SpawnWaveOnComplete: 0
-  TextPosition: 4
-  CustomTextAnchor: {x: 0.5, y: 0.6}
+  TextPosition: 9
+  CustomTextAnchor: {x: 1, y: 0.6}

@@ -11,7 +11,6 @@ using _Project.Code.Scripts.UI;
 using DG.Tweening;
 using TMPro;
 using _Project.Code.Scripts.Audio;
-using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Stats;
 using UnityEngine;
 using UnityEngine.UI;
@@ -197,7 +196,8 @@ namespace _Project.Code.Scripts.CraftSystem
                 if (!_firstCraftStarted)
                 {
                     _firstCraftStarted = true;
-                    _gardenAttentionAnimator?.PlayAttention();
+                    if (ShouldPlayAttention())
+                        _gardenAttentionAnimator?.PlayAttention();
                 }
             }
             else
@@ -231,7 +231,7 @@ namespace _Project.Code.Scripts.CraftSystem
             if (!_firstOrderCompleted)
             {
                 _firstOrderCompleted = true;
-                if (_gardenBed != null && _gardenBed.OccupiedSlotsCount < 3)
+                if (ShouldPlayAttention())
                     _gardenAttentionAnimator?.PlayAttention();
             }
 
@@ -313,6 +313,17 @@ namespace _Project.Code.Scripts.CraftSystem
             _taskIcon.sprite = null;
             _taskIcon.enabled = false;
             UpdateTimerText(0f);
+        }
+
+        private bool ShouldPlayAttention()
+        {
+            if (_gardenBed == null)
+                return false;
+            if (S.TryGet<ITutorialService>(out var tutorial) && tutorial.IsActive)
+                return false;
+            if (_gardenBed.OccupiedSlotsCount > 3)
+                return false;
+            return true;
         }
 
         private bool CanCraft(ProductionCost cost)

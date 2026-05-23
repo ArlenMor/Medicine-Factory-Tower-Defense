@@ -2,6 +2,8 @@ using System;
 using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Garden;
+using _Project.Code.Scripts.Localization;
+using _Project.Code.Scripts.ServiceLocator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,8 +30,9 @@ namespace _Project.Code.Scripts.UI
             var resultProduce = resourceData.DefaultProductivity * GameData.Instance.GetProduceExpectedMultiplier();
             var resultGrowTime = resourceData.GrowthTime / growSpeedMultiplier;
             
-            _productivityText.text = $"Productivity \n {resultProduce:0.#} p/s";
-            _growTimeText.text = $"Grow Time \n {MathF.Round(resultGrowTime, 1)} sec";
+            var loc = S.Get<LocalizationService>();
+            _productivityText.text = loc.GetString("plant_productivity", resultProduce);
+            _growTimeText.text = loc.GetString("plant_grow_time", MathF.Round(resultGrowTime, 1));
         }
 
         public void OnDestroy()

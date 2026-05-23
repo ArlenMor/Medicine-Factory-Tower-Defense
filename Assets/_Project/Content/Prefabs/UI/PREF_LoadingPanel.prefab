@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6316616212267901102}
   - component: {fileID: 7428608181688789339}
   - component: {fileID: 8912267363033797369}
+  - component: {fileID: 3039884144690103879}
   m_Layer: 5
   m_Name: GameResultText (1)
   m_TagString: Untagged
@@ -65,10 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chair Factory Tower Defence
+  m_text: Medicine Factory Tower Defense
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
-  m_sharedMaterial: {fileID: -227520147869339562, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f034c4e42517c4c4d9436fecf08b4aee, type: 2}
+  m_sharedMaterial: {fileID: -8117602718824465666, guid: f034c4e42517c4c4d9436fecf08b4aee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 138.4
+  m_fontSize: 120.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -137,6 +138,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3039884144690103879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320084343404235192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d21000dfddfb64dba4ca0e52676d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.LocalizedTMPro
+  _key: KEY_GameName
+  _localizeOnStart: 1
 --- !u!1 &1342239090040022752
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +317,7 @@ GameObject:
   - component: {fileID: 4073684862429961486}
   - component: {fileID: 1989182738791269659}
   - component: {fileID: 1701608911956854234}
+  - component: {fileID: 2119589945295866291}
   m_Layer: 5
   m_Name: GameResultText
   m_TagString: Untagged
@@ -358,8 +374,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Loading...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
-  m_sharedMaterial: {fileID: -227520147869339562, guid: 5cf283530b996df4d92588aa3671c45b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f034c4e42517c4c4d9436fecf08b4aee, type: 2}
+  m_sharedMaterial: {fileID: -8117602718824465666, guid: f034c4e42517c4c4d9436fecf08b4aee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -428,6 +444,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2119589945295866291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4911711684557571245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d21000dfddfb64dba4ca0e52676d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.LocalizedTMPro
+  _key: KEY_Loading
+  _localizeOnStart: 1
 --- !u!1 &8602693659395538769
 GameObject:
   m_ObjectHideFlags: 0

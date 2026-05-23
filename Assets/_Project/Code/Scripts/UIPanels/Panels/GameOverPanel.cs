@@ -41,7 +41,7 @@ namespace _Project.Code.Scripts.UIPanels.Panels
                               $"Resources collected: {stats.ResourcesCollected}\n" +
                               $"Plants planted: {stats.PlantsPlanted}\n" +
                               $"Credits earned: {stats.CreditsEarned}\n" +
-                              $"Time played: {time:mm\\:ss}\n" +
+                              $"Time played: {time:mm\\:ss}\n" +        
                               $"Upgrades purchased: {stats.UpgradesPurchased}\n" +
                               $"Turrets built: {stats.TurretsBuilt}\n" +
                               $"Barricades built: {stats.BarricadesBuilt}";

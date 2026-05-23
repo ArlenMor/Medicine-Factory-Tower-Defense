@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
 using _Project.Code.Scripts.Data;
+using _Project.Code.Scripts.Localization;
+using _Project.Code.Scripts.ServiceLocator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +39,7 @@ namespace _Project.Code.Scripts.UI
         {
             if (IsMax)
             {
-                _maxText.text = $"MAX: {currentValue}";
+                _maxText.text = S.Get<LocalizationService>().GetString("upgrade_max", currentValue);
             }
             else
             {

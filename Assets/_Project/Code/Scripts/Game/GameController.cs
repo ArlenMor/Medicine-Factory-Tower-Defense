@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using _Project.Code.Scripts.Cheats;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game.LvlController;
+using _Project.Code.Scripts.Localization;
+using _Project.Code.Scripts.ServiceLocator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,7 +50,7 @@ namespace _Project.Code.Scripts.Game
                 if (_levelText != null)
                 {
                     var totalLevels = GameData.Instance.GameConfig.Levels.Count;
-                    _levelText.text = $"Level {_currentLevel}/{totalLevels}";
+                    _levelText.text = S.Get<LocalizationService>().GetString("level_label", _currentLevel, totalLevels);
                 }
                 _levelController.StartLevel(_currentLevel);
             }

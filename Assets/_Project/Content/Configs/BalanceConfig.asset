@@ -29,11 +29,11 @@ MonoBehaviour:
   - 2
   - 1.8
   - 1.6
-  - 1.5
-  - 1.4
-  - 1.35
-  - 1.3
-  - 1.25
+  - 1.2
+  - 1.2
+  - 1.2
+  - 1.2
+  - 1.2
   - 1.2
   TargetDifficultyCurve:
     serializedVersion: 2
@@ -123,157 +123,159 @@ MonoBehaviour:
     Warnings: []
   - LevelIndex: 4
     StartCredits: 20
-    TotalOrderReward: 12
-    TotalAvailableCredits: 32
-    OptimalUpgradeCost: 10
-    CreditsForDefense: 22
-    MinClearTimeSec: 25.037035
-    ClickDistractionSec: 0.35
+    TotalOrderReward: 15
+    TotalAvailableCredits: 35
+    OptimalUpgradeCost: 0
+    CreditsForDefense: 35
+    MinClearTimeSec: 30.962961
+    ClickDistractionSec: 0.7
     ReachingBrain: 0
-    EstimatedClearTimeSec: 40.619255
+    EstimatedClearTimeSec: 50.66074
     TargetTimeSec: 60
-    TimeInTarget: 0
+    TimeInTarget: 1
     TotalEnemies: 7
     TotalEnemyHP: 150
     EnemyDpsToBrain: 10.793651
     BrainSurvivalSec: 18.529411
-    MaxTurretsAffordable: 2
-    MaxBarricadesAffordable: 4
-    DifficultyScore: 0.4340376
+    MaxTurretsAffordable: 3
+    MaxBarricadesAffordable: 7
+    DifficultyScore: 0.4348177
     Warnings: []
   - LevelIndex: 5
     StartCredits: 20
-    TotalOrderReward: 19
-    TotalAvailableCredits: 39
+    TotalOrderReward: 32
+    TotalAvailableCredits: 52
     OptimalUpgradeCost: 20
-    CreditsForDefense: 19
-    MinClearTimeSec: 33.925922
-    ClickDistractionSec: 4.8999996
-    ReachingBrain: 1
-    EstimatedClearTimeSec: 58.238884
+    CreditsForDefense: 32
+    MinClearTimeSec: 49.48148
+    ClickDistractionSec: 2.625
+    ReachingBrain: 3
+    EstimatedClearTimeSec: 62.52778
     TargetTimeSec: 70
     TimeInTarget: 1
-    TotalEnemies: 33
-    TotalEnemyHP: 930
-    EnemyDpsToBrain: 58.253967
-    BrainSurvivalSec: 3.4332426
-    MaxTurretsAffordable: 1
-    MaxBarricadesAffordable: 3
-    DifficultyScore: 0.68509316
+    TotalEnemies: 17
+    TotalEnemyHP: 474
+    EnemyDpsToBrain: 29.84127
+    BrainSurvivalSec: 6.7021275
+    MaxTurretsAffordable: 3
+    MaxBarricadesAffordable: 6
+    DifficultyScore: 0.5663681
     Warnings:
-    - "Brain survives 3,4s \u2014 33 enemies, 58,3 DPS"
+    - "Brain survives 6,7s \u2014 17 enemies, 29,8 DPS"
+    - "First wave at 5s \u2014 before first harvest (6s)"
   - LevelIndex: 6
     StartCredits: 20
-    TotalOrderReward: 22
-    TotalAvailableCredits: 42
+    TotalOrderReward: 37
+    TotalAvailableCredits: 57
     OptimalUpgradeCost: 20
-    CreditsForDefense: 22
-    MinClearTimeSec: 35.629627
-    ClickDistractionSec: 1.05
+    CreditsForDefense: 37
+    MinClearTimeSec: 59.7037
+    ClickDistractionSec: 1.75
     ReachingBrain: 0
-    EstimatedClearTimeSec: 51.35148
+    EstimatedClearTimeSec: 73.744446
     TargetTimeSec: 80
-    TimeInTarget: 0
+    TimeInTarget: 1
     TotalEnemies: 27
     TotalEnemyHP: 876
     EnemyDpsToBrain: 51.552795
     BrainSurvivalSec: 3.879518
-    MaxTurretsAffordable: 2
-    MaxBarricadesAffordable: 4
-    DifficultyScore: 0.6379366
+    MaxTurretsAffordable: 3
+    MaxBarricadesAffordable: 7
+    DifficultyScore: 0.63842905
     Warnings:
     - "Brain survives 3,9s \u2014 27 enemies, 51,6 DPS"
   - LevelIndex: 7
     StartCredits: 30
-    TotalOrderReward: 32
-    TotalAvailableCredits: 62
+    TotalOrderReward: 46
+    TotalAvailableCredits: 76
     OptimalUpgradeCost: 37
-    CreditsForDefense: 25
-    MinClearTimeSec: 42.25926
-    ClickDistractionSec: 1.4
+    CreditsForDefense: 39
+    MinClearTimeSec: 72.296295
+    ClickDistractionSec: 4.0249996
     ReachingBrain: 0
-    EstimatedClearTimeSec: 58.94
+    EstimatedClearTimeSec: 91.585556
     TargetTimeSec: 100
-    TimeInTarget: 0
+    TimeInTarget: 1
     TotalEnemies: 36
     TotalEnemyHP: 1245
     EnemyDpsToBrain: 71.29745
     BrainSurvivalSec: 2.8051496
-    MaxTurretsAffordable: 2
-    MaxBarricadesAffordable: 5
-    DifficultyScore: 0.6971996
+    MaxTurretsAffordable: 3
+    MaxBarricadesAffordable: 7
+    DifficultyScore: 0.7002288
     Warnings:
     - "Brain survives 2,8s \u2014 36 enemies, 71,3 DPS"
   - LevelIndex: 8
     StartCredits: 32
-    TotalOrderReward: 36
-    TotalAvailableCredits: 68
+    TotalOrderReward: 57
+    TotalAvailableCredits: 89
     OptimalUpgradeCost: 37
-    CreditsForDefense: 31
-    MinClearTimeSec: 44.51852
-    ClickDistractionSec: 1.75
+    CreditsForDefense: 52
+    MinClearTimeSec: 89.111115
+    ClickDistractionSec: 7.35
     ReachingBrain: 0
-    EstimatedClearTimeSec: 60.149075
+    EstimatedClearTimeSec: 115.75334
     TargetTimeSec: 120
-    TimeInTarget: 0
+    TimeInTarget: 1
     TotalEnemies: 52
     TotalEnemyHP: 1851
     EnemyDpsToBrain: 104.75501
     BrainSurvivalSec: 1.9092165
-    MaxTurretsAffordable: 3
-    MaxBarricadesAffordable: 6
-    DifficultyScore: 0.7965604
+    MaxTurretsAffordable: 5
+    MaxBarricadesAffordable: 10
+    DifficultyScore: 0.8017208
     Warnings:
     - "Brain survives 1,9s \u2014 52 enemies, 104,8 DPS"
   - LevelIndex: 9
     StartCredits: 35
-    TotalOrderReward: 40
-    TotalAvailableCredits: 75
+    TotalOrderReward: 57
+    TotalAvailableCredits: 92
     OptimalUpgradeCost: 37
-    CreditsForDefense: 38
-    MinClearTimeSec: 51.18519
-    ClickDistractionSec: 6.9999995
+    CreditsForDefense: 55
+    MinClearTimeSec: 89.111115
+    ClickDistractionSec: 14.174999
     ReachingBrain: 0
-    EstimatedClearTimeSec: 72.73148
+    EstimatedClearTimeSec: 123.943344
     TargetTimeSec: 120
-    TimeInTarget: 0
+    TimeInTarget: 1
     TotalEnemies: 67
     TotalEnemyHP: 2463
     EnemyDpsToBrain: 137.57764
     BrainSurvivalSec: 1.4537246
-    MaxTurretsAffordable: 3
-    MaxBarricadesAffordable: 7
-    DifficultyScore: 0.8559566
+    MaxTurretsAffordable: 5
+    MaxBarricadesAffordable: 11
+    DifficultyScore: 0.8539026
     Warnings:
     - "Brain survives 1,5s \u2014 67 enemies, 137,6 DPS"
   - LevelIndex: 10
     StartCredits: 40
-    TotalOrderReward: 51
-    TotalAvailableCredits: 91
-    OptimalUpgradeCost: 57
-    CreditsForDefense: 34
-    MinClearTimeSec: 63
-    ClickDistractionSec: 6.9999995
+    TotalOrderReward: 70
+    TotalAvailableCredits: 110
+    OptimalUpgradeCost: 37
+    CreditsForDefense: 73
+    MinClearTimeSec: 104.518524
+    ClickDistractionSec: 14.174999
     ReachingBrain: 0
-    EstimatedClearTimeSec: 84
+    EstimatedClearTimeSec: 142.43224
     TargetTimeSec: 120
     TimeInTarget: 1
     TotalEnemies: 70
     TotalEnemyHP: 2517
     EnemyDpsToBrain: 141.86336
     BrainSurvivalSec: 1.4098073
-    MaxTurretsAffordable: 3
-    MaxBarricadesAffordable: 6
-    DifficultyScore: 0.8542761
+    MaxTurretsAffordable: 7
+    MaxBarricadesAffordable: 14
+    DifficultyScore: 0.8330802
     Warnings:
     - "Brain survives 1,4s \u2014 70 enemies, 141,9 DPS"
   GlobalWarnings:
   - "Brain survives 0,0s \u2014 0 enemies, 0,0 DPS"
-  - "Brain survives 3,4s \u2014 33 enemies, 58,3 DPS"
+  - "Brain survives 6,7s \u2014 17 enemies, 29,8 DPS"
+  - "First wave at 5s \u2014 before first harvest (6s)"
   - "Brain survives 3,9s \u2014 27 enemies, 51,6 DPS"
   - "Brain survives 2,8s \u2014 36 enemies, 71,3 DPS"
   - "Brain survives 1,9s \u2014 52 enemies, 104,8 DPS"
   - "Brain survives 1,5s \u2014 67 enemies, 137,6 DPS"
   - "Brain survives 1,4s \u2014 70 enemies, 141,9 DPS"
-  EstimatedTotalMinutes: 8.764577
+  EstimatedTotalMinutes: 12.674866
   HasErrors: 1

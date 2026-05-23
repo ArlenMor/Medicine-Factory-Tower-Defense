@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Orders Station
   InstructionText: "This is the Orders Station. \nHere you can see which medicines
     need to be crafted to complete the level"
+  LocalizationKey: level1Step2
   Highlights:
   - Type: 0
     TargetId: TutorOrdersStation

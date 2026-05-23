@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialStepData
   StepName: Resources
   InstructionText: Your resources here
+  LocalizationKey: level1Step2.5
   Highlights:
   - Type: 0
     TargetId: TutorResources

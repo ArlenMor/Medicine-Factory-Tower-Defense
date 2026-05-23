@@ -17,6 +17,7 @@ MonoBehaviour:
 
     Select a plant
     and place it in a free bed'
+  LocalizationKey: level1Step5
   Highlights:
   - Type: 0
     TargetId: TutorPlanting

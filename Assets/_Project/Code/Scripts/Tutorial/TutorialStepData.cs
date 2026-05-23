@@ -19,6 +19,9 @@ namespace _Project.Code.Scripts.Tutorial
         [Tooltip("Текст подсказки, отображаемый игроку")]
         public string InstructionText;
 
+        [Tooltip("Ключ локализации. Если задан, текст берётся из LocalizationConfig по этому ключу")]
+        public string LocalizationKey;
+
         [Tooltip("Список UI-элементов, которые будут подсвечены (незатемнены)")]
         public List<TutorialHighlightTarget> Highlights = new();
 

@@ -1,0 +1,334 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27bca9973e66a9a49933ae9b7d744732, type: 3}
+  m_Name: LocalizationConfig
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Localization.LocalizationConfig
+  Entries:
+  - Key: KEY_Reward
+    English: 'Reward:'
+    Russian: "\u041D\u0430\u0433\u0440\u0430\u0434\u0430:"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level1Step6
+    English: You can remove an unripe plant by tapping it, then tapping the trash
+      button.
+    Russian: "\u0422\u044B \u043C\u043E\u0436\u0435\u0448\u044C \u0443\u0434\u0430\u043B\u0438\u0442\u044C
+      \u043D\u0435\u0441\u043F\u0435\u043B\u043E\u0435 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435,
+      \u043D\u0430\u0436\u0430\u0432 \u043D\u0430 \u043D\u0435\u0433\u043E, \u0430
+      \u0437\u0430\u0442\u0435\u043C \u043D\u0430 \u043A\u043D\u043E\u043F\u043A\u0443
+      \u043A\u043E\u0440\u0437\u0438\u043D\u044B."
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level1Step5
+    English: 'Empty beds can be used to grow new plants.
+
+      Select a plant and
+      place it in a free bed'
+    Russian: "\u041F\u0443\u0441\u0442\u044B\u0435 \u0433\u0440\u044F\u0434\u043A\u0438
+      \u043C\u043E\u0436\u043D\u043E \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C
+      \u0434\u043B\u044F \u0432\u044B\u0440\u0430\u0449\u0438\u0432\u0430\u043D\u0438\u044F
+      \u043D\u043E\u0432\u044B\u0445 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0439.
+      \n\u0412\u044B\u0431\u0435\u0440\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435
+      \u0438 \u043F\u043E\u043C\u0435\u0441\u0442\u0438 \u0435\u0433\u043E \u043D\u0430
+      \u0441\u0432\u043E\u0431\u043E\u0434\u043D\u0443\u044E \u0433\u0440\u044F\u0434\u043A\u0443."
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level1Step4
+    English: This is a crafting station. Click to create medicines in exchange for
+      resources and fulfill orders.
+    Russian: "\u042D\u0442\u043E \u0441\u0442\u0430\u043D\u0446\u0438\u044F \u043A\u0440\u0430\u0444\u0442\u0430.
+      \u041A\u043B\u0438\u043A\u043D\u0438, \u0447\u0442\u043E\u0431\u044B \u0441\u043E\u0437\u0434\u0430\u0432\u0430\u0442\u044C
+      \u043B\u0435\u043A\u0430\u0440\u0441\u0442\u0432\u0430 \u0432 \u043E\u0431\u043C\u0435\u043D
+      \u043D\u0430 \u0440\u0435\u0441\u0443\u0440\u0441\u044B \u0438 \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0442\u044C
+      \u0437\u0430\u043A\u0430\u0437\u044B."
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level1Step3
+    English: 'Your plants produce resources.
+
+      Click on a fully grown plant
+      to harvest it'
+    Russian: "\u0422\u0432\u043E\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F
+      \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u044F\u0442 \u0440\u0435\u0441\u0443\u0440\u0441\u044B.
+      \n\u041D\u0430\u0436\u043C\u0438 \u043D\u0430 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E
+      \u0432\u044B\u0440\u043E\u0441\u0448\u0435\u0435 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435,
+      \u0447\u0442\u043E\u0431\u044B \u0441\u043E\u0431\u0440\u0430\u0442\u044C \u0435\u0433\u043E."
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level1Step2.5
+    English: Your resources here
+    Russian: "\u0422\u0432\u043E\u0438 \u0440\u0435\u0441\u0443\u0440\u0441\u044B
+      \u043D\u0430\u0445\u043E\u0434\u044F\u0442\u0441\u044F \u0437\u0434\u0435\u0441\u044C."
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level1Step2
+    English: 'This is the Orders Station.
+
+      Here you can see which medicines
+      need to be crafted to complete the level'
+    Russian: "\u042D\u0442\u043E \u0441\u0442\u0430\u043D\u0446\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u043E\u0432.
+      \n\u0417\u0434\u0435\u0441\u044C \u0442\u044B \u043C\u043E\u0436\u0435\u0448\u044C
+      \u0443\u0432\u0438\u0434\u0435\u0442\u044C, \u043A\u0430\u043A\u0438\u0435
+      \u043B\u0435\u043A\u0430\u0440\u0441\u0442\u0432\u0430 \u043D\u0443\u0436\u043D\u043E
+      \u0441\u043E\u0437\u0434\u0430\u0442\u044C \u0434\u043B\u044F \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u044F
+      \u0443\u0440\u043E\u0432\u043D\u044F."
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level1Step1
+    English: Welcome to the factory. Your job is to grow plants, craft medicine,
+      and keep the station running!
+    Russian: "\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C
+      \u043D\u0430 \u0444\u0430\u0431\u0440\u0438\u043A\u0443. \u0422\u0432\u043E\u044F
+      \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0432\u044B\u0440\u0430\u0449\u0438\u0432\u0430\u0442\u044C
+      \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F, \u0441\u043E\u0437\u0434\u0430\u0432\u0430\u0442\u044C
+      \u043B\u0435\u043A\u0430\u0440\u0441\u0442\u0432\u0430 \u0438 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0442\u044C
+      \u0440\u0430\u0431\u043E\u0442\u0443 \u0441\u0442\u0430\u043D\u0446\u0438\u0438!"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: KEY_LocalizationLabel
+    English: En
+    Russian: Ru
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: KEY_GameName
+    English: Medicine Factory Tower Defense
+    Russian: "\u0417\u0430\u0449\u0438\u0442\u0430 \u0444\u0430\u0431\u0440\u0438\u043A\u0438
+      \u043C\u0435\u0434\u0438\u043A\u0430\u043C\u0435\u043D\u0442\u043E\u0432"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: KEY_Loading
+    English: Loading...
+    Russian: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430..."
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: KEY_Upgrade
+    English: Upgrades!
+    Russian: "\u0423\u0441\u0438\u043B\u0435\u043D\u0438\u044F!"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: Tutor_Build
+    English: 
+    Russian: 
+    EnglishSprite: {fileID: 645482908193652839, guid: 5674de28158ee0248b2d2b2f93dc7163, type: 3}
+    RussianSprite: {fileID: 21300000, guid: 14bd91fc509c8184dbd2bf31897253c6, type: 3}
+  - Key: Tutor_Craft
+    English: 
+    Russian: 
+    EnglishSprite: {fileID: -6572063566844981658, guid: 4445060bcd719d9498e674ee348c3512, type: 3}
+    RussianSprite: {fileID: 21300000, guid: 77a4387cefb2e5f4885bffb4b03d6988, type: 3}
+  - Key: Tutor_Defence
+    English: 
+    Russian: 
+    EnglishSprite: {fileID: -14578618826435748, guid: 1cd12fe704bdbe94fb312af8b40e0a5c, type: 3}
+    RussianSprite: {fileID: 21300000, guid: 566729bd75a71d4499f68c6d26f66a33, type: 3}
+  - Key: Tutor_Fulfill
+    English: 
+    Russian: 
+    EnglishSprite: {fileID: 3560637536868658628, guid: d3c06c1d22fab9042980ea3f75f22c70, type: 3}
+    RussianSprite: {fileID: 21300000, guid: 8e95f89320298a246ae946e71e59a77c, type: 3}
+  - Key: Tutor_Plant
+    English: 
+    Russian: 
+    EnglishSprite: {fileID: 3239702115019743708, guid: 3e9c17cd6f41d1f4fa1a444ce139eea0, type: 3}
+    RussianSprite: {fileID: 21300000, guid: b1e7bdaabf2b5d648868ac81ec061158, type: 3}
+  - Key: medication_FirstAidKit
+    English: First Aid Kit
+    Russian: "\u0410\u043F\u0442\u0435\u0447\u043A\u0430"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: "medication_Polymer\u0421apsulesBox"
+    English: Polymer Capsules Box
+    Russian: "\u041A\u043E\u0440\u043E\u0431\u043A\u0430 \u043F\u043E\u043B\u0438\u043C\u0435\u0440\u043D\u044B\u0445
+      \u043A\u0430\u043F\u0441\u0443\u043B"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: medication_PolymerBandage
+    English: Polymer Bandage
+    Russian: "\u041F\u043E\u043B\u0438\u043C\u0435\u0440\u043D\u044B\u0439 \u0431\u0438\u043D\u0442"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: "medication_Polymer\u0421apsules"
+    English: Polymer Capsules
+    Russian: "\u041F\u043E\u043B\u0438\u043C\u0435\u0440\u043D\u044B\u0435 \u043A\u0430\u043F\u0441\u0443\u043B\u044B"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: medication_CrystalPlastine
+    English: Crystal Plastine
+    Russian: "\u041A\u0440\u0438\u0441\u0442\u0430\u043B\u044C\u043D\u0430\u044F
+      \u043F\u043B\u0430\u0441\u0442\u0438\u043D\u0430"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: "medication_Crystal\u0421apsulesRaw"
+    English: Crystal Capsules Raw
+    Russian: "\u0421\u044B\u0440\u044B\u0435 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u044C\u043D\u044B\u0435
+      \u043A\u0430\u043F\u0441\u0443\u043B\u044B"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: "medication_Crystal\u0421apsulesBox"
+    English: Crystal Capsules Box
+    Russian: "\u041A\u043E\u0440\u043E\u0431\u043A\u0430 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u044C\u043D\u044B\u0445
+      \u043A\u0430\u043F\u0441\u0443\u043B"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: medication_CrystalSyringe
+    English: Crystal Syringe
+    Russian: "\u041A\u0440\u0438\u0441\u0442\u0430\u043B\u044C\u043D\u044B\u0439
+      \u0448\u043F\u0440\u0438\u0446"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: medication_CryustalGelSyringe
+    English: Crystal Gel Syringe
+    Russian: "\u041A\u0440\u0438\u0441\u0442\u0430\u043B\u044C\u043D\u043E-\u0433\u0435\u043B\u0435\u0432\u044B\u0439
+      \u0448\u043F\u0440\u0438\u0446"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: medication_GelSyringe
+    English: Gel Syringe
+    Russian: "\u0413\u0435\u043B\u0435\u0432\u044B\u0439 \u0448\u043F\u0440\u0438\u0446"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: "medication_Gel\u0421apsules"
+    English: Gel Capsules
+    Russian: "\u0413\u0435\u043B\u0435\u0432\u044B\u0435 \u043A\u0430\u043F\u0441\u0443\u043B\u044B"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: medication_GelPotion
+    English: Gel Potion
+    Russian: "\u0413\u0435\u043B\u0435\u0432\u043E\u0435 \u0437\u0435\u043B\u044C\u0435"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: upgrade_multiplier
+    English: x{0}
+    Russian: x{0}
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: upgrade_percent
+    English: '{0:0.#}%'
+    Russian: '{0:0.#}%'
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: upgrade_zero_percent
+    English: 0%
+    Russian: 0%
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: upgrade_max
+    English: 'MAX: {0}'
+    Russian: "\u041C\u0410\u041A\u0421: {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: plant_grow_time
+    English: Grow Time\n{0:0.#} sec
+    Russian: "\u0412\u0440\u0435\u043C\u044F \u0440\u043E\u0441\u0442\u0430\\n{0:0.#}
+      \u0441\u0435\u043A"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: plant_productivity
+    English: Productivity\n{0:0.#} p/s
+    Russian: "\u0420\u0435\u0441\u0443\u0440\u0441\u044B\\n{0:0.#} \u0432 \u0441\u0435\u043A"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_barricades_built
+    English: 'Barricades built: {0}'
+    Russian: "\u0411\u0430\u0440\u0440\u0438\u043A\u0430\u0434 \u043F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_barricades_built
+    English: 'Barricades built: {0}'
+    Russian: "\u0411\u0430\u0440\u0440\u0438\u043A\u0430\u0434 \u043F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_turrets_built
+    English: 'Turrets built: {0}'
+    Russian: "\u0422\u0443\u0440\u0435\u043B\u0435\u0439 \u043F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_upgrades_purchased
+    English: 'Upgrades purchased: {0}'
+    Russian: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0439 \u043A\u0443\u043F\u043B\u0435\u043D\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_time_played
+    English: 'Time played: {0}'
+    Russian: "\u0412\u0440\u0435\u043C\u0435\u043D\u0438 \u043F\u0440\u043E\u0448\u043B\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_credits_earned
+    English: 'Credits earned: {0}'
+    Russian: "\u041A\u0440\u0435\u0434\u0438\u0442\u043E\u0432 \u0437\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u043D\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_plants_planted
+    English: 'Plants planted: {0}'
+    Russian: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u0439 \u043F\u043E\u0441\u0430\u0436\u0435\u043D\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_resources_collected
+    English: 'Resources collected: {0}'
+    Russian: "\u0420\u0435\u0441\u0443\u0440\u0441\u043E\u0432 \u0441\u043E\u0431\u0440\u0430\u043D\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: stat_enemies_killed
+    English: 'Enemies killed: {0}'
+    Russian: "\u0412\u0440\u0430\u0433\u043E\u0432 \u0443\u0431\u0438\u0442\u043E:
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: level_label
+    English: 'Level: {0}/{1}'
+    Russian: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C: {0}/{1}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: order_label
+    English: 'Order: {0}'
+    Russian: "\u0417\u0430\u043A\u0430\u0437: {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: goal_label
+    English: 'Goal: {0}/{1}'
+    Russian: "\u0426\u0435\u043B\u044C: {0}/{1}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: task_complete
+    English: ---
+    Russian: ---
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: gameover_next_level
+    English: Next Level
+    Russian: "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: gameover_defeat
+    English: Defeat!
+    Russian: "\u041F\u043E\u0440\u0430\u0436\u0435\u043D\u0438\u0435!"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: gameover_victory
+    English: Victory!
+    Russian: "\u041F\u043E\u0431\u0435\u0434\u0430!"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}
+  - Key: gameover_retry_level
+    English: Retry Level {0}
+    Russian: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C \u0443\u0440\u043E\u0432\u0435\u043D\u044C
+      {0}"
+    EnglishSprite: {fileID: 0}
+    RussianSprite: {fileID: 0}

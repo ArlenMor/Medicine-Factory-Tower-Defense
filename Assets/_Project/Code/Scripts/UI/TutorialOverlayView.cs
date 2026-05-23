@@ -1,5 +1,6 @@
 using DG.Tweening;
 using TMPro;
+using _Project.Code.Scripts.Localization;
 using _Project.Code.Scripts.ServiceLocator;
 using UnityEngine;
 using UnityEngine.UI;
@@ -142,7 +143,10 @@ namespace _Project.Code.Scripts.Tutorial
 
         private void PopulateStep(TutorialStepData step)
         {
-            _instructionText.text = step.InstructionText;
+            if (!string.IsNullOrEmpty(step.LocalizationKey) && S.TryGet<LocalizationService>(out var loc))
+                _instructionText.text = loc.GetString(step.LocalizationKey);
+            else
+                _instructionText.text = step.InstructionText;
             _textPanelRect.gameObject.SetActive(true);
             ApplyTextPosition(step);
             _nextButton.gameObject.SetActive(step.Trigger == StepTrigger.ManualButton);

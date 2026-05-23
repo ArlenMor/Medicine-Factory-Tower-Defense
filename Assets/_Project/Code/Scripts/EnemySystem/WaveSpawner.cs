@@ -4,7 +4,6 @@ using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
 using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.ServiceLocator;
-using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.Tutorial;
 using Unity.VisualScripting;

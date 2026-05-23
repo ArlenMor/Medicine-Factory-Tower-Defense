@@ -11,12 +11,12 @@ using _Project.Code.Scripts.CraftSystem;
 using _Project.Code.Scripts.UI;
 using _Project.Code.Scripts.Cheats;
 using _Project.Code.Scripts.Audio;
+using _Project.Code.Scripts.Localization;
 using _Project.Code.Scripts.Tutorial;
 using UnityEngine;
 using _Project.Code.Scripts.BattleField;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Stats;
-using _Project.Code.Scripts.UI;
 
 namespace _Project.Code.Scripts.Bootstrap
 {
@@ -57,6 +57,10 @@ namespace _Project.Code.Scripts.Bootstrap
             S.Reset();
 
             InitConfig();
+
+            var localizationService = new LocalizationService(_gameConfig.LocalizationConfig, Language.Ru);
+            S.Register(localizationService);
+
             _timerService = new TimerService();
             S.Register<ITimerService>(_timerService);
 

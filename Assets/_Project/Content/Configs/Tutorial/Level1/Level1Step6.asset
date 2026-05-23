@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Remove Planting
   InstructionText: You can remove an unripe plant by tapping it, then tapping the
     trash button.
+  LocalizationKey: level1Step6
   Highlights:
   - Type: 1
     TargetId: TutorCurrentPlantedPlant

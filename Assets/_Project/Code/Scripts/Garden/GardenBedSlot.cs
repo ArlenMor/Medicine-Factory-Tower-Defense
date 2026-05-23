@@ -7,7 +7,6 @@ using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Timer;
 using _Project.Code.Scripts.Tutorial;
 using _Project.Code.Scripts.UI;
-using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.UIService;
 using UnityEngine;

@@ -1,6 +1,8 @@
 using System;
 using _Project.Code.Scripts.Configs;
 using _Project.Code.Scripts.Data.TaskData;
+using _Project.Code.Scripts.Localization;
+using _Project.Code.Scripts.ServiceLocator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +31,8 @@ namespace _Project.Code.Scripts.TaskSystem
             _taskService.OnTaskCompleted += OnTaskCompleted;
             _taskService.OnAllTasksCompleted += MakeFinalView;
 
+            S.Get<LocalizationService>().OnLocaleChanged += RefreshView;
+
             if (_taskService.HasActiveTask)
                 UpdateView(_taskService.CurrentTask.Value);
             else
@@ -44,12 +48,15 @@ namespace _Project.Code.Scripts.TaskSystem
             _iconImage.sprite = _iconConfig.FinalIcon;
             _iconImage.color = _finalIconColor;
             _iconImage.enabled = true;
-            _titleText.text = "---";
+            _titleText.text = S.Get<LocalizationService>().GetString("task_complete");
             _titleText.enabled = true;
         }
 
         private void OnDestroy()
         {
+            if (S.TryGet<LocalizationService>(out var loc))
+                loc.OnLocaleChanged -= RefreshView;
+
             if (_taskService != null)
             {
                 _taskService.OnTaskStarted -= UpdateView;
@@ -58,11 +65,24 @@ namespace _Project.Code.Scripts.TaskSystem
             }
         }
 
+        private void RefreshView()
+        {
+            if (_taskService == null) return;
+
+            if (_taskService.CompletedTasksCount >= _taskService.GoalTaskIndex)
+                MakeFinalView();
+            else if (_taskService.HasActiveTask)
+                UpdateView(_taskService.CurrentTask.Value);
+            else
+                ClearView();
+        }
+
         private void UpdateView(TaskData task)
         {
             _iconImage.color = _defaultIconColor;
             _titleText.enabled = true;
-            _titleText.text = "Order: " + task.ResultType.ToDisplayString();
+            var loc = S.Get<LocalizationService>();
+            _titleText.text = loc.GetString("order_label", loc.GetMedicationName(task.ResultType));
 
             var icon = _iconConfig.GetIcon(task.ResultType);
             _iconImage.sprite = icon;
@@ -74,7 +94,7 @@ namespace _Project.Code.Scripts.TaskSystem
             _rewardText.text = task.CreditReward.ToString();
 
             _goalText.enabled = true;
-            _goalText.text = $"Goal: {_taskService.CompletedTasksCount}/{_taskService.GoalTaskIndex}";
+            _goalText.text = S.Get<LocalizationService>().GetString("goal_label", _taskService.CompletedTasksCount, _taskService.GoalTaskIndex);
 
         }
 

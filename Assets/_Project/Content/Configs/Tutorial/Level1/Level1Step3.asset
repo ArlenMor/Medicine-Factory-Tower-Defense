@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Harvesting Plants
   InstructionText: "Your plants produce resources. \nClick on a fully grown plant
     to harvest it"
+  LocalizationKey: level1Step3
   Highlights:
   - Type: 1
     TargetId: TutorHarvestingPlants

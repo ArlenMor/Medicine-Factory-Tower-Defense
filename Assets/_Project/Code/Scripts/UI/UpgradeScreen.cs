@@ -3,6 +3,7 @@ using System.Linq;
 using _Project.Code.Scripts.Audio;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
+using _Project.Code.Scripts.Localization;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.Tutorial;
@@ -164,15 +165,17 @@ namespace _Project.Code.Scripts.UI
 
         private static string FormatUpgradeValue(UpgradeType type, float rawValue, int step)
         {
+            var loc = S.Get<LocalizationService>();
+
             if (type == UpgradeType.Produce)
             {
                 if (step <= 0)
-                    return "0%";
+                    return loc.GetString("upgrade_zero_percent");
 
-                return $"{NormalizeChance(rawValue) * 100f:0.#}%";
+                return loc.GetString("upgrade_percent", NormalizeChance(rawValue) * 100f);
             }
 
-            return $"x{rawValue.ToString(CultureInfo.InvariantCulture)}";
+            return loc.GetString("upgrade_multiplier", rawValue);
         }
 
         private static float NormalizeChance(float rawChance)
