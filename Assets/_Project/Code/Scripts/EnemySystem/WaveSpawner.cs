@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using _Project.Code.Scripts.Data;
 using _Project.Code.Scripts.Game;
-using _Project.Code.Scripts.InputResolverService;
 using _Project.Code.Scripts.ServiceLocator;
 using _Project.Code.Scripts.Stats;
 using _Project.Code.Scripts.Tutorial;
@@ -33,7 +32,6 @@ namespace _Project.Code.Scripts.EnemySystem
         private bool _pauseSpawnDuringTutorial;
         private ITutorialService _tutorialService;
         private bool _waitingForFirstInteraction;
-        private IInputResolver _inputResolver;
 
         public void ManualAwake(EnemyConfig enemyConfig)
         {
@@ -71,17 +69,15 @@ namespace _Project.Code.Scripts.EnemySystem
             _loopTimer = 0f;
             _spawnQueue.Clear();
 
-            if (_inputResolver != null)
-                _inputResolver.OnPointerDown -= OnFirstInteraction;
-            _inputResolver = S.Get<IInputResolver>();
+            GameData.Instance.OnFirstBuildablePlaced -= OnFirstBuildablePlaced;
+            GameData.Instance.OnFirstBuildablePlaced += OnFirstBuildablePlaced;
             _waitingForFirstInteraction = true;
-            _inputResolver.OnPointerDown += OnFirstInteraction;
         }
 
-        private void OnFirstInteraction(InputEventData _)
+        private void OnFirstBuildablePlaced()
         {
             _waitingForFirstInteraction = false;
-            _inputResolver.OnPointerDown -= OnFirstInteraction;
+            GameData.Instance.OnFirstBuildablePlaced -= OnFirstBuildablePlaced;
         }
 
         private void OnDestroy()
@@ -91,14 +87,17 @@ namespace _Project.Code.Scripts.EnemySystem
                 _tutorialService.OnStepStarted -= OnTutorialStepStarted;
                 _tutorialService.OnStepCompleted -= OnTutorialStepCompleted;
             }
-            if (_inputResolver != null)
-                _inputResolver.OnPointerDown -= OnFirstInteraction;
+            GameData.Instance.OnFirstBuildablePlaced -= OnFirstBuildablePlaced;
         }
 
         private void OnTutorialStepStarted(TutorialStepData step)
         {
             if (step.SpawnWaveOnStart)
+            {
                 _forceStartWave = true;
+                _waitingForFirstInteraction = false;
+                GameData.Instance.OnFirstBuildablePlaced -= OnFirstBuildablePlaced;
+            }
         }
 
         private void OnTutorialStepCompleted(TutorialStepData step)

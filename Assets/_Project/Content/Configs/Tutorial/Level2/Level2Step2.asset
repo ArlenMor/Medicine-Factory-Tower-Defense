@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Protect the Core
   InstructionText: "The central core is the brain of the factory. \nIf enemies destroy
     it, you lose the level"
+  LocalizationKey: level2Step2
   Highlights:
   - Type: 1
     TargetId: TutorProtecttheCore_1

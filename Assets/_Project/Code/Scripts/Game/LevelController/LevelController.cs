@@ -46,6 +46,8 @@ namespace _Project.Code.Scripts.Game.LvlController
         private readonly IGamePauseHandler _gamePauseHandler;
         private readonly IPanelShower _panelShower;
         private int _currentLevelIndex;
+        private TutorialSequenceData _pendingTutorialSequence;
+        public bool AutoStartTutorial { get; set; }
 
         public LevelState State { get; private set; } = LevelState.NonPlaying;
 
@@ -120,13 +122,25 @@ namespace _Project.Code.Scripts.Game.LvlController
         public void RequestRestart()
         {
             if (State == LevelState.Playing)
+            {
+                AudioManager.Instance.PlayMainTheme();
                 State = LevelState.NonPlaying;
+            }
         }
 
         public void ForceVictory()
         {
             if (State == LevelState.Playing)
                 _levelEndChecker.ForceVictory();
+        }
+
+        public void StartTutorial()
+        {
+            if (_pendingTutorialSequence != null && S.TryGet<ITutorialService>(out var tutorial))
+            {
+                tutorial.StartSequence(_pendingTutorialSequence);
+                _pendingTutorialSequence = null;
+            }
         }
 
         public void StartLevel(int levelIndex)
@@ -144,14 +158,16 @@ namespace _Project.Code.Scripts.Game.LvlController
             _taskService.Reset(BuildTaskList(levelIndex, gameConfig));
             _gardenBed.StartLevel(levelConfig.InitialPlants);
             _levelEndChecker.Reset();
-            AudioManager.Instance.PlayMainTheme();
             _timer.StartTimer();
             _logger.StartLevel(levelIndex);
 
             State = LevelState.Playing;
 
-            if (levelConfig.TutorialSequence != null && S.TryGet<ITutorialService>(out var tutorial))
-                tutorial.StartSequence(levelConfig.TutorialSequence);
+            _pendingTutorialSequence = levelConfig.TutorialSequence;
+            if (AutoStartTutorial)
+            {
+                StartTutorial();
+            }
         }
 
         private static List<TaskData> BuildTaskList(int levelIndex, GameConfig gameConfig)
@@ -192,12 +208,27 @@ namespace _Project.Code.Scripts.Game.LvlController
             _timer.StopTimer();
             _logger.EndLevel(isVictory);
 
+            if (S.TryGet<ITutorialService>(out var tutorial))
+                tutorial.StopSequence();
+
             State = isVictory ? LevelState.Win : LevelState.Loss;
             if (isVictory)
                 OnVictory?.Invoke();
 
-            _panelShower.ShowView(PanelType.GameOver, new GameOverPanelSettings { IsVictory = isVictory, LevelIndex = _currentLevelIndex }).OnClose += () =>
+            var totalLevels = GameData.Instance.GameConfig.Levels.Count;
+            bool isGameComplete = isVictory && _currentLevelIndex >= totalLevels;
+
+            if (isGameComplete)
+                AudioManager.Instance.PlayGameComplete();
+
+            _panelShower.ShowView(PanelType.GameOver, new GameOverPanelSettings
             {
+                IsVictory = isVictory,
+                LevelIndex = _currentLevelIndex,
+                IsGameComplete = isGameComplete
+            }).OnClose += () =>
+            {
+                AudioManager.Instance.PlayMainTheme();
                 State = LevelState.NonPlaying;
             };
         }

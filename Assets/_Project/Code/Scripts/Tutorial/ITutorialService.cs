@@ -22,6 +22,8 @@ namespace _Project.Code.Scripts.Tutorial
 
         void StartSequence(TutorialSequenceData sequence);
 
+        void StopSequence();
+
         void AdvanceManually();
 
         void NotifyEvent(TutorialEventType eventType);

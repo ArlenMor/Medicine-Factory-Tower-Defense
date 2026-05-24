@@ -43,6 +43,14 @@ namespace _Project.Code.Scripts.BattleField
             }
         }
 
+        private static int GetPriority(EnemyType type) => type switch
+        {
+            EnemyType.Tank => 3,
+            EnemyType.Gnawer => 2,
+            EnemyType.Scout => 1,
+            _ => 0
+        };
+
         private void FindTarget()
         {
             if (_currentTarget != null && !_currentTarget.IsDead
@@ -50,7 +58,7 @@ namespace _Project.Code.Scripts.BattleField
                 return;
 
             _currentTarget = null;
-            float closestDist = float.MaxValue;
+            int highestPriority = -1;
 
             var hits = Physics2D.OverlapCircleAll(transform.position, _attackRadius, _enemyLayer);
             foreach (var hit in hits)
@@ -58,10 +66,10 @@ namespace _Project.Code.Scripts.BattleField
                 if (!hit.TryGetComponent(out Enemy enemy) || enemy.IsDead)
                     continue;
 
-                float dist = (enemy.transform.position - transform.position).sqrMagnitude;
-                if (dist < closestDist)
+                int priority = GetPriority(enemy.Type);
+                if (priority > highestPriority)
                 {
-                    closestDist = dist;
+                    highestPriority = priority;
                     _currentTarget = enemy;
                 }
             }

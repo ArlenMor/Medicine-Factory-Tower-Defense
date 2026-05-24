@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Upgrades
   InstructionText: "You can improve your factory with upgrades. \nUpgrades can speed
     up plant growth, crafting, and increase resource yield"
+  LocalizationKey: level3Step1
   Highlights:
   - Type: 0
     TargetId: TutorUpgrades

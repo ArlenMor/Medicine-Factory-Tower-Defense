@@ -35,6 +35,18 @@ namespace _Project.Code.Scripts.Tutorial
             ShowStep(0);
         }
 
+        public void StopSequence()
+        {
+            if (!IsActive) return;
+
+            IsActive = false;
+            _currentSequence = null;
+            _currentStepIndex = 0;
+            _waitingForCondition = false;
+            _eventCounter = 0;
+            OnStepHidden?.Invoke();
+        }
+
         public void AdvanceManually()
         {
             if (!IsActive || _waitingForCondition) return;

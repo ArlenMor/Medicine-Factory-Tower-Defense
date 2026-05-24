@@ -145,6 +145,7 @@ namespace _Project.Code.Scripts.BattleField
                 }
                 GameData.Instance.AddResource(ResourceType.Credit, -_dragItemData.CreditCost);
                 AudioManager.Instance.PlayBuilding();
+                GameData.Instance.NotifyFirstBuildablePlaced();
                 if (S.TryGet<GameplayLogger>(out var dLog))
                     dLog.LogPurchase(_dragItemData.Type == DefenseType.Turret ? "Turret" : "Barricade", _dragItemData.CreditCost);
                 if (S.TryGet<ITutorialService>(out var tutorial))

@@ -17,6 +17,7 @@ MonoBehaviour:
 
     They will try to reach
     the central core'
+  LocalizationKey: level2Step1
   Highlights:
   - Type: 1
     TargetId: TutorEnemySpawn

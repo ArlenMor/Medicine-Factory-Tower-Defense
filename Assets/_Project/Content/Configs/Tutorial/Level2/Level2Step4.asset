@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Barricade
   InstructionText: "This is a barricade. \nIt doesn\u2019t deal damage, but it can
     slow enemies for a long time"
+  LocalizationKey: level2Step4
   Highlights:
   - Type: 0
     TargetId: TutorBarricade

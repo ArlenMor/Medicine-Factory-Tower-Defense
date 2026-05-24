@@ -42,6 +42,7 @@ namespace _Project.Code.Scripts.Bootstrap
         [SerializeField] private CheatCompleteTask _cheatCompleteTask;
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private LoadingScreen _loadingScreen;
+        [SerializeField] private LanguageSelectScreen _languageSelectScreen;
         [SerializeField] private TutorialOverlayView _tutorialOverlayView;
         [SerializeField] private TutorialVisibilityController _tutorialVisibilityController;
         [SerializeField] private List<TutorialTarget> _tutorialTargets;
@@ -53,6 +54,7 @@ namespace _Project.Code.Scripts.Bootstrap
 
         private void Awake() {
             _loadingScreen.gameObject.SetActive(true);
+            _languageSelectScreen?.ManualAwake();
             
             S.Reset();
 
@@ -111,6 +113,7 @@ namespace _Project.Code.Scripts.Bootstrap
 
             _gameController.ManualAwake(manualUpdates);
             S.Register<IGamePauseHandler>(_gameController);
+            S.Register<GameController>(_gameController);
             if (_cheatCompleteTask != null) _cheatCompleteTask.Initialize(_taskService);
             //Tutorial
             var targetRegistry = new TutorialTargetRegistry();
@@ -126,11 +129,28 @@ namespace _Project.Code.Scripts.Bootstrap
             //Flying Icons
             if (_flyingIconService != null)
                 S.Register(_flyingIconService);
-            //Audio
-            _audioManager.PlayMainTheme();
 
-            //Loading
-            _loadingScreen.Hide();
+            
+            //Loading → Level start → Language select → Tutorial
+            _loadingScreen.Hide(() =>
+            {
+                if (_languageSelectScreen != null)
+                {
+                    _languageSelectScreen.Show();
+                    _languageSelectScreen.OnLanguageSelected += () =>
+                    {
+                        _audioManager.PlayMainTheme();
+                        _gameController.StartTutorial();
+                        _gameController.SetAutoStartTutorial();
+                    };
+                }
+                else
+                {
+                    _audioManager.PlayMainTheme();
+                    _gameController.StartTutorial();
+                    _gameController.SetAutoStartTutorial();
+                }
+            });
         }
 
         private void Start() {

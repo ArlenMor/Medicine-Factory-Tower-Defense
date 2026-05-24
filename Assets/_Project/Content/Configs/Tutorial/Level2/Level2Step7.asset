@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialStepData
   StepName: Survive the Attack
   InstructionText: Defend the core and complete the orders to finish the level
+  LocalizationKey: level2Step7
   Highlights:
   - Type: 1
     TargetId: TutorEnemySpawn

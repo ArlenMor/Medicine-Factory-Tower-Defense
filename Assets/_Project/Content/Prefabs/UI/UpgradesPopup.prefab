@@ -176,6 +176,8 @@ MonoBehaviour:
   - {fileID: 6574900729996687563}
   _backGroundFade: {fileID: 3991153862464110921}
   _closeButton: {fileID: 321324244009584865}
+  _defaultCostColor: {r: 1, g: 1, b: 1, a: 1}
+  _notEnoughMoneyColor: {r: 0.54509807, g: 0.18039216, b: 0.18039216, a: 1}
 --- !u!1 &5753327003499078483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,8 +1009,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2582597099550213894, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3242140349325824876}
   m_SourcePrefab: {fileID: 100100000, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
+--- !u!1 &2531847352539883185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2582597099550213894, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
+  m_PrefabInstance: {fileID: 69198452646617527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3242140349325824876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2531847352539883185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d21000dfddfb64dba4ca0e52676d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.LocalizedTMPro
+  _key: upgrade_speed
+  _localizeOnStart: 1
 --- !u!114 &3301472095693394992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3252998340000445831, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
@@ -1540,13 +1564,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2582597099550213894, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3602026500339252775}
   m_SourcePrefab: {fileID: 100100000, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
 --- !u!224 &3304614496524023321 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6613004721897241429, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
   m_PrefabInstance: {fileID: 8510191006384246092}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6182738331947027018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2582597099550213894, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
+  m_PrefabInstance: {fileID: 8510191006384246092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3602026500339252775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182738331947027018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d21000dfddfb64dba4ca0e52676d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.LocalizedTMPro
+  _key: upgrade_craftSpeed
+  _localizeOnStart: 1
 --- !u!114 &6574900729996687563 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3252998340000445831, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
@@ -2073,7 +2119,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2582597099550213894, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8214579454128610830}
   m_SourcePrefab: {fileID: 100100000, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
 --- !u!224 &2588413725402114716 stripped
 RectTransform:
@@ -2091,3 +2140,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca8ce81b41f4931bfb3ff789ad91ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.UpgradeButtonView
+--- !u!1 &6627823315800676047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2582597099550213894, guid: a2674d73595d68042a9e4b8d80c06729, type: 3}
+  m_PrefabInstance: {fileID: 8659850682477367753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8214579454128610830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6627823315800676047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d21000dfddfb64dba4ca0e52676d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.UI.LocalizedTMPro
+  _key: upgrade_doubleHarvest
+  _localizeOnStart: 1

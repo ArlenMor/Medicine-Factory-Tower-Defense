@@ -15,6 +15,7 @@ MonoBehaviour:
   StepName: Turrete
   InstructionText: "This is a turret. \nIt slows enemies and attacks the strongest
     enemy in range"
+  LocalizationKey: level2Step5
   Highlights:
   - Type: 0
     TargetId: TutorTurret

@@ -195,6 +195,7 @@ namespace _Project.Code.Scripts.Garden
                 plantLog.LogPlant(plantType);
             AudioManager.Instance.PlayPlantPlanting();
             _panelShower.HideView(PanelType.PlantPanelInfo);
+            GameData.Instance.NotifyFirstBuildablePlaced();
             if (S.TryGet<ITutorialService>(out var tutorial))
             {
                 tutorial.NotifyEvent(TutorialEventType.PlantPlanted);

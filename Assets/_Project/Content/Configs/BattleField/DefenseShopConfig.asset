@@ -20,7 +20,7 @@ MonoBehaviour:
     Width: 2
     Height: 1
     PivotOffset: {x: 0, y: 0}
-    MaxHp: 80
+    MaxHp: 100
     AttackRadius: 0
     FireRate: 0
     Damage: 0

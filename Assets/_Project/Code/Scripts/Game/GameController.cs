@@ -24,11 +24,14 @@ namespace _Project.Code.Scripts.Game
             _levelController.OnVictory += () => _currentLevel++;
             _restartButton?.onClick.AddListener(OnRestartPressed);
             _cheatSkipLevel?.Initialize(_levelController);
+            S.Get<LocalizationService>().OnLocaleChanged += UpdateLevelText;
         }
 
         private void OnDestroy()
         {
             _restartButton?.onClick.RemoveListener(OnRestartPressed);
+            if (S.TryGet<LocalizationService>(out var loc))
+                loc.OnLocaleChanged -= UpdateLevelText;
         }
 
         private void OnRestartPressed()
@@ -41,17 +44,38 @@ namespace _Project.Code.Scripts.Game
             _paused = paused;
         }
 
+        public void StartNewGame()
+        {
+            _currentLevel = 1;
+            GameData.Instance.Stats.Reset();
+            _levelController.AutoStartTutorial = true;
+            _levelController.RequestRestart();
+        }
+
+        public void StartTutorial()
+        {
+            _levelController.StartTutorial();
+        }
+
+        public void SetAutoStartTutorial()
+        {
+            _levelController.AutoStartTutorial = true;
+        }
+
+        private void UpdateLevelText()
+        {
+            if (_levelText == null) return;
+            var totalLevels = GameData.Instance.GameConfig.Levels.Count;
+            _levelText.text = S.Get<LocalizationService>().GetString("level_label", _currentLevel, totalLevels);
+        }
+
         public void Update()
         {
             GameData.Instance.Stats.TimePlayed += Time.deltaTime;
 
             if(_levelController.State == LevelState.NonPlaying)
             {
-                if (_levelText != null)
-                {
-                    var totalLevels = GameData.Instance.GameConfig.Levels.Count;
-                    _levelText.text = S.Get<LocalizationService>().GetString("level_label", _currentLevel, totalLevels);
-                }
+                UpdateLevelText();
                 _levelController.StartLevel(_currentLevel);
             }
             else if (_levelController.State == LevelState.Playing)

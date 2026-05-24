@@ -17,6 +17,7 @@ MonoBehaviour:
 
     Use what you learned, survive 10 levels,
     and finish the game!'
+  LocalizationKey: level3Step3
   Highlights: []
   BlockInput: 0
   Trigger: 1

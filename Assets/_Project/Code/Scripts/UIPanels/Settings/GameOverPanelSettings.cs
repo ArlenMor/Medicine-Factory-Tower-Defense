@@ -6,5 +6,6 @@ namespace _Project.Code.Scripts.UIPanels.Settings
     {
         public bool IsVictory;
         public int LevelIndex;
+        public bool IsGameComplete;
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Scripts.Tutorial.TutorialStepData
   StepName: Attack Enemies
   InstructionText: Click on enemies to damage them
+  LocalizationKey: level2Step3
   Highlights:
   - Type: 1
     TargetId: TutorEnemySpawn

@@ -57,6 +57,12 @@ namespace _Project.Code.Scripts.UI
             IsMax = isMax;
         }
 
+        public void SetCostColor(Color color)
+        {
+            if (_upgradeCost != null)
+                _upgradeCost.color = color;
+        }
+
         private void OnClick()
         {
             _clickAction?.Invoke(this);

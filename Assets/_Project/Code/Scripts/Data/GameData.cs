@@ -17,8 +17,10 @@ namespace _Project.Code.Scripts.Data
         public Dictionary<ResourceType, int> Resources { get; set; } = new ();
         public event Action OnResourcesChanged;
         public event Action<UpgradeType> OnUpgradePurchased;
+        public event Action OnFirstBuildablePlaced;
 
         public void NotifyUpgradePurchased(UpgradeType type) => OnUpgradePurchased?.Invoke(type);
+        public void NotifyFirstBuildablePlaced() => OnFirstBuildablePlaced?.Invoke();
         
         public int ProductionProductivityMultiplier = 1;
         private int _produceDoubleMissStreak;

@@ -28,431 +28,108 @@ namespace _Project.Code.Scripts.EnemySystem
         public float LoopDelay = 10f;
 
         [ContextMenu("Waves for level 4")]
-        private void WavesForLevel4()
+        private void FillLevel4()
         {
             LoopLastWave = true;
-            LoopDelay = 14f;
+            LoopDelay = 6f;
 
             Waves = new List<WaveData>
             {
-                new()
-                {
-                    WaveId = 1,
-                    StartTime = 12f,
-                    ScoutCount = 2,
-                    GnawerCount = 0,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.2f,
-                    Comment = "L4 warmup"
-                },
-                new()
-                {
-                    WaveId = 2,
-                    StartTime = 38f,
-                    ScoutCount = 2,
-                    GnawerCount = 1,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.1f,
-                    Comment = "L4 first pressure"
-                },
-                new()
-                {
-                    WaveId = 3,
-                    StartTime = 68f,
-                    ScoutCount = 3,
-                    GnawerCount = 1,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.0f,
-                    Comment = "L4 loop wave"
-                }
+                new() { WaveId = 1, StartTime = 3f,  ScoutCount = 4, GnawerCount = 1, TankCount = 0, IntraSpawnInterval = 0.8f, Comment = "Early pressure" },
+                new() { WaveId = 2, StartTime = 18f, ScoutCount = 5, GnawerCount = 2, TankCount = 0, IntraSpawnInterval = 0.7f, Comment = "Need active clicks" },
+                new() { WaveId = 3, StartTime = 38f, ScoutCount = 4, GnawerCount = 3, TankCount = 0, IntraSpawnInterval = 0.65f, Comment = "Economy disruption" },
+                new() { WaveId = 4, StartTime = 62f, ScoutCount = 5, GnawerCount = 3, TankCount = 1, IntraSpawnInterval = 0.62f, Comment = "Loop wave" }
             };
         }
 
         [ContextMenu("Waves for level 5")]
-        private void WavesForLevel5()
+        private void FillLevel5()
         {
             LoopLastWave = true;
-            LoopDelay = 13f;
+            LoopDelay = 6f;
 
             Waves = new List<WaveData>
             {
-                new()
-                {
-                    WaveId = 1,
-                    StartTime = 10f,
-                    ScoutCount = 2,
-                    GnawerCount = 0,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.15f,
-                    Comment = "L5 opener"
-                },
-                new()
-                {
-                    WaveId = 2,
-                    StartTime = 32f,
-                    ScoutCount = 3,
-                    GnawerCount = 1,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.05f,
-                    Comment = "L5 light mixed"
-                },
-                new()
-                {
-                    WaveId = 3,
-                    StartTime = 58f,
-                    ScoutCount = 2,
-                    GnawerCount = 2,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.0f,
-                    Comment = "L5 gnawer pressure"
-                },
-                new()
-                {
-                    WaveId = 4,
-                    StartTime = 84f,
-                    ScoutCount = 4,
-                    GnawerCount = 2,
-                    TankCount = 0,
-                    IntraSpawnInterval = 0.95f,
-                    Comment = "L5 loop wave"
-                }
+                new() { WaveId = 1, StartTime = 3f,  ScoutCount = 5, GnawerCount = 1, TankCount = 0, IntraSpawnInterval = 0.75f, Comment = "Fast opening" },
+                new() { WaveId = 2, StartTime = 20f, ScoutCount = 5, GnawerCount = 3, TankCount = 0, IntraSpawnInterval = 0.65f, Comment = "Stronger mid pressure" },
+                new() { WaveId = 3, StartTime = 42f, ScoutCount = 4, GnawerCount = 3, TankCount = 1, IntraSpawnInterval = 0.62f, Comment = "First serious check" },
+                new() { WaveId = 4, StartTime = 68f, ScoutCount = 5, GnawerCount = 4, TankCount = 1, IntraSpawnInterval = 0.58f, Comment = "Loop wave" }
             };
         }
 
         [ContextMenu("Waves for level 6")]
-        private void WavesForLevel6()
+        private void FillLevel6()
         {
             LoopLastWave = true;
-            LoopDelay = 12f;
+            LoopDelay = 5.5f;
 
             Waves = new List<WaveData>
             {
-                new()
-                {
-                    WaveId = 1,
-                    StartTime = 10f,
-                    ScoutCount = 3,
-                    GnawerCount = 1,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.05f,
-                    Comment = "L6 opener"
-                },
-                new()
-                {
-                    WaveId = 2,
-                    StartTime = 30f,
-                    ScoutCount = 2,
-                    GnawerCount = 2,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.0f,
-                    Comment = "L6 mixed"
-                },
-                new()
-                {
-                    WaveId = 3,
-                    StartTime = 54f,
-                    ScoutCount = 4,
-                    GnawerCount = 2,
-                    TankCount = 0,
-                    IntraSpawnInterval = 0.95f,
-                    Comment = "L6 pressure"
-                },
-                new()
-                {
-                    WaveId = 4,
-                    StartTime = 78f,
-                    ScoutCount = 3,
-                    GnawerCount = 2,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.95f,
-                    Comment = "L6 first tank"
-                },
-                new()
-                {
-                    WaveId = 5,
-                    StartTime = 96f,
-                    ScoutCount = 4,
-                    GnawerCount = 2,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.9f,
-                    Comment = "L6 loop wave"
-                }
+                new() { WaveId = 1, StartTime = 2.5f, ScoutCount = 5, GnawerCount = 2, TankCount = 0, IntraSpawnInterval = 0.72f, Comment = "Immediate pressure" },
+                new() { WaveId = 2, StartTime = 18f,  ScoutCount = 5, GnawerCount = 3, TankCount = 1, IntraSpawnInterval = 0.62f, Comment = "Pushes first defensive spend" },
+                new() { WaveId = 3, StartTime = 41f,  ScoutCount = 4, GnawerCount = 4, TankCount = 1, IntraSpawnInterval = 0.58f, Comment = "Heavy mixed wave" },
+                new() { WaveId = 4, StartTime = 70f,  ScoutCount = 5, GnawerCount = 4, TankCount = 1, IntraSpawnInterval = 0.55f, Comment = "Loop wave" }
             };
         }
 
         [ContextMenu("Waves for level 7")]
-        private void WavesForLevel7()
+        private void FillLevel7()
         {
             LoopLastWave = true;
-            LoopDelay = 11f;
+            LoopDelay = 5.5f;
 
             Waves = new List<WaveData>
             {
-                new()
-                {
-                    WaveId = 1,
-                    StartTime = 8f,
-                    ScoutCount = 3,
-                    GnawerCount = 2,
-                    TankCount = 0,
-                    IntraSpawnInterval = 1.0f,
-                    Comment = "L7 hard opener"
-                },
-                new()
-                {
-                    WaveId = 2,
-                    StartTime = 28f,
-                    ScoutCount = 4,
-                    GnawerCount = 2,
-                    TankCount = 0,
-                    IntraSpawnInterval = 0.95f,
-                    Comment = "L7 pressure"
-                },
-                new()
-                {
-                    WaveId = 3,
-                    StartTime = 50f,
-                    ScoutCount = 3,
-                    GnawerCount = 3,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.9f,
-                    Comment = "L7 tank mixed"
-                },
-                new()
-                {
-                    WaveId = 4,
-                    StartTime = 74f,
-                    ScoutCount = 5,
-                    GnawerCount = 3,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.85f,
-                    Comment = "L7 late pressure"
-                },
-                new()
-                {
-                    WaveId = 5,
-                    StartTime = 96f,
-                    ScoutCount = 4,
-                    GnawerCount = 4,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.85f,
-                    Comment = "L7 loop wave"
-                }
+                new() { WaveId = 1, StartTime = 2.5f, ScoutCount = 5, GnawerCount = 2, TankCount = 0, IntraSpawnInterval = 0.7f, Comment = "Quick opening" },
+                new() { WaveId = 2, StartTime = 18f,  ScoutCount = 5, GnawerCount = 3, TankCount = 1, IntraSpawnInterval = 0.60f, Comment = "Build check" },
+                new() { WaveId = 3, StartTime = 40f,  ScoutCount = 5, GnawerCount = 4, TankCount = 1, IntraSpawnInterval = 0.56f, Comment = "Mid game pressure" },
+                new() { WaveId = 4, StartTime = 70f,  ScoutCount = 5, GnawerCount = 4, TankCount = 2, IntraSpawnInterval = 0.52f, Comment = "Loop wave" }
             };
         }
 
         [ContextMenu("Waves for level 8")]
-        private void WavesForLevel8()
+        private void FillLevel8()
         {
             LoopLastWave = true;
-            LoopDelay = 10f;
+            LoopDelay = 5f;
 
             Waves = new List<WaveData>
             {
-                new()
-                {
-                    WaveId = 1,
-                    StartTime = 8f,
-                    ScoutCount = 4,
-                    GnawerCount = 2,
-                    TankCount = 0,
-                    IntraSpawnInterval = 0.95f,
-                    Comment = "L8 opener"
-                },
-                new()
-                {
-                    WaveId = 2,
-                    StartTime = 26f,
-                    ScoutCount = 3,
-                    GnawerCount = 3,
-                    TankCount = 0,
-                    IntraSpawnInterval = 0.9f,
-                    Comment = "L8 gnawers"
-                },
-                new()
-                {
-                    WaveId = 3,
-                    StartTime = 46f,
-                    ScoutCount = 5,
-                    GnawerCount = 3,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.85f,
-                    Comment = "L8 tank 1"
-                },
-                new()
-                {
-                    WaveId = 4,
-                    StartTime = 68f,
-                    ScoutCount = 4,
-                    GnawerCount = 4,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.85f,
-                    Comment = "L8 pressure"
-                },
-                new()
-                {
-                    WaveId = 5,
-                    StartTime = 90f,
-                    ScoutCount = 6,
-                    GnawerCount = 4,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.8f,
-                    Comment = "L8 late"
-                },
-                new()
-                {
-                    WaveId = 6,
-                    StartTime = 108f,
-                    ScoutCount = 5,
-                    GnawerCount = 4,
-                    TankCount = 2,
-                    IntraSpawnInterval = 0.8f,
-                    Comment = "L8 loop wave"
-                }
+                new() { WaveId = 1, StartTime = 2f,  ScoutCount = 5, GnawerCount = 2, TankCount = 1, IntraSpawnInterval = 0.68f, Comment = "Hard opening" },
+                new() { WaveId = 2, StartTime = 18f, ScoutCount = 5, GnawerCount = 4, TankCount = 1, IntraSpawnInterval = 0.58f, Comment = "Pressure on barricades" },
+                new() { WaveId = 3, StartTime = 42f, ScoutCount = 5, GnawerCount = 4, TankCount = 2, IntraSpawnInterval = 0.54f, Comment = "Heavy mixed" },
+                new() { WaveId = 4, StartTime = 74f, ScoutCount = 6, GnawerCount = 4, TankCount = 2, IntraSpawnInterval = 0.50f, Comment = "Loop wave" }
             };
         }
 
         [ContextMenu("Waves for level 9")]
-        private void WavesForLevel9()
+        private void FillLevel9()
         {
             LoopLastWave = true;
-            LoopDelay = 9f;
+            LoopDelay = 4.75f;
 
             Waves = new List<WaveData>
             {
-                new()
-                {
-                    WaveId = 1,
-                    StartTime = 8f,
-                    ScoutCount = 5,
-                    GnawerCount = 3,
-                    TankCount = 0,
-                    IntraSpawnInterval = 0.9f,
-                    Comment = "L9 opener"
-                },
-                new()
-                {
-                    WaveId = 2,
-                    StartTime = 24f,
-                    ScoutCount = 4,
-                    GnawerCount = 4,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.85f,
-                    Comment = "L9 tank pressure"
-                },
-                new()
-                {
-                    WaveId = 3,
-                    StartTime = 44f,
-                    ScoutCount = 6,
-                    GnawerCount = 4,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.8f,
-                    Comment = "L9 mixed"
-                },
-                new()
-                {
-                    WaveId = 4,
-                    StartTime = 64f,
-                    ScoutCount = 5,
-                    GnawerCount = 5,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.8f,
-                    Comment = "L9 heavy mixed"
-                },
-                new()
-                {
-                    WaveId = 5,
-                    StartTime = 84f,
-                    ScoutCount = 7,
-                    GnawerCount = 5,
-                    TankCount = 2,
-                    IntraSpawnInterval = 0.75f,
-                    Comment = "L9 late heavy"
-                },
-                new()
-                {
-                    WaveId = 6,
-                    StartTime = 106f,
-                    ScoutCount = 6,
-                    GnawerCount = 6,
-                    TankCount = 2,
-                    IntraSpawnInterval = 0.75f,
-                    Comment = "L9 loop wave"
-                }
+                new() { WaveId = 1, StartTime = 2f,  ScoutCount = 5, GnawerCount = 3, TankCount = 1, IntraSpawnInterval = 0.65f, Comment = "Aggressive opening" },
+                new() { WaveId = 2, StartTime = 17f, ScoutCount = 5, GnawerCount = 4, TankCount = 1, IntraSpawnInterval = 0.56f, Comment = "Sustained pressure" },
+                new() { WaveId = 3, StartTime = 40f, ScoutCount = 5, GnawerCount = 4, TankCount = 2, IntraSpawnInterval = 0.52f, Comment = "High pressure" },
+                new() { WaveId = 4, StartTime = 73f, ScoutCount = 6, GnawerCount = 5, TankCount = 2, IntraSpawnInterval = 0.48f, Comment = "Loop wave" }
             };
         }
 
         [ContextMenu("Waves for level 10")]
-        private void WavesForLevel10()
+        private void FillLevel10()
         {
             LoopLastWave = true;
-            LoopDelay = 12f;
+            LoopDelay = 4.5f;
 
             Waves = new List<WaveData>
             {
-                new()
-                {
-                    WaveId = 1,
-                    StartTime = 8f,
-                    ScoutCount = 5,
-                    GnawerCount = 3,
-                    TankCount = 0,
-                    IntraSpawnInterval = 0.9f,
-                    Comment = "L10 opener, no tank"
-                },
-                new()
-                {
-                    WaveId = 2,
-                    StartTime = 28f,
-                    ScoutCount = 5,
-                    GnawerCount = 4,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.85f,
-                    Comment = "L10 first tank"
-                },
-                new()
-                {
-                    WaveId = 3,
-                    StartTime = 50f,
-                    ScoutCount = 6,
-                    GnawerCount = 4,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.8f,
-                    Comment = "L10 mixed pressure"
-                },
-                new()
-                {
-                    WaveId = 4,
-                    StartTime = 72f,
-                    ScoutCount = 6,
-                    GnawerCount = 5,
-                    TankCount = 1,
-                    IntraSpawnInterval = 0.8f,
-                    Comment = "L10 sustained pressure"
-                },
-                new()
-                {
-                    WaveId = 5,
-                    StartTime = 94f,
-                    ScoutCount = 7,
-                    GnawerCount = 5,
-                    TankCount = 2,
-                    IntraSpawnInterval = 0.75f,
-                    Comment = "L10 late heavy"
-                },
-                new()
-                {
-                    WaveId = 6,
-                    StartTime = 116f,
-                    ScoutCount = 7,
-                    GnawerCount = 6,
-                    TankCount = 2,
-                    IntraSpawnInterval = 0.75f,
-                    Comment = "L10 loop wave"
-                }
+                new() { WaveId = 1, StartTime = 2f,  ScoutCount = 5, GnawerCount = 3, TankCount = 1, IntraSpawnInterval = 0.62f, Comment = "Final opening" },
+                new() { WaveId = 2, StartTime = 16f, ScoutCount = 5, GnawerCount = 4, TankCount = 2, IntraSpawnInterval = 0.54f, Comment = "Strong pressure" },
+                new() { WaveId = 3, StartTime = 40f, ScoutCount = 6, GnawerCount = 4, TankCount = 2, IntraSpawnInterval = 0.50f, Comment = "Late game check" },
+                new() { WaveId = 4, StartTime = 76f, ScoutCount = 6, GnawerCount = 5, TankCount = 3, IntraSpawnInterval = 0.46f, Comment = "Loop wave" }
             };
         }
-
     }
 }

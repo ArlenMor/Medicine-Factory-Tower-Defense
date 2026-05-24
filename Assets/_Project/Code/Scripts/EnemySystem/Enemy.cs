@@ -24,6 +24,8 @@ namespace _Project.Code.Scripts.EnemySystem
 
         public event Action<Enemy> OnDied;
 
+        public EnemyType Type { get; private set; }
+
         private float _currentHp;
         private float _speed;
         private float _centerDamage;
@@ -46,6 +48,7 @@ namespace _Project.Code.Scripts.EnemySystem
 
         public void Initialize(EnemyStats stats, BrainView centerTarget)
         {
+            Type = stats.Type;
             _currentHp = stats.HP;
             _speed = stats.Speed;
             _centerDamage = stats.CenterDamage;

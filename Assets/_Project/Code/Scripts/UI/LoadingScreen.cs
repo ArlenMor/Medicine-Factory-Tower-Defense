@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -15,13 +16,17 @@ namespace _Project.Code.Scripts.UI
             _canvasGroup.blocksRaycasts = true;
         }
 
-        public void Hide()
+        public void Hide(Action onComplete = null)
         {
             _canvasGroup.blocksRaycasts = false;
             _canvasGroup
                 .DOFade(0f, _fadeDuration)
                 .SetEase(Ease.InQuad)
-                .OnComplete(() => gameObject.SetActive(false));
+                .OnComplete(() =>
+                {
+                    gameObject.SetActive(false);
+                    onComplete?.Invoke();
+                });
         }
     }
 }

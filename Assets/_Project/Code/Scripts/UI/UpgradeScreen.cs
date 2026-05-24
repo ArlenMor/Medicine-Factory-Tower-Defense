@@ -19,6 +19,8 @@ namespace _Project.Code.Scripts.UI
         [SerializeField] private UpgradeButtonView[] _upgradeButtonViews;
         [SerializeField] private Button _backGroundFade;
         [SerializeField] private Button _closeButton;
+        [SerializeField] private Color _defaultCostColor = Color.white;
+        [SerializeField] private Color _notEnoughMoneyColor = Color.red;
 
         private GameData _gameData;
         private GameConfig _gameConfig;
@@ -144,6 +146,7 @@ namespace _Project.Code.Scripts.UI
                 
                 var nextValue = string.Empty;
                 var upgradeCost = string.Empty;
+                var canAfford = true;
                 foreach (var upgradeDef in _gameConfig.UpgradesConfig.Upgrades)
                 {
                     if (upgradeDef.Type != upgradeButtonView.Type) continue;
@@ -157,9 +160,11 @@ namespace _Project.Code.Scripts.UI
                     
                     nextValue = FormatUpgradeValue(upgradeType, upgradeDef.Multipliers[nextStep], nextStep);
                     upgradeCost = upgradeDef.Costs[nextStep].ToString(CultureInfo.InvariantCulture);
+                    canAfford = upgradeDef.Costs[nextStep] <= _gameData.Resources[ResourceType.Credit];
                 }
                 
                 upgradeButtonView.RefreshText(currentValue, nextValue, upgradeCost);
+                upgradeButtonView.SetCostColor(canAfford ? _defaultCostColor : _notEnoughMoneyColor);
             }
         }
 

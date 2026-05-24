@@ -31,6 +31,7 @@ namespace _Project.Code.Scripts.Audio
         [Header("Game Result")]
         [SerializeField] private AudioClip _victory;
         [SerializeField] private AudioClip _defeat;
+        [SerializeField] private AudioClip _gameComplete;
 
         [Header("Player Click Hit")]
         [SerializeField] private AudioClip[] _clickHit;
@@ -206,6 +207,7 @@ namespace _Project.Code.Scripts.Audio
         {
             StopMusic();
             if (_victory == null) return;
+            _gameResultSource.volume = 1f;
             _gameResultSource.PlayOneShot(_victory);
         }
 
@@ -213,7 +215,17 @@ namespace _Project.Code.Scripts.Audio
         {
             StopMusic();
             if (_defeat == null) return;
+            _gameResultSource.volume = 1f;
             _gameResultSource.PlayOneShot(_defeat);
+        }
+
+        public void PlayGameComplete()
+        {
+            StopMusic();
+            _gameResultSource.Stop();
+            if (_gameComplete == null) return;
+            _gameResultSource.volume = 1f;
+            _gameResultSource.PlayOneShot(_gameComplete);
         }
 
         public void PlayClickHit()
